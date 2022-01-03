@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductType;
-use App\Http\Requests\StoreProductTypeRequest;
 use App\Http\Requests\UpdateProductTypeRequest;
+use App\Http\Controllers\BaseController as BaseController;
+use Illuminate\Http\Request;
 
-class ProductTypeController extends Controller
+use Illuminate\Support\Facades\Validator;
+
+
+
+class ProductTypeController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +20,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        //
+        $productTypes = ProductType::all();
+        return $this->sendResponse($productTypes, 'Lấy loại sản phẩm thành công.');
     }
 
     /**
@@ -34,9 +40,22 @@ class ProductTypeController extends Controller
      * @param  \App\Http\Requests\StoreProductTypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductTypeRequest $request)
+    public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'description' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        }
+
+        $productType = ProductType::create($input);
+
+        return $this->sendResponse($productType, 'Tạo kích thước sản phẩm thành công.');
     }
 
     /**

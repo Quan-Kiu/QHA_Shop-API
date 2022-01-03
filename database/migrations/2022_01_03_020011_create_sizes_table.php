@@ -17,6 +17,7 @@ class CreateSizesTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('status')->default(true);
+            $table->unsignedBigInteger('product_type_id');
             $table->softDeletes();
             $table->timestamps();
         });

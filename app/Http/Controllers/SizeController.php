@@ -3,19 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Size;
-use App\Http\Requests\StoreSizeRequest;
-use App\Http\Requests\UpdateSizeRequest;
+use Illuminate\Http\Request;
 
-class SizeController extends Controller
+use App\Http\Requests\UpdateSizeRequest;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\BaseController as BaseController;
+
+class SizeController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $sizes = Size::all();
+
+        if ($request['product_type_id']) {
+            print($request->product_type_id);
+            $sizes = Size::where('product_type_id', '=', $request->product_type_id)->get();
+        }
+
+        return $this->sendResponse(
+            $sizes,
+            'Lấy danh sách sản phẩm thành công.'
+        );
     }
 
     /**
@@ -34,9 +47,22 @@ class SizeController extends Controller
      * @param  \App\Http\Requests\StoreSizeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSizeRequest $request)
+    public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'product_type_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        }
+
+        $size = Size::create($input);
+
+        return $this->sendResponse($size, 'Tạo kích thước sản phẩm thành công.');
     }
 
     /**

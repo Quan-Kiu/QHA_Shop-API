@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserType;
-use App\Http\Requests\StoreUserTypeRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserTypeRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\BaseController as BaseController;
-use App\Http\Resources\UserType as UserTypeResource;
 
 
 class UserTypeController extends BaseController
@@ -41,7 +39,7 @@ class UserTypeController extends BaseController
 
         $userType = UserType::create($input);
 
-        return $this->sendResponse(new UserTypeResource($userType), 'Tạo loại tài khoản thành công.');
+        return $this->sendResponse($userType, 'Tạo loại tài khoản thành công.');
     }
 
 

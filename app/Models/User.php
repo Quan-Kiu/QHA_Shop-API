@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'fullname',
         'phone',
+        'gender',
         'address',
         'birthday',
         'status',
@@ -47,4 +48,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin()
+    {
+        return $this->user_types()->where('name', 'admin')->exists();
+    }
 }

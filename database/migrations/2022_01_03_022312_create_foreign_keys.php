@@ -19,6 +19,9 @@ class CreateForeignKeys extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->foreign('product_type_id')->references('id')->on('product_types');
         });
+        Schema::table('sizes', function (Blueprint $table) {
+            $table->foreign('product_type_id')->references('id')->on('product_types');
+        });
     }
 
     /**

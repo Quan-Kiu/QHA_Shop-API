@@ -58,7 +58,6 @@ class UserController extends BaseController
     public function update(Request $request, User $user)
     {
         $input = $request->all();
-
         $validator = Validator::make($request->all(), [
             "fullname" => 'required|string|max:35|min:6',
             "email" => 'required|string|email|unique:users,email,' . $user->id,

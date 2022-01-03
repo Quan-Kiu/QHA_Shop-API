@@ -14,4 +14,9 @@ class Product extends Model
         'sizes' => 'array',
         'colors' => 'array'
     ];
+
+    public function ProductType()
+    {
+        return $this->belongsTo(ProductType::class);
+    }
 }

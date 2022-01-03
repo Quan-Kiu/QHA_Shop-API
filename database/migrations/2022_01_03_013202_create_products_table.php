@@ -18,12 +18,12 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->unsignedBigInteger('product_type_id');
-            $table->json('color_id');
-            $table->json('size_id');
+            $table->json('colors');
+            $table->json('sizes');
             $table->json('images');
-            $table->string('price');
-            $table->string('sale');
-            $table->string('stock');
+            $table->double('price');
+            $table->double('discount');
+            $table->int('stock');
             $table->boolean('status')->default(true);
             $table->timestamps();
             $table->softDeletes();

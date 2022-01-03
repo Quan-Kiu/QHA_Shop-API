@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Color;
-use App\Http\Requests\StoreColorRequest;
-use App\Http\Requests\UpdateColorRequest;
+use Illuminate\Http\Request;
 
-class ColorController extends Controller
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\BaseController as BaseController;
+
+class ColorController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        $colors = Color::all();
+        return $this->sendResponse($colors, 'Lấy màu sản phẩm thành công.');
     }
 
     /**
@@ -34,9 +37,21 @@ class ColorController extends Controller
      * @param  \App\Http\Requests\StoreColorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreColorRequest $request)
+    public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        }
+
+        $color = Color::create($input);
+
+        return $this->sendResponse($color, 'Tạo màu sản phẩm thành công.');
     }
 
     /**
@@ -68,7 +83,7 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateColorRequest $request, Color $color)
+    public function update(Request $request, Color $color)
     {
         //
     }

@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Controllers\BaseController as BaseController;
+use Illuminate\Http\Request;
 
-class ProductController extends Controller
+
+class ProductController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        $response['products'] = $products;
+        $response['total'] = $products->count();
+
+        return $this->sendResponse($response, 'Lấy danh sách sản phẩm thành công.');
     }
 
     /**
@@ -37,6 +44,30 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+
+        $products = Product::where(function ($query) use ($request) {
+            if ($request['product_type_id']) {
+                $query->where('product_type_id', '=', $request->product_type_id);
+            }
+            if ($request['name']) {
+                $query->where('name', 'LIKE', "%" . $request->name . "%");
+            }
+        })->get();
+
+
+        $response['products'] = $products;
+        $response['total'] = $products->count();
+        if ($response['total'] > 0) {
+            return $this->sendResponse(
+                $response,
+                'Lấy danh sách sản phẩm thành công.'
+            );
+        }
+        return $this->sendError('Sản phẩm không tồn tại.', 401);
     }
 
     /**
