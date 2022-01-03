@@ -22,7 +22,6 @@ class AuthController extends BaseController
         if ($validator->fails()) {
             return $this->sendError($validator->errors()->first());
         }
-
         $input = $request->all();
 
         $user = User::where('email', $input['email'])->first();
@@ -61,6 +60,10 @@ class AuthController extends BaseController
         $success['user'] =  $user;
 
         return $this->sendResponse($success, 'Tạo tài khoản thành công, Vui lòng đăng nhập.');
+    }
+
+    public function update(Request $request)
+    {
     }
 
     public function logout()

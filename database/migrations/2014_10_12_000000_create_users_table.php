@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('fullname');
             $table->string('password');
             $table->string('email')->unique();
+            $table->string('gender')->default('Nam');
             $table->string('phone')->nullable();
-            $table->string('avatar')->default('https://http://dvdn247.net/wp-content/uploads/2020/07/avatar-mac-dinh-1.png');
+            $table->string('avatar')->default('http://dvdn247.net/wp-content/uploads/2020/07/avatar-mac-dinh-1.png');
             $table->string('address')->nullable();
             $table->date('birthday')->nullable();
             $table->boolean('status')->default(true);
