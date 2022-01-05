@@ -29,7 +29,9 @@ class AuthController extends BaseController
         if (!$user || !Hash::check($input['password'], $user->password)) {
             return $this->sendError('Sai email hoặc mật khẩu', 401);
         }
-
+        if (Auth::guard('web')->attempt(['email' => request('email'), 'password' => request('password')])) {
+            $user = Auth::guard('web')->user();
+        }
         $token = $user->createToken('MyAuthApp')->plainTextToken;
 
         $response = [
