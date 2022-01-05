@@ -19,16 +19,17 @@
         </a>
       </li>
       <li class="nav-item nav-category">Products</li>
-      <li class="nav-item {{ active_class(['products/*']) }}">
+      <li class="nav-item {{ active_class(['products']) }}">
         <a href="{{ url('/products') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Products</span>
         </a>
       </li>
-      <li class="nav-item {{ active_class(['products/*']) }}">
-        <a href="{{ url('/products/add') }}" class="nav-link">
+      <li class="nav-item nav-category">User</li>
+      <li class="nav-item {{ active_class(['user']) }}">
+        <a href="{{ url('/user') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
-          <span class="link-title">Add Product</span>
+          <span class="link-title">User</span>
         </a>
       </li>
       <li class="nav-item nav-category">web apps</li>

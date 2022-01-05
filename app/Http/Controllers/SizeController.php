@@ -71,9 +71,15 @@ class SizeController extends BaseController
      * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function show(Size $size)
+    public function show($id)
     {
-        //
+        $size = Size::find($id);
+
+        if (is_null($size)) {
+            return $this->sendError('Kích thước không tồn tại.');
+        }
+        return $this->sendResponse($size, 'Lấy thành công.');
+
     }
 
     /**
@@ -94,9 +100,28 @@ class SizeController extends BaseController
      * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSizeRequest $request, Size $size)
+    public function update(Request $request, Size $size)
     {
-        //
+        $input = $request->all();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'product_type_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        }
+
+
+        $size->fill([
+            'name' => $input["name"],
+            'product_type_id' => $input["product_type_id"],
+
+        ]);
+
+        $size->save();
+
+        return $this->sendResponse($size, 'Thay đổi thông tin thành công.');
     }
 
     /**
@@ -107,6 +132,7 @@ class SizeController extends BaseController
      */
     public function destroy(Size $size)
     {
-        //
+        $size->delete();
+        return $this->sendResponse([], 'Xóa thành công!');
     }
 }

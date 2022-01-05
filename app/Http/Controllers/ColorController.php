@@ -60,9 +60,14 @@ class ColorController extends BaseController
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function show($id)
     {
-        //
+        $color = Color::find($id);
+
+        if (is_null($color)) {
+            return $this->sendError('Màu sắc không tồn tại.');
+        }
+        return $this->sendResponse($color, 'Lấy thành công.');
     }
 
     /**
@@ -85,7 +90,23 @@ class ColorController extends BaseController
      */
     public function update(Request $request, Color $color)
     {
-        //
+        $input = $request->all();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        }
+
+
+        $color->fill([
+            'name' => $input["name"],
+        ]);
+
+        $color->save();
+
+        return $this->sendResponse($color, 'Thay đổi thông tin thành công.');
     }
 
     /**
@@ -96,6 +117,7 @@ class ColorController extends BaseController
      */
     public function destroy(Color $color)
     {
-        //
+        $color->delete();
+        return $this->sendResponse([], 'Xóa thành công!');
     }
 }
