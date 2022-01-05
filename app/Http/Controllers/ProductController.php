@@ -47,22 +47,22 @@ class ProductController extends BaseController
             $product = new Product;
             $product->name = $request->input('name');
             $product->description = $request->input('description');
-            $product->product_type_id = $request->input('product_type');
+            $product->product_type_id = $request->input('product_type_id');
             $product->price = $request->input('price');
             $product->sale = $request->input('sale');
             $product->stock = $request->input('stock');
-            $product->size_id = $request->input('size');
-            $product->color_id = $request->input('color');
-            $product->images = $request->input('image');
+            $product->sizes= $request->input('sizes');
+            $product->colors = $request->input('colors');
+            $product->images = $request->input('images');
             $product->save();
 
          $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'description' => 'required|string',
             'product_type_id' => 'required|int',
-            'size_id' => 'required|int',
-            'color_id' => 'required|int',
-            'image_id' => 'required|int',
+            'sizes' => 'required|int',
+            'colors' => 'required|int',
+            'images' => 'required|int',
             'price' => 'required|int',
             'sale' => 'required|int',
             'stock' => 'required|int',

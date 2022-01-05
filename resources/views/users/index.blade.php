@@ -10,11 +10,11 @@
 @section('content')
 <nav class="page-breadcrumb">
 <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="/products">Product</a></li>
+        <li class="breadcrumb-item"><a href="/user">User</a></li>
         
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/products/add';">
+        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/user/add';">
     <i class="btn-icon-prepend" data-feather="plus"></i>
-    Add Product
+    Add User
 </button>
 
     </ol>
@@ -31,14 +31,13 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Description</th>
-                                <th>Product Type</th>
-                                <th>Size</th>
-                                <th>Color</th>
-                                <th>Image</th>
-                                <th>Price</th>
-                                <th>Sale</th>
-                                <th>Stock</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Gender</th>
+                                <th>Phone</th>
+                                <th>Avatar</th>
+                                <th>Address</th>
+                                <th>Birthday</th>                            
                                 <th>Update</th>
                                 <th>Delete</th>
                             </tr>
@@ -47,15 +46,14 @@
                             @foreach($product as $item)
                             <tr>
                                 <td>{{$item['id']}}</td>
-                                <td>{{$item['name']}}</td>
-                                <td>{{$item['description']}}</td>
-                                <td>{{$item['product_type_id']}}</td>
-                                <td>{{$item['size_id']}}</td>
-                                <td>{{$item['color_id']}}</td>
-                                <td>{{$item['image']}}</td>
-                                <td>{{$item['price']}}</td>
-                                <td>{{$item['sale']}}</td>
-                                <td>{{$item['stock']}}</td>
+                                <td>{{$item['fullname']}}</td>
+                                <td>{{$item['email']}}</td>
+                                <td>{{$item['password']}}</td>
+                                <td>{{$item['gender']}}</td>
+                                <td>{{$item['phone']}}</td>
+                                <td>{{$item['avatar']}}</td>
+                                <td>{{$item['address']}}</td>
+                                <td>{{$item['birthday']}}</td>                                
                                 <td><button class="btn btn-primary" onclick="window.location.href='products/add' ;">Update </button></td>
                                 <td><button class="btn btn-danger" onclick="showSwal('passing-parameter-execute-cancel')">Delete</button></td>
 

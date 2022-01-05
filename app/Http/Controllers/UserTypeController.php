@@ -43,9 +43,14 @@ class UserTypeController extends BaseController
     }
 
 
-    public function show(UserType $userType)
+    public function show($id)
     {
-        //
+        $userType = UserType::find($id);
+
+        if (is_null($userType)) {
+            return $this->sendError('Loại người dùng không tồn tại.');
+        }
+        return $this->sendResponse($userType, 'Lấy thành công.');
     }
 
 
@@ -55,14 +60,31 @@ class UserTypeController extends BaseController
     }
 
 
-    public function update(UpdateUserTypeRequest $request, UserType $userType)
+    public function update(Request $request, UserType $userType)
     {
-        //
+        $input = $request->all();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        }
+
+
+        $userType->fill([
+            'name' => $input["name"],
+        ]);
+
+        $userType->save();
+
+        return $this->sendResponse($userType, 'Thay đổi thông tin thành công.');
     }
 
 
     public function destroy(UserType $userType)
     {
-        //
+        $userType->delete();
+        return $this->sendResponse([], 'Xóa thành công!');
     }
 }

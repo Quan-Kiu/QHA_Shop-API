@@ -7,8 +7,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/products">Product</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+        <li class="breadcrumb-item"><a href="/user">User</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add User</li>
     </ol>
 </nav>
 
@@ -23,67 +23,51 @@
                             <div class="col-md-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h6 class="card-title">ADD PRODUCT</h6>
-                                        <form action="/product" method="POST">
+                                        <h6 class="card-title">ADD USER</h6>
+                                        <form action="/user" method="POST">
                                             <div class="form-group">
-                                                <label for="exampleInputText1">Name</label>
+                                                <label for="exampleInputText1">Full Name</label>
                                                 <input type="text" class="form-control" name="name" value="" placeholder="Enter Name">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputText1">Description</label>
-                                                <input type="text" class="form-control" name="description" value="" placeholder="Enter Description">
+                                                <label for="exampleInputText1">Email</label>
+                                                <input type="email" class="form-control" name="email" value="" placeholder="Enter Email">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Product Type</label>
-                                                <select class="form-control" name="product_type_id">
-                                                    <option selected disabled>Select Product Type</option>
-                                                    <option>12-18</option>
-                                                    <option>18-22</option>
-                                                    <option>22-30</option>
-                                                    <option>30-60</option>
-                                                    <option>Above 60</option>
+                                                <label for="exampleInputText1">Password</label>
+                                                <input type="password" class="form-control" name="password" value="" placeholder="Enter Password">
+                                            </div>
+                                            
+                                            
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Gender</label>
+                                                <select class="form-control" name="gender">
+                                                    <option selected disabled>Select Gender</option>
+                                                    <option value="10">Nam</option>
+                                                    <option>Nữ</option>
+                                                    <option>Khác</option>
+                                                    
                                                 </select>
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="exampleFormControlSelect2">Size</label>
-                                                <select multiple class="form-control" name="sizes">
-                                                    <option value="10">33</option>
-                                                    <option value="11">34</option>
-                                                    <option value="12">35</option>
-                                                    <option value="13">36</option>
-                                                    <option>37</option>
-                                                    <option>38</option>
-                                                    <option>39</option>
-                                                    <option>40</option>
-                                                    <option>41</option>
-                                                    <option>42</option>
-                                                    <option>43</option>
-                                                </select>
+                                                <label for="exampleInputText1">Phone</label>
+                                                <input type="number" class="form-control" name="phone" value="" placeholder="Enter Phone">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Color</label>
-                                                <select class="form-control" name="colors">
-                                                    <option selected disabled>Select Color</option>
-                                                    <option value="10">12-18</option>
-                                                    <option>18-22</option>
-                                                    <option>22-30</option>
-                                                    <option>30-60</option>
-                                                    <option>Above 60</option>
-                                                </select>
+                                                <label for="exampleInputText1">Avatar</label>
+                                                <input type="text" class="form-control" name="avatar" value="" placeholder="Enter Avatar">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputText1">Address</label>
+                                                <input type="text" class="form-control" name="phone" value="" placeholder="Enter Address">
                                             </div>
                                             
                                             <div class="form-group">
-                                                <label for="exampleInputNumber1">Price</label>
-                                                <input type="number" class="form-control" name="price" value="" placeholder="Enter Price">
+                                                <label for="exampleInputNumber1">Birthday</label>
+                                                <input type="datetime-local" class="form-control" name="price" value="" placeholder="Enter Birthday">
                                             </div>                                            
-                                            <div class="form-group">
-                                                <label for="exampleInputNumber1">Sale</label>
-                                                <input type="number" class="form-control" name="sales" value="" placeholder="Enter Sale">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword3">Stock</label>
-                                                <input type="number" class="form-control" name="stock" value="" placeholder="Enter Stock">
-                                            </div>
+                                            
                                             <!-- <div class="form-group">
                                                 <label>Main Image</label>
                                                 <input type="file" name="img[]" class="file-upload-default">
@@ -104,7 +88,7 @@
                                                     </span>
                                                 </div>
                                             </div> -->
-                                            <button class="btn btn-primary" type="submit" onclick="">Add Product</button>
+                                            <button class="btn btn-primary" type="submit" onclick="">Add User</button>
                                         </form>
                                     </div>
                                 </div>

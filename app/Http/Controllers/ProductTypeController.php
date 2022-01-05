@@ -6,7 +6,6 @@ use App\Models\ProductType;
 use App\Http\Requests\UpdateProductTypeRequest;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Validator;
 
 
@@ -66,7 +65,12 @@ class ProductTypeController extends BaseController
      */
     public function show(ProductType $productType)
     {
-        //
+        $productTypes = ProductType::find($productType);
+
+        if (is_null($productTypes)) {
+            return $this->sendError('Loại sản phẩm không tồn tại.');
+        }
+        return $this->sendResponse($productTypes, 'Lấy thành công.');
     }
 
     /**
@@ -87,9 +91,27 @@ class ProductTypeController extends BaseController
      * @param  \App\Models\ProductType  $productType
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductTypeRequest $request, ProductType $productType)
+    public function update(Request $request, ProductType $productType)
     {
-        //
+        $input = $request->all();
+        $validator = Validator::make($request->all(), [
+            "name" => 'required|string',
+            "description" => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors()->first());
+        }
+
+        $productType->fill([
+            'name' => $input["name"],
+            'description' => $input["description"],
+
+        ]);
+
+        $productType->save();
+
+        return $this->sendResponse($productType, 'Thay đổi thông tin thành công.');
     }
 
     /**
@@ -100,6 +122,7 @@ class ProductTypeController extends BaseController
      */
     public function destroy(ProductType $productType)
     {
-        //
+        $productType->delete();
+        return $this->sendResponse([], 'Xóa tài khoản thành công!');
     }
 }

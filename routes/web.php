@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\View;
 use App\Models\Product;
-
+use App\Models\User;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/register', function () {
@@ -24,10 +24,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products', function () {
         $product = Product::all();
         return view('products.index',['product'=>$product]);
-    })->name('dashboard');
+    })->name('product');
+    Route::get('/user', function () {
+        $user = User::all();
+        return view('users.index',['product'=>$user]);
+    })->name('add.product');
     Route::get('/products/add', function () {
         return view('products.addProduct');
-    })->name('dashboard');
+    })->name('user');
+    Route::get('/user/add', function () {
+        return view('users.addUser');
+    })->name('add.user');
 });
 
 

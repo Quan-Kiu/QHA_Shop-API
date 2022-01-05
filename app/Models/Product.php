@@ -19,4 +19,7 @@ class Product extends Model
     {
         return $this->belongsTo(ProductType::class);
     }
+     protected $fillable = [
+        'name', 'description', 'price', 'stock', 'discount', 'images', 'colors', 'sizes', 'product_type_id'
+    ];
 }
