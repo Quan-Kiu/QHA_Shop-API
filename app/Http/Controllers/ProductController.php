@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class ProductController extends BaseController
@@ -41,9 +42,38 @@ class ProductController extends BaseController
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        //
+            $product = new Product;
+            $product->name = $request->input('name');
+            $product->description = $request->input('description');
+            $product->product_type_id = $request->input('product_type');
+            $product->price = $request->input('price');
+            $product->sale = $request->input('sale');
+            $product->stock = $request->input('stock');
+            $product->size_id = $request->input('size');
+            $product->color_id = $request->input('color');
+            $product->images = $request->input('image');
+            $product->save();
+
+         $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'product_type_id' => 'required|int',
+            'size_id' => 'required|int',
+            'color_id' => 'required|int',
+            'image_id' => 'required|int',
+            'price' => 'required|int',
+            'sale' => 'required|int',
+            'stock' => 'required|int',
+        ]); 
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        } 
+
+
+        return $this->sendResponse($product, 'Tạo sản phẩm thành công.');
     }
 
     public function search(Request $request)

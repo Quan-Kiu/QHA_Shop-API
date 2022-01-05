@@ -25,6 +25,12 @@
           <span class="link-title">Products</span>
         </a>
       </li>
+      <li class="nav-item {{ active_class(['products/*']) }}">
+        <a href="{{ url('/products/add') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Add Product</span>
+        </a>
+      </li>
       <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">

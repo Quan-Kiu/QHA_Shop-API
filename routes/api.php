@@ -7,6 +7,7 @@ use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\SizeController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,4 +34,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('size', SizeController::class);
     Route::resource('user', UserController::class);
     Route::post('/logout', [AuthController::class, 'logout']);
+    
 });

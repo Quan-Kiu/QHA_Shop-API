@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\View;
+use App\Models\Product;
 
 
 Route::group(['prefix' => 'auth'], function () {
@@ -21,7 +22,11 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('dashboard');
     })->name('dashboard');
     Route::get('/products', function () {
-        return view('products.index');
+        $product = Product::all();
+        return view('products.index',['product'=>$product]);
+    })->name('dashboard');
+    Route::get('/products/add', function () {
+        return view('products.addProduct');
     })->name('dashboard');
 });
 

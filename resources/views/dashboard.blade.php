@@ -31,15 +31,6 @@
 </div> <!-- row -->
 @endsection
 
-<script>
-    const sendLogin = (e) => {
-        const response = axios.get('sanctum/csrf-cookie').then(response => {
-            return axios.get('api/user')
-        })
-        console.log(response);
-    }
-</script>
-
 @push('plugin-scripts')
 <script src="{{ asset('assets/plugins/chartjs/Chart.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
