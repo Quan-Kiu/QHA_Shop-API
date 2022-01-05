@@ -4,6 +4,8 @@
 <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/plugins/dropzone/dropzone.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
+
 
 
 
@@ -74,7 +76,7 @@
                                                 <input name="price" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputNumber1">Sale</label>
+                                                <label for="exampleInputNumber1">Discount</label>
                                                 <input name="discount" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
                                             </div>
                                             <div class="form-group">
@@ -139,8 +141,9 @@
             allowClear: true
         })
 
-        $('#add-product').submit(function(e) {
+        $('#add-product').submit(async function(e) {
             e.preventDefault();
+
             let formData = new FormData();
             formData.append('thumbnail', $("#thumbnail").prop('files')[0]);
             for (let index = 0; index < $("#images").prop('files').length; index++) {
@@ -155,9 +158,21 @@
             formData.append('colors', $("#colors").val());
             formData.append('product_type_id', $("#product_type_id").val());
 
-            axios.post('/api/product', formData).then((response) => {
-                console.log(response);
-            })
+            showSwal('message-with-auto-close', {
+                timer: 60000,
+                title: 'Đang tạo sản phẩm'
+            });
+            try {
+                const response = await axios.post('/api/product', formData);
+                showSwal('custom-position', {
+                    title: 'Thành công',
+                })
+            } catch (error) {
+                showSwal('title-icon-text-footer', {
+                    error: error.response.data.message
+                });
+            }
+
         })
 
         $('#product_type_id').change(function() {
@@ -191,6 +206,15 @@
 <script src="{{ asset('assets/plugins/dropzone/dropzone.min.js') }}"></script>
 
 
+@endpush
+
+@push('plugin-scripts')
+<script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/promise-polyfill/polyfill.min.js') }}"></script>
+@endpush
+
+@push('custom-scripts')
+<script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
 @endpush
 
 @push('custom-scripts')

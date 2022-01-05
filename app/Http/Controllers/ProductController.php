@@ -55,13 +55,14 @@ class ProductController extends BaseController
             'sizes' => 'required',
             'colors' => 'required',
             'thumbnail' => 'required',
+            'images1' => 'required',
             'price' => 'required|int',
             'discount' => 'required|int',
             'stock' => 'required|int',
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError($validator->errors());
+            return $this->sendError($validator->errors()->first());
         }
         $product = $request->all();
 
