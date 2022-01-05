@@ -1,22 +1,25 @@
 @extends('layout.master')
-
+@cloudinaryJS
 @push('plugin-styles')
-<link href="{{ asset('assets/plugins/datatables-net/dataTables.bootstrap4.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/dropzone/dropzone.min.css') }}" rel="stylesheet" />
+
+
+
 @endpush
 
 @section('content')
 <nav class="page-breadcrumb">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb ">
         <li class="breadcrumb-item"><a href="#">Product</a></li>
         <li class="breadcrumb-item active" aria-current="page">Add Product</li>
     </ol>
 </nav>
-
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-        
                 <div class="table-responsive">
                     <table id="table-user" id="dataTableExample" class="table">
                         <div class="row">
@@ -24,87 +27,63 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h6 class="card-title">ADD PRODUCT</h6>
-                                        <form>
+
+
+                                        <form id="add-product">
+                                            <div class="form-group">
+                                                <label for="thumbnail">Main Image</label>
+                                                <input name="thumbnail" type="file" class="form-control" id="thumbnail">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="images">Images</label>
+                                                <input name="images[]" type="file" multiple class="form-control" id="images">
+                                            </div>
                                             <div class="form-group">
                                                 <label for="exampleInputText1">Name</label>
-                                                <input type="text" class="form-control" id="exampleInputText1" value="" placeholder="Enter Name">
+                                                <input name="name" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputText1">Description</label>
-                                                <input type="text" class="form-control" id="exampleInputText1" value="" placeholder="Enter Description">
+                                                <input name="description" type="text" class="form-control" id="description" value="" placeholder="Enter Description">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Product Type</label>
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option selected disabled>Select Product Type</option>
-                                                    <option>12-18</option>
-                                                    <option>18-22</option>
-                                                    <option>22-30</option>
-                                                    <option>30-60</option>
-                                                    <option>Above 60</option>
+                                                <label>Product Type</label><br>
+                                                <select id="product_type_id" class="js-example-basic-single w-100">
+                                                    <option></option>
                                                 </select>
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="exampleFormControlSelect2">Size</label>
-                                                <select multiple class="form-control" id="exampleFormControlSelect2">
-                                                    <option>33</option>
-                                                    <option>34</option>
-                                                    <option>35</option>
-                                                    <option>36</option>
-                                                    <option>37</option>
-                                                    <option>38</option>
-                                                    <option>39</option>
-                                                    <option>40</option>
-                                                    <option>41</option>
-                                                    <option>42</option>
-                                                    <option>43</option>
+                                                <label>Colors</label><br>
+                                                <select id="colors" name="colors[]" class="js-example-basic-multiple w-100" multiple="multiple">
+                                                    <option></option>
                                                 </select>
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Color</label>
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option selected disabled>Select Color</option>
-                                                    <option>12-18</option>
-                                                    <option>18-22</option>
-                                                    <option>22-30</option>
-                                                    <option>30-60</option>
-                                                    <option>Above 60</option>
+                                                <label>Sizes</label><br>
+                                                <select disabled id="sizes" name='sizes[]' class="js-example-basic-multiple w-100" multiple="multiple">
+                                                    <option></option>
+
                                                 </select>
                                             </div>
-                                            
+
+
                                             <div class="form-group">
                                                 <label for="exampleInputNumber1">Price</label>
-                                                <input type="number" class="form-control" id="exampleInputNumber1" value="" placeholder="Enter Price">
-                                            </div>                                            
+                                                <input name="price" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
+                                            </div>
                                             <div class="form-group">
                                                 <label for="exampleInputNumber1">Sale</label>
-                                                <input type="number" class="form-control" id="exampleInputNumber1" value="" placeholder="Enter Sale">
+                                                <input name="discount" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword3">Stock</label>
-                                                <input type="number" class="form-control" id="exampleInputPassword3" value="" placeholder="Enter Stock">
+                                                <input name="stock" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
                                             </div>
-                                            <div class="form-group">
-                                                <label>Main Image</label>
-                                                <input type="file" name="img[]" class="file-upload-default">
-                                                <div class="input-group col-xs-12">
-                                                    <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                                                    <span class="input-group-append">
-                                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Image</label>
-                                                <input type="file" name="img[]" class="file-upload-default">
-                                                <div class="input-group col-xs-12">
-                                                    <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                                                    <span class="input-group-append">
-                                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-primary" type="submit">Add Product</button>
+
+
+                                            <button type="submit" class="btn btn-primary">Add Product</button>
                                         </form>
                                     </div>
                                 </div>
@@ -121,16 +100,103 @@
 </div>
 @endsection
 
+<script>
+    var app = @json($data);
 
 
+    window.onload = () => {
+
+
+        var product_type_id = $.map(app.product_types, function(obj) {
+            obj.text = obj.text || obj.name;
+            return obj;
+        });
+        var sizes = $.map(app.sizes, function(obj) {
+            obj.text = obj.text || obj.name;
+            obj.id = obj.text || obj.name;
+            return obj;
+        });
+
+        var colors = $.map(app.colors, function(obj) {
+            obj.text = obj.text || obj.name;
+            obj.id = obj.text || obj.name;
+            return obj;
+        });
+
+
+        $("#product_type_id").select2({
+            data: product_type_id,
+            placeholder: 'Select product type',
+            allowClear: true
+        })
+        $("#colors").select2({
+            placeholder: 'Select product color',
+            data: colors,
+            allowClear: true
+        })
+        $("#sizes").select2({
+            placeholder: 'Select product size',
+            allowClear: true
+        })
+
+        $('#add-product').submit(function(e) {
+            e.preventDefault();
+            let formData = new FormData();
+            formData.append('thumbnail', $("#thumbnail").prop('files')[0]);
+            for (let index = 0; index < $("#images").prop('files').length; index++) {
+                formData.append(`images${index}`, $("#images").prop('files')[index]);
+            }
+            formData.append('name', $("#name").val());
+            formData.append('description', $("#description").val());
+            formData.append('sizes', $("#sizes").val());
+            formData.append('price', $("#price").val());
+            formData.append('stock', $("#stock").val());
+            formData.append('discount', $("#discount").val());
+            formData.append('colors', $("#colors").val());
+            formData.append('product_type_id', $("#product_type_id").val());
+
+            axios.post('/api/product', formData).then((response) => {
+                console.log(response);
+            })
+        })
+
+        $('#product_type_id').change(function() {
+            var value = this.value;
+            var current_sizes = [];
+            sizes.forEach(function(item) {
+                if (item.product_type_id == value) {
+                    current_sizes.push(item);
+                }
+            })
+            if (current_sizes.length > 0) {
+                $("#sizes").select2({
+                    placeholder: 'Select product size',
+                    allowClear: true,
+                    disabled: false,
+                    data: current_sizes,
+                });
+            } else {
+                $("#sizes").select2({
+                    disabled: true,
+                });
+            }
+
+        })
+    };
+</script>
 
 @push('plugin-scripts')
-<script src="{{ asset('assets/plugins/datatables-net/jquery.dataTables.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables-net-bs4/dataTables.bootstrap4.js') }}"></script>
-@endpush
+<script src="{{ asset('assets/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/dropzone/dropzone.min.js') }}"></script>
 
+
+@endpush
 
 @push('custom-scripts')
-<script src="{{ asset('assets/js/data-table.js') }}"></script>
-@endpush
+<script src="{{ asset('assets/js/form-validation.js') }}"></script>
+<script src="{{ asset('assets/js/select2.js') }}"></script>
+<script src="{{ asset('assets/js/dropzone.js') }}"></script>
 
+
+@endpush

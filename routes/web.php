@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\View;
 use App\Models\Product;
+use App\Models\Color;
+use App\Models\Size;
+use App\Models\ProductType;
 
 
 Route::group(['prefix' => 'auth'], function () {
@@ -14,20 +17,28 @@ Route::group(['prefix' => 'auth'], function () {
         return view('pages.auth.login');
     })->name('login');
 });
-
+Route::get('/', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/', function () {
 
-        return view('dashboard');
-    })->name('dashboard');
+
+
     Route::get('/products', function () {
         $product = Product::all();
-        return view('products.index',['product'=>$product]);
-    })->name('dashboard');
+        return view('products.index', ['product' => $product]);
+    });
+
     Route::get('/products/add', function () {
-        return view('products.addProduct');
-    })->name('dashboard');
+        $sizes = Size::all();
+        $colors = Color::all();
+        $product_types = ProductType::all();
+        $response['sizes']  = $sizes;
+        $response['colors']  = $colors;
+        $response['product_types']  = $product_types;
+        return view('products.addProduct', ['data' => $response]);
+    });
 });
 
 

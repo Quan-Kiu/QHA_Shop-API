@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Cloudinary;
 
+use function PHPUnit\Framework\isEmpty;
 
 class ProductController extends BaseController
 {
@@ -44,36 +45,55 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-            $product = new Product;
-            $product->name = $request->input('name');
-            $product->description = $request->input('description');
-            $product->product_type_id = $request->input('product_type');
-            $product->price = $request->input('price');
-            $product->sale = $request->input('sale');
-            $product->stock = $request->input('stock');
-            $product->size_id = $request->input('size');
-            $product->color_id = $request->input('color');
-            $product->images = $request->input('image');
-            $product->save();
 
-         $validator = Validator::make($request->all(), [
+
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'description' => 'required|string',
             'product_type_id' => 'required|int',
-            'size_id' => 'required|int',
-            'color_id' => 'required|int',
-            'image_id' => 'required|int',
+            'sizes' => 'required',
+            'colors' => 'required',
+            'thumbnail' => 'required',
             'price' => 'required|int',
-            'sale' => 'required|int',
+            'discount' => 'required|int',
             'stock' => 'required|int',
-        ]); 
+        ]);
 
         if ($validator->fails()) {
             return $this->sendError($validator->errors());
-        } 
+        }
+        $product = $request->all();
 
 
-        return $this->sendResponse($product, 'Tạo sản phẩm thành công.');
+        $mainPhotoUrl = Cloudinary::upload($request->file('thumbnail')->getRealPath())->getSecurePath();
+
+        if (!$mainPhotoUrl) {
+            return $this->sendError('Lỗi tải hình ảnh.');
+        }
+        $photosUrl = [];
+
+        for ($i = 0;; $i++) {
+            if ($request->file('images' . $i)) {
+
+                $link = Cloudinary::upload($request->file('images' . $i)->getRealPath())->getSecurePath();
+                if (!$link) {
+                    return $this->sendError('Lỗi tải hình ảnh.');
+                }
+                array_push($photosUrl, $link);
+            } else {
+                break;
+            }
+        }
+        $product['sizes'] = [$product['sizes']];
+        $product['colors'] = [$product['colors']];
+
+        $product['thumbnail'] = $mainPhotoUrl;
+        $product['images'] = $photosUrl;
+
+        $newProduct = Product::create($product);
+
+        return $this->sendResponse($newProduct, 'Tạo sản phẩm thành công.');
     }
 
     public function search(Request $request)
