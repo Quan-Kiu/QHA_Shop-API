@@ -88,7 +88,6 @@
 <script>
     var app = @json($data);
 
-
     window.onload = () => {
 
 
