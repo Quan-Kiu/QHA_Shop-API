@@ -1,5 +1,5 @@
 $(function () {
-    showSwal = function (type, data) {
+    showSwal = function (type, data, cb) {
         "use strict";
         if (type === "basic") {
             swal.fire({

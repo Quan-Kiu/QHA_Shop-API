@@ -23,16 +23,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::resource('user_type', UserTypeController::class);
 
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/product/search', [ProductController::class, 'search']);
     Route::resource('product', ProductController::class);
-    Route::resource('user_type', UserTypeController::class);
     Route::resource('product_type', ProductTypeController::class);
     Route::resource('color', ColorController::class);
     Route::resource('size', SizeController::class);
     Route::resource('user', UserController::class);
     Route::post('/logout', [AuthController::class, 'logout']);
-    
 });

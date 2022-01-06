@@ -22,9 +22,10 @@ class CreateProductsTable extends Migration
             $table->json('sizes');
             $table->string('thumbnail');
             $table->json('images');
-            $table->double('price');
-            $table->double('discount');
-            $table->int('stock');
+            $table->decimal('price', 8, 2);
+            $table->decimal('discount', 8, 2);
+            $table->float('rating')->default(5);
+            $table->integer('stock');
             $table->boolean('status')->default(true);
             $table->timestamps();
             $table->softDeletes();

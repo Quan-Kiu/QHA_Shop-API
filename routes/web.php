@@ -7,7 +7,8 @@ use App\Models\Product;
 use App\Models\Color;
 use App\Models\Size;
 use App\Models\ProductType;
-
+use App\Models\User;
+use App\Models\UserType;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/register', function () {
@@ -17,19 +18,18 @@ Route::group(['prefix' => 'auth'], function () {
         return view('pages.auth.login');
     })->name('login');
 });
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 Route::middleware('auth:sanctum')->group(function () {
 
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-
+    // Product
     Route::get('/products', function () {
         $product = Product::all();
         return view('products.index', ['product' => $product]);
     });
-
     Route::get('/products/add', function () {
         $sizes = Size::all();
         $colors = Color::all();
@@ -38,6 +38,16 @@ Route::middleware('auth:sanctum')->group(function () {
         $response['colors']  = $colors;
         $response['product_types']  = $product_types;
         return view('products.addProduct', ['data' => $response]);
+    });
+
+    // Account
+    Route::get('/users', function () {
+        $product = User::all();
+        return view('users.index', ['product' => $product]);
+    });
+    Route::get('/users/add', function () {
+        $user_type = UserType::all();
+        return view('users.addUser', ['user_type' => $user_type]);
     });
 });
 

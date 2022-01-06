@@ -6,9 +6,6 @@
 <link href="{{ asset('assets/plugins/dropzone/dropzone.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
 
-
-
-
 @endpush
 
 @section('content')
@@ -22,84 +19,70 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="table-responsive">
-                    <table id="table-user" id="dataTableExample" class="table">
-                        <div class="row">
-                            <div class="col-md-12 grid-margin stretch-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h6 class="card-title">ADD PRODUCT</h6>
+                <h6 class="card-title">ADD PRODUCT</h6>
 
 
-                                        <form id="add-product">
-                                            <div class="form-group">
-                                                <label for="thumbnail">Main Image</label>
-                                                <input name="thumbnail" type="file" class="form-control" id="thumbnail">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="images">Images</label>
-                                                <input name="images[]" type="file" multiple class="form-control" id="images">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputText1">Name</label>
-                                                <input name="name" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputText1">Description</label>
-                                                <input name="description" type="text" class="form-control" id="description" value="" placeholder="Enter Description">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Product Type</label><br>
-                                                <select id="product_type_id" class="js-example-basic-single w-100">
-                                                    <option></option>
-                                                </select>
-                                            </div>
+                <form id="add-product">
+                    <div class="form-group">
+                        <label for="thumbnail">Main Image</label>
+                        <input name="thumbnail" type="file" class="form-control" id="thumbnail">
+                    </div>
+                    <div class="form-group">
+                        <label for="images">Images</label>
+                        <input name="images[]" type="file" multiple class="form-control" id="images">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputText1">Name</label>
+                        <input name="name" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputText1">Description</label>
+                        <input name="description" type="text" class="form-control" id="description" value="" placeholder="Enter Description">
+                    </div>
+                    <div class="form-group">
+                        <label>Product Type</label><br>
+                        <select id="product_type_id" class="js-example-basic-single w-100">
+                            <option></option>
+                        </select>
+                    </div>
 
-                                            <div class="form-group">
-                                                <label>Colors</label><br>
-                                                <select id="colors" name="colors[]" class="js-example-basic-multiple w-100" multiple="multiple">
-                                                    <option></option>
-                                                </select>
-                                            </div>
+                    <div class="form-group">
+                        <label>Colors</label><br>
+                        <select id="colors" name="colors[]" class="js-example-basic-multiple w-100" multiple="multiple">
+                            <option></option>
+                        </select>
+                    </div>
 
-                                            <div class="form-group">
-                                                <label>Sizes</label><br>
-                                                <select disabled id="sizes" name='sizes[]' class="js-example-basic-multiple w-100" multiple="multiple">
-                                                    <option></option>
+                    <div class="form-group">
+                        <label>Sizes</label><br>
+                        <select disabled id="sizes" name='sizes[]' class="js-example-basic-multiple w-100" multiple="multiple">
+                            <option></option>
 
-                                                </select>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label for="exampleInputNumber1">Price</label>
-                                                <input name="price" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputNumber1">Discount</label>
-                                                <input name="discount" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword3">Stock</label>
-                                                <input name="stock" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
-                                            </div>
+                        </select>
+                    </div>
 
 
-                                            <button type="submit" class="btn btn-primary">Add Product</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <tbody>
+                    <div class="form-group">
+                        <label for="exampleInputNumber1">Price</label>
+                        <input name="price" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputNumber1">Discount</label>
+                        <input name="discount" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword3">Stock</label>
+                        <input name="stock" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
+                    </div>
 
-                        </tbody>
-                    </table>
-                </div>
+
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
 
 <script>
@@ -218,7 +201,6 @@
 @endpush
 
 @push('custom-scripts')
-<script src="{{ asset('assets/js/form-validation.js') }}"></script>
 <script src="{{ asset('assets/js/select2.js') }}"></script>
 <script src="{{ asset('assets/js/dropzone.js') }}"></script>
 

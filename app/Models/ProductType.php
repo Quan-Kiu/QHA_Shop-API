@@ -10,11 +10,14 @@ class ProductType extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'description'
     ];
 
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+    public function sizes()
+    {
+        return $this->hasMany(Size::class);
     }
 }

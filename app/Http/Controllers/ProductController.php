@@ -46,16 +46,11 @@ class ProductController extends BaseController
     public function store(Request $request)
     {
 
-
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'description' => 'required|string',
             'product_type_id' => 'required|int',
-            'sizes' => 'required',
-            'colors' => 'required',
             'thumbnail' => 'required',
-            'images1' => 'required',
             'price' => 'required|int',
             'discount' => 'required|int',
             'stock' => 'required|int',
@@ -163,6 +158,7 @@ class ProductController extends BaseController
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return $this->sendResponse($product, 'Xóa sản phẩm thành công!');
     }
 }

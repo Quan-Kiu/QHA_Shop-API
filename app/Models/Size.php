@@ -12,4 +12,9 @@ class Size extends Model
         'name',
         'user_type_id'
     ];
+
+    public function ProductType()
+    {
+        return $this->belongsTo(ProductType::class);
+    }
 }

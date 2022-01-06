@@ -1,7 +1,10 @@
 @extends('layout.master')
 
 @push('plugin-styles')
-<link href="{{ asset('assets/plugins/datatables-net/dataTables.bootstrap4.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+
+
 @endpush
 
 @section('content')
@@ -15,89 +18,40 @@
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body">
-        
-                <div class="table-responsive">
-                    <table id="table-user" id="dataTableExample" class="table">
-                        <div class="row">
-                            <div class="col-md-12 grid-margin stretch-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h6 class="card-title">ADD USER</h6>
-                                        <form action="/user" method="POST">
-                                            <div class="form-group">
-                                                <label for="exampleInputText1">Full Name</label>
-                                                <input type="text" class="form-control" name="name" value="" placeholder="Enter Name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputText1">Email</label>
-                                                <input type="email" class="form-control" name="email" value="" placeholder="Enter Email">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputText1">Password</label>
-                                                <input type="password" class="form-control" name="password" value="" placeholder="Enter Password">
-                                            </div>
-                                            
-                                            
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Gender</label>
-                                                <select class="form-control" name="gender">
-                                                    <option selected disabled>Select Gender</option>
-                                                    <option value="10">Nam</option>
-                                                    <option>Nữ</option>
-                                                    <option>Khác</option>
-                                                    
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="exampleInputText1">Phone</label>
-                                                <input type="number" class="form-control" name="phone" value="" placeholder="Enter Phone">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputText1">Avatar</label>
-                                                <input type="text" class="form-control" name="avatar" value="" placeholder="Enter Avatar">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputText1">Address</label>
-                                                <input type="text" class="form-control" name="phone" value="" placeholder="Enter Address">
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label for="exampleInputNumber1">Birthday</label>
-                                                <input type="datetime-local" class="form-control" name="price" value="" placeholder="Enter Birthday">
-                                            </div>                                            
-                                            
-                                            <!-- <div class="form-group">
-                                                <label>Main Image</label>
-                                                <input type="file" name="img[]" class="file-upload-default">
-                                                <div class="input-group col-xs-12">
-                                                    <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                                                    <span class="input-group-append">
-                                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Image</label>
-                                                <input type="file" name="img[]" class="file-upload-default">
-                                                <div class="input-group col-xs-12">
-                                                    <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                                                    <span class="input-group-append">
-                                                        <button class="file-upload-browse btn btn-primary" type="button" >Upload</button>
-                                                    </span>
-                                                </div>
-                                            </div> -->
-                                            <button class="btn btn-primary" type="submit" onclick="">Add User</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Add User</h4>
+                    <form id="addUser">
+                        <div class="form-group">
+                            <label for="fullname">FullName</label>
+                            <input id="fullname" class="form-control" name="fullname" type="text" />
                         </div>
-                        <tbody>
-
-                        </tbody>
-                    </table>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" class="form-control" name="email" type="email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input id="password" class="form-control" name="password" type="password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Phone</label>
+                            <input id="phone" class="form-control" name="phone" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Address</label>
+                            <input id="address" class="form-control" name="address" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label>Rule</label>
+                            <select id="user_type_id" class="js-example-basic-single w-100">
+                                @foreach($user_type as $item)
+                                <option value="{{{$item->id}}}">{{{$item->name}}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Submit">
+                    </form>
                 </div>
             </div>
         </div>
@@ -105,16 +59,47 @@
 </div>
 @endsection
 
+<script>
+    window.onload = () => {
+        $("#addUser").submit(async function(e) {
+            e.preventDefault();
+            let formData = {
+                email: $('input[name="email"]').val(),
+                fullname: $('#fullname').val(),
+                password: $('#password').val(),
+                address: $('#address').val(),
+                phone: $('#phone').val(),
+                user_type_id: $('#user_type_id').val(),
+                password_confirmation: $('#password').val(),
+            };
+            showSwal('message-with-auto-close', {
+                timer: 60000,
+                title: 'Đang tạo tài khoản'
+            });
+            try {
+                const response = await axios.post('/api/register', formData);
+                console.log(response.data);
+                showSwal('custom-position', {
+                    title: 'Thành công',
+                })
+            } catch (error) {
+                showSwal('title-icon-text-footer', {
+                    error: error.response.data.message
+                });
+            }
+        }, );
+    };
+</script>
 
 
 
 @push('plugin-scripts')
-<script src="{{ asset('assets/plugins/datatables-net/jquery.dataTables.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables-net-bs4/dataTables.bootstrap4.js') }}"></script>
-@endpush
+<script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/promise-polyfill/polyfill.min.js') }}"></script>
+<script src="{{ asset('assets/js/select2.js') }}"></script>
 
+@endpush
 
 @push('custom-scripts')
-<script src="{{ asset('assets/js/data-table.js') }}"></script>
+<script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
 @endpush
-

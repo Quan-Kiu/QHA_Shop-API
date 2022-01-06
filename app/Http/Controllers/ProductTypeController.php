@@ -45,7 +45,6 @@ class ProductTypeController extends BaseController
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'description' => 'required|string',
         ]);
 
         if ($validator->fails()) {

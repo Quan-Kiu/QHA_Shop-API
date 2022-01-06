@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'fullname',
+        'avatar',
         'phone',
         'gender',
         'address',
@@ -49,8 +50,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function UserType()
+    {
+        return $this->belongsTo(UserType::class);
+    }
+
+
     public function isAdmin()
     {
-        return $this->user_types()->where('name', 'admin')->exists();
+        return $this->user_types()->where('user_type', 'admin')->exists();
     }
 }

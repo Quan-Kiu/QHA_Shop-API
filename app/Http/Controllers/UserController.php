@@ -93,6 +93,6 @@ class UserController extends BaseController
     public function destroy(User $user)
     {
         $user->delete();
-        return $this->sendResponse([], 'Xóa tài khoản thành công!');
+        return $this->sendResponse($user, 'Xóa tài khoản thành công!');
     }
 }

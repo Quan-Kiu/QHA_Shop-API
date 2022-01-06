@@ -24,9 +24,9 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->date('birthday')->nullable();
             $table->boolean('status')->default(true);
-            $table->softDeletes();
-            $table->unsignedBigInteger('user_type_id')->default(1);
+            $table->unsignedBigInteger('user_type_id');
             $table->timestamp('email_verified_at')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
