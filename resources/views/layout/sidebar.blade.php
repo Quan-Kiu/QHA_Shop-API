@@ -25,6 +25,21 @@
           <span class="link-title">User</span>
         </a>
       </li>
+      <li class="nav-item nav-category">Color</li>
+      <li class="nav-item {{ active_class(['colors']) }}">
+        <a href="{{ url('/colors') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Color</span>
+        </a>
+
+      </li>
+      <li class="nav-item {{ active_class(['sizes']) }}">
+        <a href="{{ url('/sizes') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Size</span>
+        </a>
+
+      </li>
       <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">

@@ -42,8 +42,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($product as $item)
-                            <tr id="user{{{$item->id}}}">
+                            @foreach($users as $item)
+                            <tr id="{{{$item->id}}}">
                                 <td>{{$item['id']}}</td>
                                 <td><img style="width:40px" src="{{$item['avatar']}}" alt="{{$item['avatar']}}"></td>
                                 <td>{{$item['fullname']}}</td>
@@ -111,7 +111,7 @@
                 if (result.isConfirmed) {
                     try {
                         const res = await axios.delete(`/api/user/${id}`);
-                        $(`#user${id}`).remove();
+                        $(`${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",
                             res.data.message,

@@ -46,7 +46,7 @@ class ColorController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError($validator->errors());
+            return $this->sendError($validator->errors()->first());
         }
 
         $color = Color::create($input);
@@ -96,7 +96,7 @@ class ColorController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError($validator->errors());
+            return $this->sendError($validator->errors()->first());
         }
 
 

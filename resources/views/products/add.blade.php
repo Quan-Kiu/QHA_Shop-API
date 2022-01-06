@@ -90,7 +90,6 @@
 
     window.onload = () => {
 
-
         var product_type_id = $.map(app.product_types, function(obj) {
             obj.text = obj.text || obj.name;
             return obj;
@@ -126,34 +125,43 @@
         $('#add-product').submit(async function(e) {
             e.preventDefault();
 
-            let formData = new FormData();
-            formData.append('thumbnail', $("#thumbnail").prop('files')[0]);
-            for (let index = 0; index < $("#images").prop('files').length; index++) {
-                formData.append(`images${index}`, $("#images").prop('files')[index]);
-            }
-            formData.append('name', $("#name").val());
-            formData.append('description', $("#description").val());
-            formData.append('sizes', $("#sizes").val());
-            formData.append('price', $("#price").val());
-            formData.append('stock', $("#stock").val());
-            formData.append('discount', $("#discount").val());
-            formData.append('colors', $("#colors").val());
-            formData.append('product_type_id', $("#product_type_id").val());
-
             showSwal('message-with-auto-close', {
                 timer: 60000,
                 title: 'Đang tạo sản phẩm'
             });
             try {
+                const [mainUrl, imagesUrl] = await Promise.all([
+                    uploadPhoto($("#thumbnail").prop('files')[0]),
+                    uploadPhotos($("#images").prop('files')),
+                ]);
+
+                let formData = {
+                    'name': $("#name").val(),
+                    'thumbnail': mainUrl,
+                    'images': imagesUrl,
+                    'description': $("#description").val(),
+                    'sizes': $("#sizes").val(),
+                    'price': $("#price").val(),
+                    'stock': $("#stock").val(),
+                    'discount': $("#discount").val(),
+                    'colors': $("#colors").val(),
+                    'product_type_id': $("#product_type_id").val(),
+
+                };
+
                 const response = await axios.post('/api/product', formData);
                 showSwal('custom-position', {
                     title: 'Thành công',
                 })
+
+
             } catch (error) {
-                showSwal('title-icon-text-footer', {
-                    error: error.response.data.message
-                });
+                return showSwal('title-icon-text-footer', {
+                    error: error.response.data.message ?? 'Có lỗi xảy ra,vui lòng thử lại'
+                });;
             }
+
+
 
         })
 
@@ -183,25 +191,12 @@
 </script>
 
 @push('plugin-scripts')
-<script src="{{ asset('assets/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/dropzone/dropzone.min.js') }}"></script>
-
-
-@endpush
-
-@push('plugin-scripts')
 <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/promise-polyfill/polyfill.min.js') }}"></script>
-@endpush
-
-@push('custom-scripts')
 <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
-@endpush
-
-@push('custom-scripts')
 <script src="{{ asset('assets/js/select2.js') }}"></script>
-<script src="{{ asset('assets/js/dropzone.js') }}"></script>
 
+<script src="{{asset('assets/js/handlePhotoUpload.js')}}"></script>
 
 @endpush

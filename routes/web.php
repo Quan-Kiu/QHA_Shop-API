@@ -37,17 +37,46 @@ Route::middleware('auth:sanctum')->group(function () {
         $response['sizes']  = $sizes;
         $response['colors']  = $colors;
         $response['product_types']  = $product_types;
-        return view('products.addProduct', ['data' => $response]);
+        return view('products.add', ['data' => $response]);
     });
 
     // Account
     Route::get('/users', function () {
-        $product = User::all();
-        return view('users.index', ['product' => $product]);
+        $users = User::all();
+        return view('users.index', ['users' => $users]);
     });
     Route::get('/users/add', function () {
         $user_type = UserType::all();
-        return view('users.addUser', ['user_type' => $user_type]);
+        return view('users.add', ['user_type' => $user_type]);
+    });
+
+    // Color
+    Route::get('/colors', function () {
+        $colors = Color::all();
+        return view('colors.index', ['colors' => $colors]);
+    });
+    Route::get('/colors/add', function () {
+        return view('colors.add');
+    });
+    Route::get('/colors/{color}', function (Color $color) {
+        return view('colors.update', ['color' => $color]);
+    });
+
+
+    // Size
+    Route::get('/sizes', function () {
+        $sizes = Size::all();
+        return view('sizes.index', ['sizes' => $sizes]);
+    });
+    Route::get('/sizes/add', function () {
+        $product_types = ProductType::all();
+        return view('sizes.add', ['product_types' => $product_types]);
+    });
+    Route::get('/sizes/{size}', function (Size $size) {
+        $product_types = ProductType::all();
+        $data['size'] = $size;
+        $data['product_types'] = $product_types;
+        return view('sizes.update', ['data' => $data]);
     });
 });
 

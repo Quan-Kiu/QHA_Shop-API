@@ -50,9 +50,12 @@ class ProductController extends BaseController
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
+            'thumbnail' => 'required|string',
+            'images' => 'required|array',
             'description' => 'required|string',
+            'colors' => 'required|array',
+            'sizes' => 'required|array',
             'product_type_id' => 'required|int',
-            'thumbnail' => 'required',
             'price' => 'required|int',
             'discount' => 'required|int',
             'stock' => 'required|int',
@@ -63,31 +66,25 @@ class ProductController extends BaseController
         }
         $product = $request->all();
 
+        // $mainPhotoUrl = Cloudinary::upload($request->file('thumbnail')->getRealPath())->getSecurePath();
 
-        $mainPhotoUrl = Cloudinary::upload($request->file('thumbnail')->getRealPath())->getSecurePath();
+        // if (!$mainPhotoUrl) {
+        //     return $this->sendError('Lỗi tải hình ảnh.');
+        // }
+        // $photosUrl = [];
 
-        if (!$mainPhotoUrl) {
-            return $this->sendError('Lỗi tải hình ảnh.');
-        }
-        $photosUrl = [];
+        // for ($i = 0;; $i++) {
+        //     if ($request->file('images' . $i)) {
 
-        for ($i = 0;; $i++) {
-            if ($request->file('images' . $i)) {
-
-                $link = Cloudinary::upload($request->file('images' . $i)->getRealPath())->getSecurePath();
-                if (!$link) {
-                    return $this->sendError('Lỗi tải hình ảnh.');
-                }
-                array_push($photosUrl, $link);
-            } else {
-                break;
-            }
-        }
-        $product['sizes'] = [$product['sizes']];
-        $product['colors'] = [$product['colors']];
-
-        $product['thumbnail'] = $mainPhotoUrl;
-        $product['images'] = $photosUrl;
+        //         $link = Cloudinary::upload($request->file('images' . $i)->getRealPath())->getSecurePath();
+        //         if (!$link) {
+        //             return $this->sendError('Lỗi tải hình ảnh.');
+        //         }
+        //         array_push($photosUrl, $link);
+        //     } else {
+        //         break;
+        //     }
+        // }
 
         $newProduct = Product::create($product);
 

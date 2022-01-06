@@ -19,10 +19,15 @@ class UserTypeSeeder extends Seeder
     public function run()
     {
 
-        DB::table('users')->insert([
-            'fullname' => Str::random(10),
-            'email' => Str::random(10) . '@gmail.com',
-            'password' => Hash::make('password'),
-        ]);
+        $type = [
+            'Member',
+            'Admin'
+        ];
+
+        foreach ($type as $key => $value) {
+            DB::table('user_types')->insert([
+                'name' => $value,
+            ]);
+        }
     }
 }

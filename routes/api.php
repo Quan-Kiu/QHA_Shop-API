@@ -28,7 +28,7 @@ Route::resource('user_type', UserTypeController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/product/search', [ProductController::class, 'search']);
-    Route::resource('product', ProductController::class);
+    Route::resource('product', ProductController::class, ['verify' => false]);
     Route::resource('product_type', ProductTypeController::class);
     Route::resource('color', ColorController::class);
     Route::resource('size', SizeController::class);
