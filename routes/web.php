@@ -49,6 +49,19 @@ Route::middleware('auth:sanctum')->group(function () {
         $user_type = UserType::all();
         return view('users.addUser', ['user_type' => $user_type]);
     });
+
+    // Product Type
+    Route::get('/producttypes', function () {
+        $product = ProductType::all();
+        return view('producttypes.index', ['product' => $product]);
+    });
+    /* Route::get('/producttypes/add', function () {
+        return view('producttypes.addType');
+    }); */
+    Route::get('/producttypes/add', function () {
+        $user_type = ProductType::all();
+        return view('producttypes.addType', ['user_type' => $user_type]);
+    });
 });
 
 

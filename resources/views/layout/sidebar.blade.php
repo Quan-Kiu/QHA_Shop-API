@@ -18,6 +18,12 @@
           <span class="link-title">Products</span>
         </a>
       </li>
+      <li class="nav-item {{ active_class(['products']) }}">
+        <a href="{{ url('/producttypes') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Products Type</span>
+        </a>
+      </li>
       <li class="nav-item nav-category">User</li>
       <li class="nav-item {{ active_class(['users']) }}">
         <a href="{{ url('/users') }}" class="nav-link">
