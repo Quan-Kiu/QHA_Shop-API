@@ -78,6 +78,19 @@ Route::middleware('auth:sanctum')->group(function () {
         $data['product_types'] = $product_types;
         return view('sizes.update', ['data' => $data]);
     });
+
+    // Product Type
+    Route::get('/producttypes', function () {
+        $product = ProductType::all();
+        return view('producttypes.index', ['product' => $product]);
+    });
+    /* Route::get('/producttypes/add', function () {
+        return view('producttypes.addType');
+    }); */
+    Route::get('/producttypes/add', function () {
+        $user_type = ProductType::all();
+        return view('producttypes.addType', ['user_type' => $user_type]);
+    });
 });
 
 
