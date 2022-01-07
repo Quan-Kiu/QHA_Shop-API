@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Order_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\BaseController as BaseController;
 
-class Order_detailController extends Controller
+class Order_detailController extends BaseController
 {
     /**
      * Display a listing of the resource.

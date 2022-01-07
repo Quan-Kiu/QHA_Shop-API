@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Order extends Migration
+class Orders extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class Order extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('address');
             $table->string('phone');
-            $table->float('total');
+            $table->int('total');
             $table->date('delivery_date');
             $table->unsignedBigInteger('order_status_id');
             $table->softDeletes();
