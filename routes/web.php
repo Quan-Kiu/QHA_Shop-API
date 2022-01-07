@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\View;
 use App\Models\Product;
 use App\Models\Color;
+use App\Models\order;
+use App\Models\Order_status;
 use App\Models\Size;
 use App\Models\ProductType;
 use App\Models\User;
@@ -62,6 +64,18 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('colors.update', ['color' => $color]);
     });
 
+    // Order
+    Route::get('/orders', function () {
+        $orders = order::all();
+        return view('orders.index', ['colors' => $orders]);
+    });
+    Route::get('/orders/add', function () {
+        return view('orders.add');
+    });
+    Route::get('/orders/{order}', function (Color $orders) {
+        return view('orders.update', ['order' => $orders]);
+    });
+
 
     // Size
     Route::get('/sizes', function () {
@@ -84,17 +98,27 @@ Route::middleware('auth:sanctum')->group(function () {
         $product = ProductType::all();
         return view('producttypes.index', ['product' => $product]);
     });
-    /* Route::get('/producttypes/add', function () {
-        return view('producttypes.addType');
-    }); */
+   
     Route::get('/producttypes/add', function () {
         $user_type = ProductType::all();
         return view('producttypes.addType', ['user_type' => $user_type]);
     });
+
+    Route::get('/producttypes/{producttype}', function (ProductType $producttype) {
+        return view('producttypes.update', ['producttype' => $producttype]);
+    });
+
+    // Order Status
+    Route::get('/orderstatus', function () {
+        $orders = Order_status::all();
+        return view('orderstatus.index', ['order' => $orders]);
+    });
+   
+    Route::get('/orderstatus/add', function () {
+        $orders = Order_status::all();
+        return view('orderstatus.add', ['order' => $orders]);
+    });
 });
-
-
-
 Route::group(['prefix' => 'email'], function () {
     Route::get('inbox', function () {
         return view('pages.email.inbox');

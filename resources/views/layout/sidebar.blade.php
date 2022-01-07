@@ -18,7 +18,7 @@
           <span class="link-title">Products</span>
         </a>
       </li>
-      <li class="nav-item {{ active_class(['products']) }}">
+      <li class="nav-item {{ active_class(['producttypes']) }}">
         <a href="{{ url('/producttypes') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Products Type</span>
@@ -43,6 +43,15 @@
         <a href="{{ url('/sizes') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Size</span>
+        </a>
+
+      </li>
+
+      </li>
+      <li class="nav-item {{ active_class(['orders']) }}">
+        <a href="{{ url('/orders') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Order</span>
         </a>
 
       </li>

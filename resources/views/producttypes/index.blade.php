@@ -39,7 +39,7 @@
                                 <tr id="user{{{$item->id}}}">
                                     <td>{{$item['id']}}</td>                       
                                     <td>{{$item['name']}}</td>
-                                    <td><button class="btn btn-primary" onclick="window.location.href='products/add' ;">Update </button></td>
+                                    <td><button class="btn btn-primary" onclick="window.location.href='/producttypes/{{{$item->id}}}' ;">Update </button></td>
                                     <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
 
                                 </tr>
