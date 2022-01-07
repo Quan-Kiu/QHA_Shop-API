@@ -22,6 +22,12 @@ class CreateForeignKeys extends Migration
         Schema::table('sizes', function (Blueprint $table) {
             $table->foreign('product_type_id')->references('id')->on('product_types');
         });
+        Schema::table('orders', function (Blueprint $table) {
+            $table->foreign('order_status_id')->references('id')->on('order_status');
+        });
+        Schema::table('order_details', function (Blueprint $table) {
+            $table->foreign('order_id')->references('id')->on('orders');
+        });
     }
 
     /**
@@ -46,5 +52,12 @@ class CreateForeignKeys extends Migration
         Schema::table('colors', function (Blueprint $table) {
             //
         });
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
+        Schema::table('order_details', function (Blueprint $table) {
+            //
+        });
+       
     }
 }

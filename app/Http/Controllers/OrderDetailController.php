@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order_detail;
-use Illuminate\Http\Request;
+use App\Models\OrderDetail;
+use App\Http\Requests\StoreOrderDetailRequest;
+use App\Http\Requests\UpdateOrderDetailRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\BaseController as BaseController;
 
-class Order_detailController extends BaseController
+class OrderDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class Order_detailController extends BaseController
      */
     public function index()
     {
-        $order = Order_detail::all();
+        $order = Orderdetail::all();
         $response["order"] = $order;
         $response["total"] = $order->count();
         return $this->sendResponse($response, 'Lấy danh sách đơn hàng thành công.');
@@ -29,16 +30,16 @@ class Order_detailController extends BaseController
      */
     public function create()
     {
-        
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreOrderDetailRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrderDetailRequest $request)
     {
         $input = $request->all();
 
@@ -47,14 +48,13 @@ class Order_detailController extends BaseController
             'order_id' => 'required|string',
             'quantity' => 'required|string',
             'price' => 'required|string',
-           
         ]);
 
         if ($validator->fails()) {
             return $this->sendError($validator->errors());
         }
 
-        $order = Order_detail::create($input);
+        $order = Orderdetail::create($input);
 
         return $this->sendResponse($order, 'Tạo chi tiết đơn hàng thành công.');
     }
@@ -62,12 +62,12 @@ class Order_detailController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $order = Order_detail::find($id);
+        $order = Orderdetail::find($id);
         if (is_null($order)) {
             return $this->sendError('Chi tiết đơn hàng không tồn tại');
         }
@@ -77,10 +77,10 @@ class Order_detailController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(OrderDetail $orderDetail)
     {
         //
     }
@@ -88,11 +88,11 @@ class Order_detailController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateOrderDetailRequest  $request
+     * @param  \App\Models\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order_detail $order)
+    public function update(UpdateOrderDetailRequest $request, OrderDetail $orderDetail)
     {
         $input = $request->all();
         $validator = Validator::make($request->all(), [
@@ -106,27 +106,27 @@ class Order_detailController extends BaseController
             return $this->sendError($validator->errors()->first());
         }
 
-        $order->fill([
+        $orderDetail->fill([
             'product_id' => $input["product_id"],
             'order_id' => $input["order_id"],
             'quantity' => $input["quantity"] ?? '',
             'price' => $input["price"] ?? '',
         ]);
 
-        $order->save();
+        $orderDetail->save();
 
-        return $this->sendResponse($order, 'Thay đổi chi tiết đơn hàng thành công.');
+        return $this->sendResponse($orderDetail, 'Thay đổi chi tiết đơn hàng thành công.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order_detail $order)
+    public function destroy(OrderDetail $orderDetail)
     {
-        $order->delete();
-        return $this->sendResponse($order, 'Xóa chi tiết đơn hàng thành công!');
+        $orderDetail->delete();
+        return $this->sendResponse($orderDetail, 'Xóa chi tiết đơn hàng thành công!');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Orders extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class Orders extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('address');
             $table->string('phone');
-            $table->int('total');
+            $table->float('total');
             $table->date('delivery_date');
             $table->unsignedBigInteger('order_status_id');
             $table->softDeletes();
@@ -33,6 +33,6 @@ class Orders extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('orders');
     }
 }

@@ -6,9 +6,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\SizeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderStatusController;
-use App\Http\Controllers\SizeController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 

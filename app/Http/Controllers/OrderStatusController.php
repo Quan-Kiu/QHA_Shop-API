@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\OrderStatus;
+use App\Http\Requests\StoreOrderStatusRequest;
+use App\Http\Requests\UpdateOrderStatusRequest;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Order_status;
 use App\Http\Controllers\BaseController as BaseController;
+
 class OrderStatusController extends BaseController
 {
     /**
@@ -15,7 +17,7 @@ class OrderStatusController extends BaseController
      */
     public function index()
     {
-        $order = Order_status::all();
+        $order = Orderstatus::all();
         $response["user"] = $order;
         $response["total"] = $order->count();
         return $this->sendResponse($response, 'Lấy danh sách tình trạng đơn hàng thành công.');
@@ -34,10 +36,10 @@ class OrderStatusController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreOrderStatusRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrderStatusRequest $request)
     {
         $input = $request->all();
 
@@ -49,7 +51,7 @@ class OrderStatusController extends BaseController
             return $this->sendError($validator->errors());
         }
 
-        $order = Order_status::create($input);
+        $order = Orderstatus::create($input);
 
         return $this->sendResponse($order, 'Tạo tình trạng đơn hàng thành công.');
     }
@@ -57,12 +59,12 @@ class OrderStatusController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $order = Order_status::find($id);
+        $order = Orderstatus::find($id);
         if (is_null($order)) {
             return $this->sendError('Loại đơn hàng không tồn tại');
         }
@@ -72,10 +74,10 @@ class OrderStatusController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(OrderStatus $orderStatus)
     {
         //
     }
@@ -83,11 +85,11 @@ class OrderStatusController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateOrderStatusRequest  $request
+     * @param  \App\Models\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order_status $order)
+    public function update(UpdateOrderStatusRequest $request, OrderStatus $orderStatus)
     {
         $input = $request->all();
         $validator = Validator::make($request->all(), [
@@ -98,24 +100,24 @@ class OrderStatusController extends BaseController
             return $this->sendError($validator->errors()->first());
         }
 
-        $order->fill([
+        $orderStatus->fill([
             'name' => $input["name"],
         ]);
 
-        $order->save();
+        $orderStatus->save();
 
-        return $this->sendResponse($order, 'Thay đổi tình trạng đơn hàng thành công.');
+        return $this->sendResponse($orderStatus, 'Thay đổi tình trạng đơn hàng thành công.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order_status $order)
+    public function destroy(OrderStatus $orderStatus)
     {
-        $order->delete();
-        return $this->sendResponse($order, 'Xóa tình trạng đơn hàng thành công!');
+        $orderStatus->delete();
+        return $this->sendResponse($orderStatus, 'Xóa tình trạng đơn hàng thành công!');
     }
 }

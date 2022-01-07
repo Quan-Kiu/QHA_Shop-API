@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Product;
 use App\Models\Color;
 use App\Models\order;
-use App\Models\Order_status;
+use App\Models\Orderstatus;
 use App\Models\Size;
 use App\Models\ProductType;
 use App\Models\User;
@@ -66,16 +66,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Order
     Route::get('/orders', function () {
-        $orders = order::all();
-        return view('orders.index', ['colors' => $orders]);
+        $orders = Order::all();
+        return view('orders.index', ['orders' => $orders]);
     });
     Route::get('/orders/add', function () {
         return view('orders.add');
     });
-    Route::get('/orders/{order}', function (Color $orders) {
-        return view('orders.update', ['order' => $orders]);
-    });
-
+    Route::get('/orders/{order}', function (Order $orders) {
+        return view('orders.update', ['orders' => $orders]);
+    }); 
 
     // Size
     Route::get('/sizes', function () {
@@ -110,12 +109,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Order Status
     Route::get('/orderstatus', function () {
-        $orders = Order_status::all();
+        $orders = Orderstatus::all();
         return view('orderstatus.index', ['order' => $orders]);
     });
    
     Route::get('/orderstatus/add', function () {
-        $orders = Order_status::all();
+        $orders = Orderstatus::all();
         return view('orderstatus.add', ['order' => $orders]);
     });
 });
