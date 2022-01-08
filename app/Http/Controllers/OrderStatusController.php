@@ -18,7 +18,7 @@ class OrderStatusController extends BaseController
     public function index()
     {
         $order = Orderstatus::all();
-        $response["user"] = $order;
+        $response["order"] = $order;
         $response["total"] = $order->count();
         return $this->sendResponse($response, 'Lấy danh sách tình trạng đơn hàng thành công.');
     }
@@ -87,24 +87,42 @@ class OrderStatusController extends BaseController
      * @param  \App\Models\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOrderStatusRequest $request, OrderStatus $orderStatus)
+    public function update(Request $request, $id)
     {
-        $input = $request->all();
+        /* $input = $request->all();
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError($validator->errors()->first());
+            return $this->sendError($validator->errors());
         }
-
-        $orderStatus->fill([
+        $status->fill([
             'name' => $input["name"],
         ]);
 
-        $orderStatus->save();
+        $status->save();
 
-        return $this->sendResponse($orderStatus, 'Thay đổi tình trạng đơn hàng thành công.');
+        return $this->sendResponse($status, 'Thay đổi thông tin thành công.'); */
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        }
+        
+        $Status = OrderStatus::find($id);
+        if($Status){
+            $Status->name = $request->name;
+            return $this->sendResponse($Status, 'Thay đổi thông tin thành công.');
+        }
+        else{
+            return response()->json(['message'=>'InvoiceStatus Update Unsuccessfully'],404);
+        }
+
     }
 
     /**
@@ -113,9 +131,18 @@ class OrderStatusController extends BaseController
      * @param  \App\Models\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderStatus $orderStatus)
+    public function destroy($id)
     {
-        $orderStatus->delete();
-        return $this->sendResponse($orderStatus, 'Xóa tình trạng đơn hàng thành công!');
+        $orderStatus = OrderStatus::find($id);
+        if($orderStatus){
+            $orderStatus->delete();
+            return $this->sendResponse($orderStatus, 'Xóa tình trạng đơn hàng thành công!'); 
+        }
+        else{
+            return $this->sendResponse($orderStatus, 'Xóa tình trạng đơn hàng không thành công!');
+        }
+
+        /* $orderStatus->delete();
+        return $this->sendResponse($orderStatus, 'Xóa tình trạng đơn hàng thành công!'); */
     }
 }

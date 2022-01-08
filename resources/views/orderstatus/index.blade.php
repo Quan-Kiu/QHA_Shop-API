@@ -2,25 +2,17 @@
 
 @push('plugin-styles')
 <link href="{{ asset('assets/plugins/datatables-net/dataTables.bootstrap4.css') }}" rel="stylesheet" />
-@endpush
-@push('plugin-styles')
 <link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-<<<<<<< HEAD
-        <li class="breadcrumb-item"><a href="/orders">Order</a></li>
+        <li class="breadcrumb-item"><a href="/orderstatus">Order Status</a></li>
 
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/orders/add';">
-=======
-        <li class="breadcrumb-item"><a href="/user">Order</a></li>
-
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/producttypes/add';">
->>>>>>> 8a93ac96c67f2e4010bbf030e91687b440d5bb23
+        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/orderstatus/add';">
             <i class="btn-icon-prepend" data-feather="plus"></i>
-            Add Order
+            Add Status
         </button>
 
     </ol>
@@ -30,35 +22,25 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">ORDER LIST</h6>
+                <h6 class="card-title">STATUS LIST</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>User Id</th>
-                                <th>FullName</th>
-                                <th>Shipping Address</th>
-                                <th>Shipping Phone</th>
-                                <th>Total Amount</th>
-                                <th>Delivery Time</th>
-                                <th>Order Status</th>
+                                <th style="width:100px">Id</th>
+                                <th>Name</th>
+                                <th style="width:100px">Update</th>
+                                <th style="width:100px">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($orders as $item)
+                            @foreach($order as $item)
                             <tr id="{{{$item->id}}}">
                                 <td>{{$item['id']}}</td>
-                                <td>{{$item['user_id']}}</td>
-                                <td>{{$item['fullname']}}</td>
-                                <td>{{$item['address']}}</td>
-                                <td>{{$item['phone']}}</td>
-                                <td>{{$item['unit_price']}}</td>
-                                <td>{{$item['delivery_date']}}</td>
-                                <td>{{$item['order_status_id']}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='orders/{{{$item->id}}}' ;">Update </button></td>
-                                <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
+                                <td>{{$item['name']}}</td>
+                                <td><button class="btn btn-primary" onclick="window.location.href='/orderstatus/{{{$item->id}}}' ;">Update </button></td>
+                                <td><button class="btn btn-danger" onclick="deleteStatus('{{{$item->id}}}')">Delete</button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -91,7 +73,7 @@
 @endpush
 
 <script>
-    const deleteType = (id) => {
+    const deleteStatus = (id) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: "btn btn-success",
@@ -100,10 +82,11 @@
             buttonsStyling: false,
         });
 
+
         swalWithBootstrapButtons
             .fire({
                 title: "Bạn có chăc chắn?",
-                text: "Bạn sẽ không thể khôi phục laị đơn hàng này!",
+                text: "Bạn sẽ không thể khôi phục laị trạng thái này!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "ml-2",
@@ -114,7 +97,7 @@
             .then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        const res = await axios.delete(`/api/order/${id}`);
+                        const res = await axios.delete(`/api/orderstatus/${id}`);
                         $(`#${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",

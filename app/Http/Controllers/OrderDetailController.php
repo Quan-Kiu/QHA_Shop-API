@@ -6,9 +6,10 @@ use App\Models\OrderDetail;
 use App\Http\Requests\StoreOrderDetailRequest;
 use App\Http\Requests\UpdateOrderDetailRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BaseController as BaseController;
 
-class OrderDetailController extends Controller
+class OrderDetailController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -67,7 +68,10 @@ class OrderDetailController extends Controller
      */
     public function show($id)
     {
-        $order = Orderdetail::find($id);
+        $order = DB::table('order_details')
+                ->where('order_id', '=', $id)
+                ->get();
+
         if (is_null($order)) {
             return $this->sendError('Chi tiết đơn hàng không tồn tại');
         }

@@ -50,7 +50,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('color', ColorController::class);
 
     Route::resource('size', SizeController::class);
-
     Route::resource('order', OrderController::class);
 
     Route::resource('order_detail', OrderDetail::class);

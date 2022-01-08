@@ -10,15 +10,9 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-<<<<<<< HEAD
         <li class="breadcrumb-item"><a href="/orders">Order</a></li>
 
         <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/orders/add';">
-=======
-        <li class="breadcrumb-item"><a href="/user">Order</a></li>
-
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/producttypes/add';">
->>>>>>> 8a93ac96c67f2e4010bbf030e91687b440d5bb23
             <i class="btn-icon-prepend" data-feather="plus"></i>
             Add Order
         </button>
@@ -30,35 +24,25 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">ORDER LIST</h6>
+                <h6 class="card-title">ORDER DETAIL</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>User Id</th>
-                                <th>FullName</th>
-                                <th>Shipping Address</th>
-                                <th>Shipping Phone</th>
-                                <th>Total Amount</th>
-                                <th>Delivery Time</th>
-                                <th>Order Status</th>
+                                <th style="width:100px">ID</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>                       
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($orders as $item)
+                        @foreach($order as $item)
                             <tr id="{{{$item->id}}}">
                                 <td>{{$item['id']}}</td>
-                                <td>{{$item['user_id']}}</td>
-                                <td>{{$item['fullname']}}</td>
-                                <td>{{$item['address']}}</td>
-                                <td>{{$item['phone']}}</td>
-                                <td>{{$item['unit_price']}}</td>
-                                <td>{{$item['delivery_date']}}</td>
-                                <td>{{$item['order_status_id']}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='orders/{{{$item->id}}}' ;">Update </button></td>
-                                <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
+                                <td>{{$item['product_id']}}</td>
+                                <td>{{$item['price']}}</td>
+                                <td>{{$item['quantity']}}</td>           
                             </tr>
                             @endforeach
                         </tbody>
@@ -91,7 +75,7 @@
 @endpush
 
 <script>
-    const deleteType = (id) => {
+    const deleteUser = (id) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: "btn btn-success",
@@ -100,10 +84,11 @@
             buttonsStyling: false,
         });
 
+
         swalWithBootstrapButtons
             .fire({
                 title: "Bạn có chăc chắn?",
-                text: "Bạn sẽ không thể khôi phục laị đơn hàng này!",
+                text: "Bạn sẽ không thể khôi phục laị tài khỏan này!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "ml-2",
@@ -114,8 +99,8 @@
             .then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        const res = await axios.delete(`/api/order/${id}`);
-                        $(`#${id}`).remove();
+                        const res = await axios.delete(`/api/user/${id}`);
+                        $(`${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",
                             res.data.message,
