@@ -27,7 +27,7 @@ class Order extends Model
     }
     public function OrderStatus()
     {
-        return $this->hasMany(OrderStatus::class);
+        return $this->belongsTo(OrderStatus::class);
     }
     public function User()
     {

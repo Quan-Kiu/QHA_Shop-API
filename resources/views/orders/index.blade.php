@@ -10,18 +10,15 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-<<<<<<< HEAD
         <li class="breadcrumb-item"><a href="/orders">Order</a></li>
 
         <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/orders/add';">
-=======
-        <li class="breadcrumb-item"><a href="/user">Order</a></li>
+            <li class="breadcrumb-item"><a href="/user">Order</a></li>
 
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/producttypes/add';">
->>>>>>> 8a93ac96c67f2e4010bbf030e91687b440d5bb23
-            <i class="btn-icon-prepend" data-feather="plus"></i>
-            Add Order
-        </button>
+            <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/producttypes/add';">
+                <i class="btn-icon-prepend" data-feather="plus"></i>
+                Add Order
+            </button>
 
     </ol>
 </nav>
@@ -56,7 +53,7 @@
                                 <td>{{$item['phone']}}</td>
                                 <td>{{$item['unit_price']}}</td>
                                 <td>{{$item['delivery_date']}}</td>
-                                <td>{{$item['order_status_id']}}</td>
+                                <td>{{$item['OrderStatus']->name}}</td>
                                 <td><button class="btn btn-primary" onclick="window.location.href='orders/{{{$item->id}}}' ;">Update </button></td>
                                 <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
                             </tr>

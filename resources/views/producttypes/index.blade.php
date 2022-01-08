@@ -31,13 +31,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-<<<<<<< HEAD
-                                <th>Name</th>
-                                <th style="width:100px" >Update</th>
-                                <th style="width:100px" >Delete</th>
-=======
                                 <th style="width:100%">Name</th>
->>>>>>> 878690fed5efd3f22364a434b279fae5840fecde
                             </tr>
                         </thead>
                         <tbody>

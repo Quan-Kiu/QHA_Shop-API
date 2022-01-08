@@ -9,7 +9,6 @@ use App\Models\Color;
 use App\Models\order;
 use App\Models\OrderDetail;
 use App\Models\Orderstatus;
-use App\Models\OrderDetail;
 use App\Models\Size;
 use App\Models\ProductType;
 use App\Models\User;
@@ -135,6 +134,10 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('orders_status.add');
     });
 
+    Route::get('/orders_status/{orderstatus}', function (Orderstatus $orderstatus) {
+        return view('orders_status.update', ['order_status' => $orderstatus]);
+    });
+
     // Order Status
     Route::get('/order_detail', function () {
         $orders_detail = OrderDetail::all();
@@ -144,22 +147,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/order_detail/add', function () {
         return view('order_detail.add');
     });
-    Route::get('/orderstatus/{orderstatus}',function(Orderstatus $orderstatus){
-        return view('orderstatus.update',['orderstatus' => $orderstatus]);
-    });
-
-    // Order Detail
-    Route::get('/orderdetail', function () {
-        $orders = OrderDetail::all();
-        return view('orderdetail.index', ['order' => $orders]);
-    });
-   
-    Route::get('/orderdetail/add', function () {
-        $orders = OrderDetail::all();
-        return view('orderstatus.add', ['order' => $orders]);
-    });
-    Route::get('/orderdetail/{orderstatus}',function(OrderDetail $orderDetail){
-        return view('orderstatus.update',['orderstatus' => $orderDetail]);
+    Route::get('/order_detail/{orderdetail}', function (OrderDetail $order_detail) {
+        return view('order_detail.update', ['order_status' => $order_detail]);
     });
 });
 

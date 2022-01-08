@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Str;
-use Faker\Provider\zh_TW\DateTime;
 
 
 use App\Http\Controllers\BaseController as BaseController;
