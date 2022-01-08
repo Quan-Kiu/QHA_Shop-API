@@ -10,8 +10,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/orderstatus">Order Status</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update Status</li>
+        <li class="breadcrumb-item"><a href="/colors">Order Status</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Order Status</li>
     </ol>
 </nav>
 
@@ -20,11 +20,11 @@
         <div class="card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Update Status</h4>
-                    <form id="updateStatus">
+                    <h4 class="card-title">Add Order Status</h4>
+                    <form id="addColor">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input id="name" value="{{{$orderstatus->name}}}" class="form-control" name="name" type="text" />
+                            <input id="name" class="form-control" name="name" type="text" />
                         </div>
                         <input class="btn btn-primary" type="submit" value="Submit">
                     </form>
@@ -36,19 +36,18 @@
 @endsection
 
 <script>
-    var orderstatus = @json($orderstatus);
     window.onload = () => {
-        $("#updateStatus").submit(async function(e) {
+        $("#addColor").submit(async function(e) {
             e.preventDefault();
             let formData = {
                 name: $('#name').val(),
             };
             showSwal('message-with-auto-close', {
                 timer: 60000,
-                title: 'Đang cập nhật trạng thái đơn hàng'
+                title: 'Đang tạo trạng thái đơn hàng'
             });
             try {
-                const response = await axios.put(`/api/orderstatus/${orderstatus['id']}`, formData);
+                const response = await axios.post('/api/orders_status', formData);
                 console.log(response.data);
                 showSwal('custom-position', {
                     title: 'Thành công',

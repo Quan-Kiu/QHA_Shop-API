@@ -38,6 +38,29 @@
           <span class="link-title">Cart</span>
         </a>
       </li>
+      <li class="nav-item nav-category">Order</li>
+      <li class="nav-item {{ active_class(['orders']) }}">
+        <a href="{{ url('/orders') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Order</span>
+        </a>
+
+
+      </li>
+      <li class="nav-item {{ active_class(['order_detail']) }}">
+        <a href="{{ url('/order_detail') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Order Detail</span>
+        </a>
+
+
+      </li>
+      <li class="nav-item {{ active_class(['orders_status']) }}">
+        <a href="{{ url('/orders_status') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Order Status</span>
+        </a>
+      </li>
       <li class="nav-item nav-category">Color</li>
       <li class="nav-item {{ active_class(['colors']) }}">
         <a href="{{ url('/colors') }}" class="nav-link">
@@ -55,6 +78,7 @@
       </li>
 
       </li>
+<<<<<<< HEAD
       <li class="nav-item nav-category">Order</li>
       <li class="nav-item {{ active_class(['orders']) }}">
         <a href="{{ url('/orders') }}" class="nav-link">
@@ -68,6 +92,9 @@
           <span class="link-title">Order Status</span>
         </a>
       </li>
+=======
+
+>>>>>>> 8a93ac96c67f2e4010bbf030e91687b440d5bb23
       <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">

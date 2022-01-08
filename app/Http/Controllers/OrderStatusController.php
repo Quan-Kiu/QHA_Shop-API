@@ -36,8 +36,6 @@ class OrderStatusController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreOrderStatusRequest  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {

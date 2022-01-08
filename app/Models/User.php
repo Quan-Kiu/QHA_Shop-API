@@ -59,9 +59,18 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
 
+    public function Order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function ShippingInfos()
+    {
+        return $this->hasMany(ShippingInfo::class);
+    }
 
     public function isAdmin()
     {
-        return $this->user_types()->where('user_type', 'admin')->exists();
+        return $this->user_type()->where('name', 'admin')->exists();
     }
 }

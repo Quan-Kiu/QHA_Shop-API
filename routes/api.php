@@ -28,10 +28,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::resource('user_type', UserTypeController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('user_type', UserTypeController::class);
-
 
     Route::get('/refreshtoken', [UserController::class, 'refreshtoken']);
     Route::put('/user/changePassword', [UserController::class, 'changePassword']);
@@ -46,7 +45,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('cart/getCartByUser', [CartController::class, 'getCartByUser']);
 
     Route::resource('cart', CartController::class);
-
 
     Route::resource('color', ColorController::class);
 
