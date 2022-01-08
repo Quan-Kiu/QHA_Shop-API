@@ -8,6 +8,12 @@ use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\SizeController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderStatusController;
+use App\Models\Product;
+>>>>>>> 9e9494512a5bd37731d42e9ac35fc630617e2c92
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +38,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/refreshtoken', [UserController::class, 'refreshtoken']);
     Route::put('/user/changePassword', [UserController::class, 'changePassword']);
     Route::resource('user', UserController::class);
+<<<<<<< HEAD
 
     Route::get('/product/search', [ProductController::class, 'search']);
     Route::get('/product/discount', [ProductController::class, 'getDiscountProduct']);
@@ -48,5 +55,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('size', SizeController::class);
 
+=======
+    Route::resource('order', OrderController::class);
+    Route::resource('orderstatus', OrderStatusController::class);
+>>>>>>> 9e9494512a5bd37731d42e9ac35fc630617e2c92
     Route::post('/logout', [AuthController::class, 'logout']);
 });

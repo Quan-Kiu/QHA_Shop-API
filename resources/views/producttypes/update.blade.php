@@ -10,8 +10,11 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/producttypes">Product Type</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update Product Type</li>
+        <<<<<<< HEAD <li class="breadcrumb-item"><a href="/producttypes">Product Type</a></li>
+            =======
+            <li class="breadcrumb-item"><a href="/colors">Product Type</a></li>
+            >>>>>>> 9e9494512a5bd37731d42e9ac35fc630617e2c92
+            <li class="breadcrumb-item active" aria-current="page">Update Product Type</li>
     </ol>
 </nav>
 
@@ -20,11 +23,11 @@
         <div class="card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Product Type</h4>
-                    <form id="update">
+                    <h4 class="card-title">Update Product Type</h4>
+                    <form id="updateProducttype">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input value="{{{$producttype->name}}}" id="name" class="form-control" name="name" type="text" />
+                            <input id="name" value="{{{$producttype->name}}}" class="form-control" name="name" type="text" />
                         </div>
                         <input class="btn btn-primary" type="submit" value="Submit">
                     </form>

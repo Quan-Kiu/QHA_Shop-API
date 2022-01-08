@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\View;
 use App\Models\Product;
 use App\Models\Color;
+use App\Models\order;
+use App\Models\Orderstatus;
 use App\Models\Size;
 use App\Models\ProductType;
 use App\Models\User;
@@ -75,6 +77,17 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('colors.update', ['color' => $color]);
     });
 
+    // Order
+    Route::get('/orders', function () {
+        $orders = Order::all();
+        return view('orders.index', ['orders' => $orders]);
+    });
+    Route::get('/orders/add', function () {
+        return view('orders.add');
+    });
+    Route::get('/orders/{order}', function (Order $orders) {
+        return view('orders.update', ['orders' => $orders]);
+    }); 
 
     // Size
     Route::get('/sizes', function () {
@@ -97,16 +110,32 @@ Route::middleware('auth:sanctum')->group(function () {
         $product = ProductType::all();
         return view('producttypes.index', ['product' => $product]);
     });
+<<<<<<< HEAD
+=======
+   
+>>>>>>> 9e9494512a5bd37731d42e9ac35fc630617e2c92
     Route::get('/producttypes/add', function () {
         return view('producttypes.add');
     });
     Route::get('/producttypes/{producttype}', function (ProductType $producttype) {
         return view('producttypes.update', ['producttype' => $producttype]);
     });
+
+    Route::get('/producttypes/{producttype}', function (ProductType $producttype) {
+        return view('producttypes.update', ['producttype' => $producttype]);
+    });
+
+    // Order Status
+    Route::get('/orderstatus', function () {
+        $orders = Orderstatus::all();
+        return view('orderstatus.index', ['order' => $orders]);
+    });
+   
+    Route::get('/orderstatus/add', function () {
+        $orders = Orderstatus::all();
+        return view('orderstatus.add', ['order' => $orders]);
+    });
 });
-
-
-
 Route::group(['prefix' => 'email'], function () {
     Route::get('inbox', function () {
         return view('pages.email.inbox');
