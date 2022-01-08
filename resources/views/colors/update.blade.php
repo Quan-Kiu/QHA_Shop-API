@@ -24,7 +24,7 @@
                     <form id="updateColor">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input id="name" value="{{{$color->name}}}" class="form-control" name="name" type="text" />
+                            <input id="name" value="{{{$color->name}}}" class="form-control" type="text" />
                         </div>
                         <input class="btn btn-primary" type="submit" value="Submit">
                     </form>

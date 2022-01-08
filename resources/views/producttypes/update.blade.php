@@ -10,7 +10,7 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/colors">Product Type</a></li>
+        <li class="breadcrumb-item"><a href="/product_type">Product Type</a></li>
         <li class="breadcrumb-item active" aria-current="page">Update Product Type</li>
     </ol>
 </nav>
@@ -36,7 +36,7 @@
 @endsection
 
 <script>
-    var color = @json($producttype);
+    var type = @json($producttype);
     window.onload = () => {
         $("#updateProducttype").submit(async function(e) {
             e.preventDefault();
@@ -48,7 +48,7 @@
                 title: 'Đang cập nhật thông tin loại sản phẩm'
             });
             try {
-                const response = await axios.put(`/api/producttypes/${producttype['id']}`, formData);
+                const response = await axios.put(`/api/product_type/${producttype['id']}`, formData);
                 console.log(response.data);
                 showSwal('custom-position', {
                     title: 'Thành công',

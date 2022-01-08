@@ -6,11 +6,13 @@ use Illuminate\Support\Facades\View;
 use App\Models\Product;
 use App\Models\Color;
 use App\Models\order;
+use App\Models\OrderDetail;
 use App\Models\Orderstatus;
 use App\Models\Size;
 use App\Models\ProductType;
 use App\Models\User;
 use App\Models\UserType;
+use Illuminate\Support\Facades\DB;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/register', function () {
@@ -116,6 +118,23 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/orderstatus/add', function () {
         $orders = Orderstatus::all();
         return view('orderstatus.add', ['order' => $orders]);
+    });
+    Route::get('/orderstatus/{orderstatus}',function(Orderstatus $orderstatus){
+        return view('orderstatus.update',['orderstatus' => $orderstatus]);
+    });
+
+    // Order Detail
+    Route::get('/orderdetail', function () {
+        $orders = OrderDetail::all();
+        return view('orderdetail.index', ['order' => $orders]);
+    });
+   
+    Route::get('/orderdetail/add', function () {
+        $orders = OrderDetail::all();
+        return view('orderstatus.add', ['order' => $orders]);
+    });
+    Route::get('/orderdetail/{orderstatus}',function(OrderDetail $orderDetail){
+        return view('orderstatus.update',['orderstatus' => $orderDetail]);
     });
 });
 Route::group(['prefix' => 'email'], function () {

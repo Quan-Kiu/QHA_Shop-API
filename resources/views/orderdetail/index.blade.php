@@ -10,11 +10,11 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="/user">Product Type</a></li>
+        <li class="breadcrumb-item"><a href="/orders">Order</a></li>
 
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/producttypes/add';">
+        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/orders/add';">
             <i class="btn-icon-prepend" data-feather="plus"></i>
-            Add Product Type
+            Add Order
         </button>
 
     </ol>
@@ -24,27 +24,26 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">PRODUCT TYPE LIST</h6>
+                <h6 class="card-title">ORDER DETAIL</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th style="width:100px" >Update</th>
-                                <th style="width:100px" >Delete</th>
+                                <th style="width:100px">ID</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>                       
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($product as $item)
-                                <tr id="user{{{$item->id}}}">
-                                    <td>{{$item['id']}}</td>                       
-                                    <td>{{$item['name']}}</td>
-                                    <td><button class="btn btn-primary" onclick="window.location.href='/producttypes/{{{$item->id}}}' ;">Update </button></td>
-                                    <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
-
-                                </tr>
+                        @foreach($order as $item)
+                            <tr id="{{{$item->id}}}">
+                                <td>{{$item['id']}}</td>
+                                <td>{{$item['product_id']}}</td>
+                                <td>{{$item['price']}}</td>
+                                <td>{{$item['quantity']}}</td>           
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -76,7 +75,7 @@
 @endpush
 
 <script>
-    const deleteType = (id) => {
+    const deleteUser = (id) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: "btn btn-success",
@@ -100,8 +99,8 @@
             .then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        const res = await axios.delete(`/api/product_type/${id}`);
-                        $(`#user${id}`).remove();
+                        const res = await axios.delete(`/api/user/${id}`);
+                        $(`${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",
                             res.data.message,

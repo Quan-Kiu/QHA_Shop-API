@@ -48,12 +48,18 @@
       </li>
 
       </li>
+      <li class="nav-item nav-category">Order</li>
       <li class="nav-item {{ active_class(['orders']) }}">
         <a href="{{ url('/orders') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Order</span>
         </a>
-
+      </li>
+      <li class="nav-item {{ active_class(['orderstatus']) }}">
+        <a href="{{ url('/orderstatus') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Order Status</span>
+        </a>
       </li>
       <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
