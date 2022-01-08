@@ -10,8 +10,16 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
+<<<<<<< HEAD
         <li class="breadcrumb-item"><a href="/product_type">Product Type</a></li>
         <li class="breadcrumb-item active" aria-current="page">Update Product Type</li>
+=======
+        <<<<<<< HEAD <li class="breadcrumb-item"><a href="/producttypes">Product Type</a></li>
+            =======
+            <li class="breadcrumb-item"><a href="/colors">Product Type</a></li>
+            >>>>>>> 9e9494512a5bd37731d42e9ac35fc630617e2c92
+            <li class="breadcrumb-item active" aria-current="page">Update Product Type</li>
+>>>>>>> 878690fed5efd3f22364a434b279fae5840fecde
     </ol>
 </nav>
 
@@ -36,19 +44,28 @@
 @endsection
 
 <script>
+<<<<<<< HEAD
     var type = @json($producttype);
+=======
+>>>>>>> 878690fed5efd3f22364a434b279fae5840fecde
     window.onload = () => {
-        $("#updateProducttype").submit(async function(e) {
+        $("#update").submit(async function(e) {
+
             e.preventDefault();
             let formData = {
                 name: $('#name').val(),
             };
             showSwal('message-with-auto-close', {
                 timer: 60000,
-                title: 'Đang cập nhật thông tin loại sản phẩm'
+                title: 'Đang thay đổi thông tin loại sản phẩm'
             });
+            var id = @json($producttype['id']);
             try {
+<<<<<<< HEAD
                 const response = await axios.put(`/api/product_type/${producttype['id']}`, formData);
+=======
+                const response = await axios.put(`/api/product_type/${id}`, formData);
+>>>>>>> 878690fed5efd3f22364a434b279fae5840fecde
                 console.log(response.data);
                 showSwal('custom-position', {
                     title: 'Thành công',

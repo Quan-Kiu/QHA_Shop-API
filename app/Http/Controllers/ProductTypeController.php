@@ -95,7 +95,6 @@ class ProductTypeController extends BaseController
         $input = $request->all();
         $validator = Validator::make($request->all(), [
             "name" => 'required|string',
-            "description" => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -104,7 +103,6 @@ class ProductTypeController extends BaseController
 
         $productType->fill([
             'name' => $input["name"],
-            'description' => $input["description"],
 
         ]);
 

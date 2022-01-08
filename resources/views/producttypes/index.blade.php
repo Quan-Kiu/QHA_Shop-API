@@ -31,20 +31,23 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
+<<<<<<< HEAD
                                 <th>Name</th>
                                 <th style="width:100px" >Update</th>
                                 <th style="width:100px" >Delete</th>
+=======
+                                <th style="width:100%">Name</th>
+>>>>>>> 878690fed5efd3f22364a434b279fae5840fecde
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($product as $item)
-                                <tr id="user{{{$item->id}}}">
-                                    <td>{{$item['id']}}</td>                       
-                                    <td>{{$item['name']}}</td>
-                                    <td><button class="btn btn-primary" onclick="window.location.href='/producttypes/{{{$item->id}}}' ;">Update </button></td>
-                                    <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
-
-                                </tr>
+                            <tr id="{{{$item->id}}}">
+                                <td>{{$item['id']}}</td>
+                                <td>{{$item['name']}}</td>
+                                <td><button class="btn btn-primary" onclick="window.location.href='producttypes/{{{$item->id}}}' ;">Update </button></td>
+                                <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -85,7 +88,6 @@
             buttonsStyling: false,
         });
 
-
         swalWithBootstrapButtons
             .fire({
                 title: "Bạn có chăc chắn?",
@@ -101,7 +103,7 @@
                 if (result.isConfirmed) {
                     try {
                         const res = await axios.delete(`/api/product_type/${id}`);
-                        $(`#user${id}`).remove();
+                        $(`#${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",
                             res.data.message,

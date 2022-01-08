@@ -7,9 +7,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Cloudinary;
-
-use function PHPUnit\Framework\isEmpty;
+use PHPUnit\Framework\Constraint\Count;
 
 class ProductController extends BaseController
 {
@@ -23,6 +21,27 @@ class ProductController extends BaseController
         $products = Product::all();
         $response['products'] = $products;
         $response['total'] = $products->count();
+
+        return $this->sendResponse($response, 'Lấy danh sách sản phẩm thành công.');
+    }
+
+    public function getDiscountProduct(Request $request)
+    {
+        $limit = $request['limit'] ?? 10;
+        $page = $request['page'] ?? 1;
+        $products = Product::all();
+        $discountProduct = [];
+        foreach ($products as $product) {
+            $percent = ((($product->price - $product->discount) / $product->price) * 100);
+            if ($percent >= 25) {
+                array_push($discountProduct, $product);
+            }
+        }
+        $current = $page * $limit - 1;
+        $total_pages = ceil(Count($discountProduct) / $limit);
+        $response['products'] = array_slice($discountProduct, $current - $limit + 1, $current);
+        $response['total_pages'] = $total_pages;
+        $response['page'] = $page;
 
         return $this->sendResponse($response, 'Lấy danh sách sản phẩm thành công.');
     }
@@ -46,8 +65,6 @@ class ProductController extends BaseController
     public function store(Request $request)
     {
 
-
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'thumbnail' => 'required|string',
@@ -65,26 +82,6 @@ class ProductController extends BaseController
             return $this->sendError($validator->errors()->first());
         }
         $product = $request->all();
-
-        // $mainPhotoUrl = Cloudinary::upload($request->file('thumbnail')->getRealPath())->getSecurePath();
-
-        // if (!$mainPhotoUrl) {
-        //     return $this->sendError('Lỗi tải hình ảnh.');
-        // }
-        // $photosUrl = [];
-
-        // for ($i = 0;; $i++) {
-        //     if ($request->file('images' . $i)) {
-
-        //         $link = Cloudinary::upload($request->file('images' . $i)->getRealPath())->getSecurePath();
-        //         if (!$link) {
-        //             return $this->sendError('Lỗi tải hình ảnh.');
-        //         }
-        //         array_push($photosUrl, $link);
-        //     } else {
-        //         break;
-        //     }
-        // }
 
         $newProduct = Product::create($product);
 

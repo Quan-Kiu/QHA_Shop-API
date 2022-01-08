@@ -28,11 +28,9 @@
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
-                                <th style="width:100px">Id</th>
+                                <th>Id</th>
                                 <th>Name</th>
-                                <th>Product Type</th>
-                                <th style="width:100px">Update</th>
-                                <th style="width:100px">Delete</th>
+                                <th style="width:100%">Product Type</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +38,7 @@
                             <tr id="{{{$item->id}}}">
                                 <td>{{$item['id']}}</td>
                                 <td>{{$item['name']}}</td>
-                                <td>{{$item['product_type_id']}}</td>
+                                <td>{{$item['productType']->name}}</td>
                                 <td><button class="btn btn-primary" onclick="window.location.href='/sizes/{{{$item->id}}}' ;">Update </button></td>
                                 <td><button class="btn btn-danger" onclick="deleteSize('{{{$item->id}}}')">Delete</button></td>
                             </tr>

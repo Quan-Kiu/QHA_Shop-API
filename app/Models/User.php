@@ -54,6 +54,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(UserType::class);
     }
+    public function Carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 
 
     public function isAdmin()

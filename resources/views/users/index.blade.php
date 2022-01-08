@@ -32,13 +32,11 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Avatar</th>
-                                <th>Name</th>
+                                <th style="width:100%">Fullname</th>
                                 <th>Email</th>
                                 <th>Gender</th>
                                 <th>Phone</th>
                                 <th>Rule</th>
-                                <th>Update</th>
-                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,8 +48,8 @@
                                 <td>{{$item['email']}}</td>
                                 <td>{{$item['gender']}}</td>
                                 <td>{{$item['phone']}}</td>
-                                <td>{{$item['user_type']}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='products/add' ;">Update </button></td>
+                                <td>{{$item['userType']->name}}</td>
+                                <td><button class="btn btn-primary" onclick="window.location.href='users/{{{$item->id}}}' ;">Update </button></td>
                                 <td><button class="btn btn-danger" onclick="deleteUser('{{{$item->id}}}')">Delete</button></td>
 
                             </tr>
