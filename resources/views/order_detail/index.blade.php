@@ -10,11 +10,11 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="/user">Order</a></li>
+        <li class="breadcrumb-item"><a href="/order_detail">Order Detail</a></li>
 
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/producttypes/add';">
+        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/order_detail/add';">
             <i class="btn-icon-prepend" data-feather="plus"></i>
-            Add Order
+            Add Order Detail
         </button>
 
     </ol>
@@ -24,34 +24,28 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">ORDER LIST</h6>
+                <h6 class="card-title">ORDER DETAILS LIST</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>User Id</th>
-                                <th>FullName</th>
-                                <th>Shipping Address</th>
-                                <th>Shipping Phone</th>
+                                <th>Product Id</th>
+                                <th>Order Id</th>
+                                <th>Quantity</th>
                                 <th>Total Amount</th>
-                                <th>Delivery Time</th>
-                                <th>Order Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($orders as $item)
+                            @foreach($orders_detail as $item)
                             <tr id="{{{$item->id}}}">
                                 <td>{{$item['id']}}</td>
-                                <td>{{$item['user_id']}}</td>
-                                <td>{{$item['fullname']}}</td>
-                                <td>{{$item['address']}}</td>
-                                <td>{{$item['phone']}}</td>
+                                <td>{{$item['product_id']}}</td>
+                                <td>{{$item['order_id']}}</td>
+                                <td>{{$item['quantity']}}</td>
                                 <td>{{$item['unit_price']}}</td>
-                                <td>{{$item['delivery_date']}}</td>
-                                <td>{{$item['order_status_id']}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='orders/{{{$item->id}}}' ;">Update </button></td>
+                                <td><button class="btn btn-primary" onclick="window.location.href='order_detail/{{{$item->id}}}' ;">Update </button></td>
                                 <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
                             </tr>
                             @endforeach
@@ -108,7 +102,7 @@
             .then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        const res = await axios.delete(`/api/product_type/${id}`);
+                        const res = await axios.delete(`/api/order_detail/${id}`);
                         $(`#${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",

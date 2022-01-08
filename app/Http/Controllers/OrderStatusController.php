@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderStatus;
-use App\Http\Requests\StoreOrderStatusRequest;
-use App\Http\Requests\UpdateOrderStatusRequest;
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\BaseController as BaseController;
 
@@ -36,10 +36,8 @@ class OrderStatusController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreOrderStatusRequest  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderStatusRequest $request)
+    public function store(Request $request)
     {
         $input = $request->all();
 
