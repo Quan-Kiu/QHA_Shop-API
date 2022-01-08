@@ -97,7 +97,7 @@
         swalWithBootstrapButtons
             .fire({
                 title: "Bạn có chăc chắn?",
-                text: "Bạn sẽ không thể khôi phục laị tài khỏan này!",
+                text: "Bạn sẽ không thể khôi phục laị đơn hàng này!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "ml-2",
@@ -108,7 +108,7 @@
             .then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        const res = await axios.delete(`/api/product_type/${id}`);
+                        const res = await axios.delete(`/api/order/${id}`);
                         $(`#${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",

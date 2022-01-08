@@ -11,6 +11,7 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\ShippingInfoController;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('size', SizeController::class);
 
     Route::resource('order', OrderController::class);
+
+    Route::resource('order_detail', OrderDetail::class);
 
     Route::resource('orders_status', OrderStatusController::class);
 

@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Str;
+use Faker\Provider\zh_TW\DateTime;
+
+
 use App\Http\Controllers\BaseController as BaseController;
+use App\Models\OrderDetail;
 
 class OrderController extends BaseController
 {
@@ -40,22 +45,39 @@ class OrderController extends BaseController
      * @param  \App\Http\Requests\StoreOrderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
+
+        $request['user_id'] = Auth::user()->id;
+        $carts = Auth::user()->carts;
 
         $validator = Validator::make($request->all(), [
             'address' => 'required|string',
+            'user_id' => 'required|int',
+            'fullname' => 'required|string',
             'phone' => 'required|string',
-            'total' => 'required|string',
-            'delivery_date' => 'required|string',
+            'unit_price' => 'required|int',
         ]);
 
         if ($validator->fails()) {
             return $this->sendError($validator->errors());
         }
-
+        $date = date("Y-m-d", strtotime('+ 7 day'));
+        $request['delivery_date'] = $date;
+        $request['code'] = Str::random(4) . strtotime(date('Y-m-d H:i:s'));
+        $request['quantity'] = Count($carts);
+        $input = $request->all();
         $order = Order::create($input);
+
+
+        foreach ($carts as $cart) {
+            $formData['product_id'] = $cart->product_id;
+            $formData['order_id'] = $order->id;
+            $formData['quantity'] = $cart->quantity;
+            $formData['unit_price'] = $cart->product->discount * $cart->quantity;
+            OrderDetail::create($formData);
+            $cart->delete();
+        }
 
         return $this->sendResponse($order, 'Tạo đơn hàng thành công.');
     }
@@ -93,7 +115,7 @@ class OrderController extends BaseController
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(Request $request, Order $order)
     {
         $input = $request->all();
         $validator = Validator::make($request->all(), [
