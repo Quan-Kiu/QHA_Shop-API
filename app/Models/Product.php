@@ -25,12 +25,8 @@ class Product extends Model
     {
         return $this->belongsTo(ProductType::class);
     }
-    public function Size()
+    public function Carts()
     {
-        return $this->belongsTo(Size::class);
-    }
-    public function Color()
-    {
-        return $this->belongsTo(Color::class);
+        return $this->hasMany(Carts::class);
     }
 }

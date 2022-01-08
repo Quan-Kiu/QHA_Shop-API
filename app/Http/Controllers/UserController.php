@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\BaseController as BaseController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends BaseController
 {
@@ -48,6 +50,48 @@ class UserController extends BaseController
         return $this->sendResponse($user, 'Lấy thông tin tài khoản thành công.');
     }
 
+    public function refreshtoken()
+    {
+        Auth::user()->tokens()->delete();
+        $user = Auth::user();
+        $token = $user->createToken('token')->plainTextToken;
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+        return $this->sendResponse($response, 'Thành công');
+    }
+    public function changePassword(Request $request)
+    {
+        $input = $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'current_password' => 'required|string',
+            'password' => 'required|string|min:6',
+            'password_confirmation' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors()->first());
+        }
+
+
+        $user = Auth::user();
+
+
+        if (!$user || !Hash::check($input['current_password'], $user->password)) {
+            return $this->sendError('Mật khẩu cũ không chính xác', 401);
+        }
+
+        $input['password'] = bcrypt($input['password']);
+
+        $user->fill([
+            'password' => $input['password'],
+        ]);
+        $user->save();
+
+        return $this->sendResponse([], 'Thay đổi mật khẩu thành công.');
+    }
     /**
      * Update the specified resource in storage.
      *

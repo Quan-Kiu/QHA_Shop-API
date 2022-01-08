@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\SizeController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,15 +23,30 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::resource('user_type', UserTypeController::class);
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/product/search', [ProductController::class, 'search']);
-    Route::resource('product', ProductController::class, ['verify' => false]);
-    Route::resource('product_type', ProductTypeController::class);
-    Route::resource('color', ColorController::class);
-    Route::resource('size', SizeController::class);
+    Route::resource('user_type', UserTypeController::class);
+
+
+    Route::get('/refreshtoken', [UserController::class, 'refreshtoken']);
+    Route::put('/user/changePassword', [UserController::class, 'changePassword']);
     Route::resource('user', UserController::class);
+
+    Route::get('/product/search', [ProductController::class, 'search']);
+    Route::get('/product/discount', [ProductController::class, 'getDiscountProduct']);
+    Route::resource('product', ProductController::class);
+
+    Route::resource('product_type', ProductTypeController::class);
+
+    Route::get('cart/getCartByUser', [CartController::class, 'getCartByUser']);
+
+    Route::resource('cart', CartController::class);
+
+
+    Route::resource('color', ColorController::class);
+
+    Route::resource('size', SizeController::class);
+
     Route::post('/logout', [AuthController::class, 'logout']);
 });

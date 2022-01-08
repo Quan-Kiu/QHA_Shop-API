@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cart;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\View;
@@ -49,6 +50,18 @@ Route::middleware('auth:sanctum')->group(function () {
         $user_type = UserType::all();
         return view('users.add', ['user_type' => $user_type]);
     });
+    Route::get('/users/{user}', function (User $user) {
+        $user_type = UserType::all();
+        $data['user'] = $user;
+        $data['user_type'] = $user_type;
+        return view('users.update', ['data' => $data]);
+    });
+
+    // Cart
+    Route::get('/carts', function () {
+        $carts = Cart::all();
+        return view('carts.index', ['carts' => $carts]);
+    });
 
     // Color
     Route::get('/colors', function () {
@@ -84,12 +97,11 @@ Route::middleware('auth:sanctum')->group(function () {
         $product = ProductType::all();
         return view('producttypes.index', ['product' => $product]);
     });
-    /* Route::get('/producttypes/add', function () {
-        return view('producttypes.addType');
-    }); */
     Route::get('/producttypes/add', function () {
-        $user_type = ProductType::all();
-        return view('producttypes.addType', ['user_type' => $user_type]);
+        return view('producttypes.add');
+    });
+    Route::get('/producttypes/{producttype}', function (ProductType $producttype) {
+        return view('producttypes.update', ['producttype' => $producttype]);
     });
 });
 

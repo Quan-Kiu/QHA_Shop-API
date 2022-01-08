@@ -30,10 +30,8 @@
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
-                                <th style="width:100px">Id</th>
-                                <th>Name</th>
-                                <th style="width:100px">Update</th>
-                                <th style="width:100px">Delete</th>
+                                <th>Id</th>
+                                <th style="width:100%">Name</th>
                             </tr>
                         </thead>
                         <tbody>
