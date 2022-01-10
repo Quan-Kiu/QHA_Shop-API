@@ -54,7 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('order_detail', OrderDetail::class);
 
-    Route::resource('orders_status', OrderStatusController::class);
+    Route::resource('order_status', OrderStatusController::class);
 
     Route::get('shipping_info/getShippingInfoByUser', [ShippingInfoController::class, 'getShippingInfoByUser']);
     Route::resource('shipping_info', ShippingInfoController::class);

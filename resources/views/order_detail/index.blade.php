@@ -33,6 +33,7 @@
                                 <th>Id</th>
                                 <th>Product Id</th>
                                 <th>Order Id</th>
+                                <th>Description</th>
                                 <th>Quantity</th>
                                 <th>Total Amount</th>
                             </tr>
@@ -43,6 +44,7 @@
                                 <td>{{$item['id']}}</td>
                                 <td>{{$item['product_id']}}</td>
                                 <td>{{$item['order_id']}}</td>
+                                <td>{{$item['description']}}</td>
                                 <td>{{$item['quantity']}}</td>
                                 <td>{{$item['unit_price']}}</td>
                                 <td><button class="btn btn-primary" onclick="window.location.href='order_detail/{{{$item->id}}}' ;">Update </button></td>

@@ -18,9 +18,7 @@ class OrderStatusController extends BaseController
     public function index()
     {
         $order = Orderstatus::all();
-        $response["order"] = $order;
-        $response["total"] = $order->count();
-        return $this->sendResponse($response, 'Lấy danh sách tình trạng đơn hàng thành công.');
+        return $this->sendResponse($order, 'Lấy danh sách tình trạng đơn hàng thành công.');
     }
 
     /**
@@ -60,13 +58,13 @@ class OrderStatusController extends BaseController
      * @param  \App\Models\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $orderstatus)
     {
-        $order = Orderstatus::find($id);
-        if (is_null($order)) {
-            return $this->sendError('Loại đơn hàng không tồn tại');
-        }
-        return $this->sendResponse($order, 'Lấy thông tin loại đơn hàng thành công.');
+        // $order = Orderstatus::find($id);
+        // if (is_null($order)) {
+        //     return $this->sendError('Loại đơn hàng không tồn tại');
+        // }
+        return $this->sendResponse($orderstatus, 'Lấy thông tin loại đơn hàng thành công.');
     }
 
     /**
@@ -113,16 +111,14 @@ class OrderStatusController extends BaseController
         if ($validator->fails()) {
             return $this->sendError($validator->errors());
         }
-        
+
         $Status = OrderStatus::find($id);
-        if($Status){
+        if ($Status) {
             $Status->name = $request->name;
             return $this->sendResponse($Status, 'Thay đổi thông tin thành công.');
+        } else {
+            return response()->json(['message' => 'InvoiceStatus Update Unsuccessfully'], 404);
         }
-        else{
-            return response()->json(['message'=>'InvoiceStatus Update Unsuccessfully'],404);
-        }
-
     }
 
     /**
@@ -134,11 +130,10 @@ class OrderStatusController extends BaseController
     public function destroy($id)
     {
         $orderStatus = OrderStatus::find($id);
-        if($orderStatus){
+        if ($orderStatus) {
             $orderStatus->delete();
-            return $this->sendResponse($orderStatus, 'Xóa tình trạng đơn hàng thành công!'); 
-        }
-        else{
+            return $this->sendResponse($orderStatus, 'Xóa tình trạng đơn hàng thành công!');
+        } else {
             return $this->sendResponse($orderStatus, 'Xóa tình trạng đơn hàng không thành công!');
         }
 

@@ -19,12 +19,14 @@ class OrderController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $order = Order::all();
-        $response["orders"] = $order;
-        $response["total"] = $order->count();
-        return $this->sendResponse($response, 'Lấy danh sách đơn hàng thành công.');
+        $orders = Order::query()->where('order_status_id', '=', $request->id)->get();
+        foreach ($orders as $key => $value) {
+            $value['order_status'] = $value->OrderStatus;
+        }
+
+        return $this->sendResponse($orders, 'Lấy danh sách đơn hàng thành công.');
     }
 
 
@@ -37,6 +39,7 @@ class OrderController extends BaseController
     {
         //
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -72,6 +75,7 @@ class OrderController extends BaseController
         foreach ($carts as $cart) {
             $formData['product_id'] = $cart->product_id;
             $formData['order_id'] = $order->id;
+            $formData['description'] = $cart->description;
             $formData['quantity'] = $cart->quantity;
             $formData['unit_price'] = $cart->product->discount * $cart->quantity;
             OrderDetail::create($formData);
@@ -87,13 +91,13 @@ class OrderController extends BaseController
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        $order = Order::find($id);
-        if (is_null($order)) {
-            return $this->sendError('Đơn hàng không tồn tại');
+        $order_details = $order->OrderDetails;
+        foreach ($order_details as $key => $value) {
+            $value['product'] = $value->product;
         }
-        return $this->sendResponse($order, 'Lấy thông tin đơn hàng thành công.');
+        return $this->sendResponse($order_details, 'Lấy thông tin đơn hàng thành công.');
     }
 
     /**

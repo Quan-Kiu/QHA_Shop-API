@@ -18,6 +18,7 @@ class CreateOrderDetailsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('order_id');
             $table->integer('quantity');
+            $table->string('description');
             $table->double('unit_price');
             $table->softDeletes();
             $table->timestamps();

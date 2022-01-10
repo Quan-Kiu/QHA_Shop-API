@@ -78,6 +78,7 @@ class CartController extends BaseController
      */
     public function show(Cart $cart)
     {
+        return $cart;
     }
 
     /**

@@ -47,7 +47,7 @@
                 title: 'Đang tạo trạng thái đơn hàng'
             });
             try {
-                const response = await axios.post('/api/orders_status', formData);
+                const response = await axios.post('/api/order_status', formData);
                 console.log(response.data);
                 showSwal('custom-position', {
                     title: 'Thành công',
