@@ -94,7 +94,28 @@ class ShippingInfoController extends BaseController
      */
     public function update(Request $request, ShippingInfo $shippingInfo)
     {
-        //
+        $request['user_id'] = Auth::user()->id;
+
+        $validator = Validator::make($request->all(), [
+            'fullname' => 'required|string',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+
+        ]);
+
+        $input = $request->all();
+
+        $shippingInfo->fill([
+            'fullname' => $input["fullname"],
+            'phone' => $input["phone"],
+            'address' => $input["address"] ,
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors()->first());
+        }
+        $shippingInfo -> save();
+        return $this->sendResponse($shippingInfo, 'Sửa địa chỉ thành công');
     }
 
     /**
@@ -105,6 +126,7 @@ class ShippingInfoController extends BaseController
      */
     public function destroy(ShippingInfo $shippingInfo)
     {
-        //
+        $shippingInfo->delete();
+        return $this->sendResponse([], 'Xóa thành công!');
     }
 }

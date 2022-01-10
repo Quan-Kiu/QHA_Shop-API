@@ -76,7 +76,7 @@ class CommentController extends BaseController
     public function destroy(Comment $comments)
     {
         $comments->delete();
-        return $this->sendResponse($comments, 'Xóa đơn hàng thành công!');
+        return $this->sendResponse($comments, 'Xóa bình luận thành công!');
     }
 
 }

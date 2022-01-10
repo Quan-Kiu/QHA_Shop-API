@@ -10,12 +10,7 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="/user">Order Status</a></li>
-
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/orders_status/add';">
-            <i class="btn-icon-prepend" data-feather="plus"></i>
-            Add Order Status
-        </button>
+        <li class="breadcrumb-item"><a href="/comments">Comments</a></li>
 
     </ol>
 </nav>
@@ -24,23 +19,28 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">ORDER STATUS LIST</h6>
+                <h6 class="card-title">COMMENTS LIST</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th style="width:100%">Name</th>
+                                <th>Product</th>
+                                <th>Content</th>
+                                <th>Rating</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($orders_status as $item)
+                            @foreach($comment as $item)
                             <tr id="{{{$item->id}}}">
                                 <td>{{$item['id']}}</td>
-                                <td>{{$item['name']}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='orders_status/{{{$item->id}}}' ;">Update </button></td>
-                                <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
+                                <td>{{$item['product_id']}}</td>
+                                <td>{{$item['content']}}</td>
+                                <td>{{$item['rating']}}</td>
+                               
+                                <td><button class="btn btn-danger" onclick="deleteComment('{{{$item->id}}}')">Delete</button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -73,7 +73,7 @@
 @endpush
 
 <script>
-    const deleteType = (id) => {
+    const deleteComment = (id) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: "btn btn-success",
@@ -85,7 +85,7 @@
         swalWithBootstrapButtons
             .fire({
                 title: "Bạn có chăc chắn?",
-                text: "Bạn sẽ không thể khôi phục lại trạng thái đơn hàng này!",
+                text: "Bạn sẽ không thể khôi phục laị đơn hàng này!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "ml-2",
@@ -96,7 +96,7 @@
             .then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        const res = await axios.delete(`/api/order_status/${id}`);
+                        const res = await axios.delete(`/api/comments/${id}`);
                         $(`#${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",

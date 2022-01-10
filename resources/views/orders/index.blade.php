@@ -55,6 +55,7 @@
                                 <td>{{$item['delivery_date']}}</td>
                                 <td>{{$item['OrderStatus']->name}}</td>
                                 <td><button class="btn btn-primary" onclick="window.location.href='orders/{{{$item->id}}}' ;">Update </button></td>
+                                <td><button class="btn btn-primary" onclick="window.location.href='api/order/detail/{{{$item->id}}}' ;">Detail </button></td>
                                 <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
                             </tr>
                             @endforeach

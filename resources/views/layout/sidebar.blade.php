@@ -76,6 +76,14 @@
         </a>
 
       </li>
+      <li class="nav-item nav-category">Comment</li>
+      <li class="nav-item {{ active_class(['comments']) }}">
+        <a href="{{ url('/comments') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Comment</span>
+        </a>
+
+      </li>
 
       </li>
 

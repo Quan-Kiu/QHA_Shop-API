@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\BaseController as BaseController;
 use App\Models\OrderDetail;
@@ -87,13 +87,10 @@ class OrderController extends BaseController
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        $order = Order::find($id);
-        if (is_null($order)) {
-            return $this->sendError('Đơn hàng không tồn tại');
-        }
-        return $this->sendResponse($order, 'Lấy thông tin đơn hàng thành công.');
+        $order_details = $order->OrderDetails;
+        return $this->sendResponse($order_details, 'Lấy thông tin đơn hàng thành công.');
     }
 
     /**
@@ -152,4 +149,6 @@ class OrderController extends BaseController
         $order->delete();
         return $this->sendResponse($order, 'Xóa đơn hàng thành công!');
     }
+
+   
 }
