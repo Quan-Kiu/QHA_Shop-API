@@ -10,15 +10,7 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="/orders">Order</a></li>
-
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/orders/add';">
-            <li class="breadcrumb-item"><a href="/user">Order</a></li>
-
-            <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/producttypes/add';">
-                <i class="btn-icon-prepend" data-feather="plus"></i>
-                Add Order
-            </button>
+        <li class="breadcrumb-item"><a href="/comments">Comments</a></li>
 
     </ol>
 </nav>
@@ -27,36 +19,28 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">ORDER LIST</h6>
+                <h6 class="card-title">COMMENTS LIST</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>User Id</th>
-                                <th>FullName</th>
-                                <th>Shipping Address</th>
-                                <th>Shipping Phone</th>
-                                <th>Total Amount</th>
-                                <th>Delivery Time</th>
-                                <th>Order Status</th>
+                                <th>Product</th>
+                                <th>Content</th>
+                                <th>Rating</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($orders as $item)
+                            @foreach($comment as $item)
                             <tr id="{{{$item->id}}}">
                                 <td>{{$item['id']}}</td>
-                                <td>{{$item['user_id']}}</td>
-                                <td>{{$item['fullname']}}</td>
-                                <td>{{$item['address']}}</td>
-                                <td>{{$item['phone']}}</td>
-                                <td>{{$item['unit_price']}}</td>
-                                <td>{{$item['delivery_date']}}</td>
-                                <td>{{$item['OrderStatus']->name}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='orders/{{{$item->id}}}' ;">Update </button></td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='api/order/detail/{{{$item->id}}}' ;">Detail </button></td>
-                                <td><button class="btn btn-danger" onclick="deleteType('{{{$item->id}}}')">Delete</button></td>
+                                <td>{{$item['product_id']}}</td>
+                                <td>{{$item['content']}}</td>
+                                <td>{{$item['rating']}}</td>
+                               
+                                <td><button class="btn btn-danger" onclick="deleteComment('{{{$item->id}}}')">Delete</button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -89,7 +73,7 @@
 @endpush
 
 <script>
-    const deleteType = (id) => {
+    const deleteComment = (id) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: "btn btn-success",
@@ -112,7 +96,7 @@
             .then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        const res = await axios.delete(`/api/order/${id}`);
+                        const res = await axios.delete(`/api/comments/${id}`);
                         $(`#${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",

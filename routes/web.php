@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\View;
 use App\Models\Product;
 use App\Models\Color;
+use App\Models\Comment;
 use App\Models\order;
 use App\Models\OrderDetail;
 use App\Models\Orderstatus;
@@ -88,9 +89,12 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('orders.add');
     });
     Route::get('/orders/{order}', function (Order $order) {
-        return view('orders.update', ['order' => $order]);
+
+        $detail = $order->OrderDetail;
+        return view('orders.update', ['data' => $detail]);
     });
 
+   
     // Size
     Route::get('/sizes', function () {
         $sizes = Size::all();
@@ -138,41 +142,15 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('orders_status.update', ['order_status' => $orderstatus]);
     });
 
-    // Order Status
-    Route::get('/order_detail', function () {
-        $orders_detail = OrderDetail::all();
-        return view('order_detail.index', ['orders_detail' => $orders_detail]);
+    
+
+    // Comments
+    Route::get('/comments', function () {
+        $comments = Comment::all();
+        return view('comments.index', ['comment' => $comments]);
     });
 
-    Route::get('/order_detail/add', function () {
-        return view('order_detail.add');
-    });
-    Route::get('/order_detail/{orderdetail}', function (OrderDetail $order_detail) {
-        return view('order_detail.update', ['order_status' => $order_detail]);
-    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Route::group(['prefix' => 'email'], function () {

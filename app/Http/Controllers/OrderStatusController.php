@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\BaseController as BaseController;
+use App\Models\OrderDetail;
 
 class OrderStatusController extends BaseController
 {
@@ -85,9 +86,9 @@ class OrderStatusController extends BaseController
      * @param  \App\Models\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, OrderStatus $orderstatus)
     {
-        /* $input = $request->all();
+        $input = $request->all();
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
@@ -96,29 +97,13 @@ class OrderStatusController extends BaseController
         if ($validator->fails()) {
             return $this->sendError($validator->errors());
         }
-        $status->fill([
+        $orderstatus->fill([
             'name' => $input["name"],
         ]);
 
-        $status->save();
+        $orderstatus->save();
 
-        return $this->sendResponse($status, 'Thay đổi thông tin thành công.'); */
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->sendError($validator->errors());
-        }
-
-        $Status = OrderStatus::find($id);
-        if ($Status) {
-            $Status->name = $request->name;
-            return $this->sendResponse($Status, 'Thay đổi thông tin thành công.');
-        } else {
-            return response()->json(['message' => 'InvoiceStatus Update Unsuccessfully'], 404);
-        }
+        return $this->sendResponse($orderstatus, 'Thay đổi thông tin thành công.');
     }
 
     /**

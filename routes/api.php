@@ -7,12 +7,13 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\ShippingInfoController;
-use App\Models\OrderDetail;
-use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::resource('user_type', UserTypeController::class);
+Route::resource('order', OrderController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -50,14 +52,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('color', ColorController::class);
 
     Route::resource('size', SizeController::class);
-    Route::resource('order', OrderController::class);
+    
 
-    Route::resource('order_detail', OrderDetail::class);
+    Route::resource('order_detail', OrderDetailController::class);
 
     Route::resource('order_status', OrderStatusController::class);
 
     Route::get('shipping_info/getShippingInfoByUser', [ShippingInfoController::class, 'getShippingInfoByUser']);
     Route::resource('shipping_info', ShippingInfoController::class);
+
+    Route::resource('comments', CommentController::class);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

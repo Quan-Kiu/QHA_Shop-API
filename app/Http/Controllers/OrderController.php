@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Str;
-
-
 use App\Http\Controllers\BaseController as BaseController;
 use App\Models\OrderDetail;
 
