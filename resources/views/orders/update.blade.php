@@ -27,9 +27,11 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Product</th>
                                 <th>Order_ID</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
                                 <th>Price</th>
+                                <th></th>
                                
                             </tr>
                         </thead>
@@ -61,3 +63,18 @@
 <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
 @endpush
 
+<script>
+    window.onload = async function() {
+        const response = await axios.get('/api/order/{{{$order->id}}}');
+        response.data.data.order.forEach(function(item){
+            $('#table-user > tbody').append(`<tr>
+                <td>${item.id}</td>
+                <td>${item.order_id}</td>
+                <td>${item.product.name}</td>
+                <td>${item.quantity}</td>
+                <td>${item.unit_price}</td>
+                </tr>`)
+        })
+        
+    }
+</script>

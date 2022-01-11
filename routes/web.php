@@ -88,10 +88,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/orders/add', function () {
         return view('orders.add');
     });
-    Route::get('/orders/{order}', function (Order $order) {
-
-        $detail = $order->OrderDetail;
-        return view('orders.update', ['data' => $detail]);
+    Route::get('/orders/{order}', function ($id) {
+        $orders = Order::find($id);
+        return view('orders.update', ['order' => $orders]);
     });
 
    

@@ -95,7 +95,9 @@ class OrderController extends BaseController
         foreach ($order_details as $key => $value) {
             $value['product'] = $value->product;
         }
-        return $this->sendResponse($order_details, 'Lấy thông tin đơn hàng thành công.');
+        $response["order"] = $order_details;
+        $response["total"] = $order_details->count();
+        return $this->sendResponse($response, 'Lấy thông tin đơn hàng thành công.');
     }
 
     /**
