@@ -31,26 +31,12 @@
           <span class="link-title">User</span>
         </a>
       </li>
-      <li class="nav-item nav-category">Cart</li>
-      <li class="nav-item {{ active_class(['carts']) }}">
-        <a href="{{ url('/carts') }}" class="nav-link">
-          <i class="link-icon" data-feather="box"></i>
-          <span class="link-title">Cart</span>
-        </a>
-      </li>
+
       <li class="nav-item nav-category">Order</li>
       <li class="nav-item {{ active_class(['orders']) }}">
         <a href="{{ url('/orders') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Order</span>
-        </a>
-
-
-      </li>
-      <li class="nav-item {{ active_class(['order_detail']) }}">
-        <a href="{{ url('/order_detail') }}" class="nav-link">
-          <i class="link-icon" data-feather="box"></i>
-          <span class="link-title">Order Detail</span>
         </a>
 
 
@@ -61,6 +47,15 @@
           <span class="link-title">Order Status</span>
         </a>
       </li>
+
+      <li class="nav-item nav-category">Cart</li>
+      <li class="nav-item {{ active_class(['carts']) }}">
+        <a href="{{ url('/carts') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Cart</span>
+        </a>
+      </li>
+
       <li class="nav-item nav-category">Color</li>
       <li class="nav-item {{ active_class(['colors']) }}">
         <a href="{{ url('/colors') }}" class="nav-link">

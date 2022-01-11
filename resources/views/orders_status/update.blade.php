@@ -49,7 +49,6 @@
             });
             try {
                 const response = await axios.put(`/api/order_status/${order_status['id']}`, formData);
-                console.log(response.data);
                 showSwal('custom-position', {
                     title: 'Thành công',
                 })

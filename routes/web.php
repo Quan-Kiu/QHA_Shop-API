@@ -82,8 +82,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Order
     Route::get('/orders', function () {
+        $orderStatus = Orderstatus::all();
         $orders = Order::all();
-        return view('orders.index', ['orders' => $orders]);
+        $data['orders'] = $orders;
+        $data['orders_status'] = $orderStatus;
+        return view('orders.index', ['data' => $data]);
     });
     Route::get('/orders/add', function () {
         return view('orders.add');
@@ -93,7 +96,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('orders.update', ['order' => $orders]);
     });
 
-   
+
     // Size
     Route::get('/sizes', function () {
         $sizes = Size::all();
@@ -141,14 +144,13 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('orders_status.update', ['order_status' => $orderstatus]);
     });
 
-    
+
 
     // Comments
     Route::get('/comments', function () {
         $comments = Comment::all();
         return view('comments.index', ['comment' => $comments]);
     });
-
 });
 
 

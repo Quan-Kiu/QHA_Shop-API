@@ -68,6 +68,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(ShippingInfo::class);
     }
+    public function Comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     public function isAdmin()
     {

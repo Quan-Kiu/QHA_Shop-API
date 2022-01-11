@@ -86,24 +86,25 @@ class OrderStatusController extends BaseController
      * @param  \App\Models\OrderStatus  $orderStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderStatus $orderstatus)
+    public function update(Request $request, OrderStatus $orderStatus)
     {
         $input = $request->all();
-
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
+            'name' => 'required|string'
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError($validator->errors());
+            return $this->sendError($validator->errors()->first());
         }
-        $orderstatus->fill([
+
+
+        $orderStatus->fill([
             'name' => $input["name"],
         ]);
 
-        $orderstatus->save();
+        $orderStatus->save();
 
-        return $this->sendResponse($orderstatus, 'Thay đổi thông tin thành công.');
+        return $this->sendResponse($orderStatus, 'Thay đổi thông tin thành công.');
     }
 
     /**

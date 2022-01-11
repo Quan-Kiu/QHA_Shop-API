@@ -31,7 +31,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::resource('user_type', UserTypeController::class);
-Route::resource('order', OrderController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -52,7 +51,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('color', ColorController::class);
 
     Route::resource('size', SizeController::class);
-    
+
+    Route::resource('order', OrderController::class);
 
     Route::resource('order_detail', OrderDetailController::class);
 
@@ -61,7 +61,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('shipping_info/getShippingInfoByUser', [ShippingInfoController::class, 'getShippingInfoByUser']);
     Route::resource('shipping_info', ShippingInfoController::class);
 
-    Route::resource('comments', CommentController::class);
+    Route::get('comment/getCommentByProduct/{product}', [CommentController::class, 'getCommentByProduct']);
+    Route::resource('comment', CommentController::class);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

@@ -69,7 +69,6 @@ class OrderController extends BaseController
         $input = $request->all();
         $order = Order::create($input);
 
-
         foreach ($carts as $cart) {
             $formData['product_id'] = $cart->product_id;
             $formData['order_id'] = $order->id;
@@ -95,9 +94,7 @@ class OrderController extends BaseController
         foreach ($order_details as $key => $value) {
             $value['product'] = $value->product;
         }
-        $response["order"] = $order_details;
-        $response["total"] = $order_details->count();
-        return $this->sendResponse($response, 'Lấy thông tin đơn hàng thành công.');
+        return $this->sendResponse($order_details, 'Lấy thông tin đơn hàng thành công.');
     }
 
     /**
@@ -124,7 +121,6 @@ class OrderController extends BaseController
         $validator = Validator::make($request->all(), [
             'address' => 'required|string',
             'phone' => 'required|string',
-            'total' => 'required|string',
             'delivery_date' => 'required|string',
         ]);
 
@@ -134,7 +130,6 @@ class OrderController extends BaseController
 
         $order->fill([
             'address' => $input["address"],
-            'total' => $input["total"],
             'phone' => $input["phone"] ?? '',
             'delivery_date' => $input["delivery_date"] ?? '',
             'order_status_id' => $input["order_status_id"],
@@ -142,7 +137,7 @@ class OrderController extends BaseController
 
         $order->save();
 
-        return $this->sendResponse($order, 'Thay đổi thông tin cá nhân thành công.');
+        return $this->sendResponse($order, 'Thay đổi thông tin đơn hàng thành công.');
     }
 
     /**
@@ -153,6 +148,10 @@ class OrderController extends BaseController
      */
     public function destroy(Order $order)
     {
+        $orders_detail = $order->OrderDetails;
+        foreach ($orders_detail as $key => $value) {
+            $value->delete();
+        }
         $order->delete();
         return $this->sendResponse($order, 'Xóa đơn hàng thành công!');
     }

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Comment;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use PHPUnit\Framework\Constraint\Count;
 
 class ProductController extends BaseController
 {
@@ -19,7 +19,17 @@ class ProductController extends BaseController
     public function index()
     {
         $products = Product::all();
+        foreach ($products as $product) {
+            $product['comments'] = $product->comments;
+            $count = count($product['comments']);
+            if ($count > 0) {
+                for ($i = 0; $i < $count; $i++) {
+                    $product['comments'][$i]['user'] = $product['comments'][$i]->user;
+                }
+            }
+        }
         $response['products'] = $products;
+
         $response['total'] = $products->count();
 
         return $this->sendResponse($response, 'Lấy danh sách sản phẩm thành công.');

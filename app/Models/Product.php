@@ -12,7 +12,7 @@ class Product extends Model
 
 
     protected $fillable = [
-        'name', 'description', 'price', 'stock', 'discount', 'images', 'colors', 'sizes', 'product_type_id', 'thumbnail'
+        'name', 'description', 'price', 'stock', 'discount', 'images', 'colors', 'sizes', 'product_type_id', 'thumbnail', 'rating'
     ];
 
     protected $casts = [
@@ -27,10 +27,14 @@ class Product extends Model
     }
     public function Carts()
     {
-        return $this->hasMany(Carts::class);
+        return $this->hasMany(Cart::class);
     }
     public function OrderDetails()
     {
-        return $this->hasMany(OrderDetails::class);
+        return $this->hasMany(OrderDetail::class);
+    }
+    public function Comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
