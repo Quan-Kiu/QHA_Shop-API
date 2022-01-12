@@ -12,68 +12,68 @@
   <div class="sidebar-body">
     <ul class="nav">
       <li class="nav-item nav-category">Products</li>
-      <li class="nav-item {{ active_class(['products']) }}">
-        <a href="{{ url('/products') }}" class="nav-link">
+      <li class="nav-item {{ active_class(['admin/products']) }}">
+        <a href="{{ url('admin/products') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Products</span>
         </a>
       </li>
-      <li class="nav-item {{ active_class(['producttypes']) }}">
-        <a href="{{ url('/producttypes') }}" class="nav-link">
+      <li class="nav-item {{ active_class(['admin/producttypes']) }}">
+        <a href="{{ url('admin/producttypes') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Products Type</span>
         </a>
       </li>
       <li class="nav-item nav-category">User</li>
-      <li class="nav-item {{ active_class(['users']) }}">
-        <a href="{{ url('/users') }}" class="nav-link">
+      <li class="nav-item {{ active_class(['admin/users']) }}">
+        <a href="{{ url('admin/users') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">User</span>
         </a>
       </li>
 
       <li class="nav-item nav-category">Order</li>
-      <li class="nav-item {{ active_class(['orders']) }}">
-        <a href="{{ url('/orders') }}" class="nav-link">
+      <li class="nav-item {{ active_class(['admin/orders']) }}">
+        <a href="{{ url('admin/orders') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Order</span>
         </a>
 
 
       </li>
-      <li class="nav-item {{ active_class(['orders_status']) }}">
-        <a href="{{ url('/orders_status') }}" class="nav-link">
+      <li class="nav-item {{ active_class(['admin/orders_status']) }}">
+        <a href="{{ url('admin/orders_status') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Order Status</span>
         </a>
       </li>
 
       <li class="nav-item nav-category">Cart</li>
-      <li class="nav-item {{ active_class(['carts']) }}">
-        <a href="{{ url('/carts') }}" class="nav-link">
+      <li class="nav-item {{ active_class(['admin/carts']) }}">
+        <a href="{{ url('admin/carts') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Cart</span>
         </a>
       </li>
 
       <li class="nav-item nav-category">Color</li>
-      <li class="nav-item {{ active_class(['colors']) }}">
-        <a href="{{ url('/colors') }}" class="nav-link">
+      <li class="nav-item {{ active_class(['admin/colors']) }}">
+        <a href="{{ url('admin/colors') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Color</span>
         </a>
 
       </li>
-      <li class="nav-item {{ active_class(['sizes']) }}">
-        <a href="{{ url('/sizes') }}" class="nav-link">
+      <li class="nav-item {{ active_class(['admin/sizes']) }}">
+        <a href="{{ url('admin/sizes') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Size</span>
         </a>
 
       </li>
       <li class="nav-item nav-category">Comment</li>
-      <li class="nav-item {{ active_class(['comments']) }}">
-        <a href="{{ url('/comments') }}" class="nav-link">
+      <li class="nav-item {{ active_class(['admin/comments']) }}">
+        <a href="{{ url('admin/comments') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
           <span class="link-title">Comment</span>
         </a>
