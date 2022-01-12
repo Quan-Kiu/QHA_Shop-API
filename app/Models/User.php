@@ -29,6 +29,7 @@ class User extends Authenticatable
         'birthday',
         'status',
         'user_type_id',
+        'liked',
     ];
 
     /**
@@ -48,6 +49,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'liked' => 'array'
     ];
 
     public function UserType()

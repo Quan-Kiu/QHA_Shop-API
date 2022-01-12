@@ -83,7 +83,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Order
     Route::get('/orders', function () {
         $orderStatus = Orderstatus::all();
-        $orders = Order::all();
+        $orders = Order::all()->reverse();
         $data['orders'] = $orders;
         $data['orders_status'] = $orderStatus;
         return view('orders.index', ['data' => $data]);

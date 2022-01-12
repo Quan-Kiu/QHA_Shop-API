@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Comment;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Http\Request;
@@ -21,6 +20,7 @@ class ProductController extends BaseController
         $products = Product::all();
         foreach ($products as $product) {
             $product['comments'] = $product->comments;
+
             $count = count($product['comments']);
             if ($count > 0) {
                 for ($i = 0; $i < $count; $i++) {
@@ -44,6 +44,13 @@ class ProductController extends BaseController
         foreach ($products as $product) {
             $percent = ((($product->price - $product->discount) / $product->price) * 100);
             if ($percent >= 25) {
+                $product['comments'] = $product->comments;
+                $count = count($product['comments']);
+                if ($count > 0) {
+                    for ($i = 0; $i < $count; $i++) {
+                        $product['comments'][$i]['user'] = $product['comments'][$i]->user;
+                    }
+                }
                 array_push($discountProduct, $product);
             }
         }

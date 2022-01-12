@@ -23,6 +23,7 @@ class CommentController extends BaseController
 
             $comments = Comment::all();
             foreach ($comments as $key => $value) {
+
                 $value['user'] = $value->User;
             }
         }
@@ -61,6 +62,7 @@ class CommentController extends BaseController
 
 
         $newRating = $totalRating / count($allcomments);
+
 
         $product->fill([
             'rating' => $newRating,

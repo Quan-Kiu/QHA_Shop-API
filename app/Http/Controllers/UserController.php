@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\BaseController as BaseController;
@@ -48,6 +49,72 @@ class UserController extends BaseController
             return $this->sendError('Tài khoản không tồn tại.');
         }
         return $this->sendResponse($user, 'Lấy thông tin tài khoản thành công.');
+    }
+
+    public function unlike(Product $product)
+    {
+        $user = Auth::user();
+
+        $liked = $user->liked;
+
+        if ($liked == null || $liked == []) {
+            $this->sendError('Bạn chưa thích sản phẩm này.');
+        }
+        $newLike = [];
+
+        foreach ($liked as $id) {
+            if ($id != $product->id) {
+                array_push($newLike, $id);
+            }
+        }
+        $user->fill([
+            'liked' => $newLike,
+        ]);
+
+        $user->save();
+
+        return $this->sendResponse($user, 'Hủy thích sản phẩm thành công.');
+    }
+
+    public function like(Product $product)
+    {
+        $user = Auth::user();
+
+        $liked = $user->liked;
+
+
+
+        if ($liked == null) {
+            $liked = [];
+        }
+        foreach ($liked as $id) {
+            if ($id == $product->id) {
+                $this->sendError('Bạn đã thích sản phẩm này rồi.');
+            }
+        }
+        array_push($liked, $product->id);
+        $user->fill([
+            'liked' => $liked,
+        ]);
+        $user->save();
+
+        return $this->sendResponse($user, 'Thích sản phẩm thành công.');
+    }
+
+    public function getLiked()
+    {
+        $liked =  Auth::user()->liked;
+        $products = [];
+        if ($liked !== null) {
+
+            foreach ($liked as $id) {
+                $product  = Product::query()->where('id', '=', $id)->first();
+                if ($product) {
+                    array_push($products, $product);
+                }
+            }
+        }
+        return $this->sendResponse($products, 'Thành công');
     }
 
     public function refreshtoken()

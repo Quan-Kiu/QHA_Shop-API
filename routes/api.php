@@ -34,6 +34,9 @@ Route::resource('user_type', UserTypeController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
 
+    Route::patch('/user/like/{product}', [UserController::class, 'like']);
+    Route::patch('/user/unlike/{product}', [UserController::class, 'unlike']);
+    Route::get('/user/getLiked', [UserController::class, 'getLiked']);
     Route::get('/refreshtoken', [UserController::class, 'refreshtoken']);
     Route::put('/user/changePassword', [UserController::class, 'changePassword']);
     Route::resource('user', UserController::class);
@@ -64,5 +67,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('comment/getCommentByProduct/{product}', [CommentController::class, 'getCommentByProduct']);
     Route::resource('comment', CommentController::class);
 
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/logout', [AuthController::class, 'logout']);
 });

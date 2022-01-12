@@ -153,6 +153,6 @@ class OrderController extends BaseController
             $value->delete();
         }
         $order->delete();
-        return $this->sendResponse($order, 'Xóa đơn hàng thành công!');
+        return $this->sendResponse($order, 'Hủy đơn hàng thành công!');
     }
 }
