@@ -94,7 +94,6 @@ class ShippingInfoController extends BaseController
      */
     public function update(Request $request, ShippingInfo $shippingInfo)
     {
-        $request['user_id'] = Auth::user()->id;
 
         $validator = Validator::make($request->all(), [
             'fullname' => 'required|string',
@@ -108,13 +107,13 @@ class ShippingInfoController extends BaseController
         $shippingInfo->fill([
             'fullname' => $input["fullname"],
             'phone' => $input["phone"],
-            'address' => $input["address"] ,
+            'address' => $input["address"],
         ]);
 
         if ($validator->fails()) {
             return $this->sendError($validator->errors()->first());
         }
-        $shippingInfo -> save();
+        $shippingInfo->save();
         return $this->sendResponse($shippingInfo, 'Sửa địa chỉ thành công');
     }
 

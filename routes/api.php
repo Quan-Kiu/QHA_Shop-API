@@ -55,6 +55,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('size', SizeController::class);
 
+    Route::get('order/getOrderByUser', [OrderController::class, 'getOrderByUser']);
     Route::resource('order', OrderController::class);
 
     Route::resource('order_detail', OrderDetailController::class);

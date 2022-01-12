@@ -79,7 +79,7 @@ class OrderController extends BaseController
             $cart->delete();
         }
 
-        return $this->sendResponse($order, 'Tạo đơn hàng thành công.');
+        return $this->sendResponse($order, 'Đặt hàng thành công.');
     }
 
     /**
@@ -95,6 +95,20 @@ class OrderController extends BaseController
             $value['product'] = $value->product;
         }
         return $this->sendResponse($order_details, 'Lấy thông tin đơn hàng thành công.');
+    }
+
+    public function getOrderByUser(Request $request)
+    {
+        $orders = Order::where(function ($query) use ($request) {
+            $query->where('user_id', '=', Auth::user()->id);
+            $query->where('order_status_id', '=', $request->id);
+        })->get();
+
+        foreach ($orders as $key => $value) {
+            $value['order_status'] = $value->OrderStatus;
+        }
+
+        return $this->sendResponse($orders, 'Lấy danh sách đơn hàng thành công.');
     }
 
     /**
@@ -130,8 +144,8 @@ class OrderController extends BaseController
 
         $order->fill([
             'address' => $input["address"],
-            'phone' => $input["phone"] ?? '',
-            'delivery_date' => $input["delivery_date"] ?? '',
+            'phone' => $input["phone"],
+            'delivery_date' => $input["delivery_date"],
             'order_status_id' => $input["order_status_id"],
         ]);
 
