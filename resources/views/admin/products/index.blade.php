@@ -12,7 +12,7 @@
     <ol class="breadcrumb d-flex">
         <li class="breadcrumb-item"><a href="/products">Product</a></li>
 
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/products/add';">
+        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='products/add';">
             <i class="btn-icon-prepend" data-feather="plus"></i>
             Add Product
         </button>

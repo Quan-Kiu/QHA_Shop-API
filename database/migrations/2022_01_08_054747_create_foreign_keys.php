@@ -40,6 +40,9 @@
                     $table->foreign('user_id')->references('id')->on('users');
                     $table->foreign('product_id')->references('id')->on('products');
                 });
+                Schema::table('notifies', function (Blueprint $table) {
+                    $table->foreign('user_id')->references('id')->on('users');
+                });
             }
 
             /**
@@ -77,6 +80,9 @@
                     //
                 });
                 Schema::table('comments', function (Blueprint $table) {
+                    //
+                });
+                Schema::table('notifies', function (Blueprint $table) {
                     //
                 });
             }

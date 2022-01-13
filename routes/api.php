@@ -13,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\ShippingInfoController;
+use App\Http\Controllers\NotifyController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
@@ -67,6 +68,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('comment/getCommentByProduct/{product}', [CommentController::class, 'getCommentByProduct']);
     Route::resource('comment', CommentController::class);
+
+    Route::get('notify/isRead', [NotifyController::class, 'updateIsRead']);
+    Route::resource('notify', NotifyController::class);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 });

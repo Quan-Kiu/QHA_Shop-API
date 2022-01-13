@@ -5,6 +5,8 @@
 <link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/plugins/dropzone/dropzone.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/simplemde/simplemde.min.css') }}" rel="stylesheet" />
+
 
 @endpush
 
@@ -36,9 +38,19 @@
                         <input name="name" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputText1">Description</label>
-                        <input name="description" type="text" class="form-control" id="description" value="" placeholder="Enter Description">
+                        <div class="row">
+                            <div class="col-md-12 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">SimpleMDE</h4>
+                                        <p class="card-description">Read the <a href="https://simplemde.com/" target="_blank"> Official SimpleMDE Documentation </a>for a full list of instructions and other options.</p>
+                                        <textarea class="form-control" name="tinymce" id="simpleMdeExample" rows="10"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label>Product Type</label><br>
                         <select id="product_type_id" class="js-example-basic-single w-100">
@@ -139,7 +151,7 @@
                     'name': $("#name").val(),
                     'thumbnail': mainUrl,
                     'images': imagesUrl,
-                    'description': $("#description").val(),
+                    'description': $("#simpleMdeExample").val(),
                     'sizes': $("#sizes").val(),
                     'price': $("#price").val(),
                     'stock': $("#stock").val(),
@@ -196,6 +208,8 @@
 <script src="{{ asset('assets/plugins/promise-polyfill/polyfill.min.js') }}"></script>
 <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
 <script src="{{ asset('assets/js/select2.js') }}"></script>
+<script src="{{ asset('assets/plugins/simplemde/simplemde.min.js') }}"></script>
+<script src="{{ asset('assets/js/simplemde.js') }}"></script>
 
 <script src="{{asset('assets/js/handlePhotoUpload.js')}}"></script>
 

@@ -17,7 +17,7 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::query()->orderBy('rating', 'desc')->get();
         foreach ($products as $product) {
             $product['comments'] = $product->comments;
 
@@ -32,7 +32,7 @@ class ProductController extends BaseController
 
         $response['total'] = $products->count();
 
-        return $this->sendResponse($response, 'Lấy danh sách sản phẩm thành công.');
+        return $this->sendResponse($response, 'Lay danh sach san pham thanh cong.');
     }
 
     public function getDiscountProduct(Request $request)
@@ -60,7 +60,7 @@ class ProductController extends BaseController
         $response['total_pages'] = $total_pages;
         $response['page'] = $page;
 
-        return $this->sendResponse($response, 'Lấy danh sách sản phẩm thành công.');
+        return $this->sendResponse($response, 'Lay danh sach san pham thanh cong.');
     }
 
     /**
@@ -109,7 +109,7 @@ class ProductController extends BaseController
     {
 
         $products = Product::where(function ($query) use ($request) {
-            if ($request['product_type_id']) {
+            if ($request['product_type_id'] != null) {
                 $query->where('product_type_id', '=', $request->product_type_id);
             }
             if ($request['name']) {
@@ -123,10 +123,10 @@ class ProductController extends BaseController
         if ($response['total'] > 0) {
             return $this->sendResponse(
                 $response,
-                'Lấy danh sách sản phẩm thành công.'
+                'Lay danh sach san pham thanh cong.'
             );
         }
-        return $this->sendError('Sản phẩm không tồn tại.', 401);
+        return $this->sendError('San pham khong ton tai.', 401);
     }
 
     /**

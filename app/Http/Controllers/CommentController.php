@@ -11,7 +11,7 @@ use Auth;
 
 class CommentController extends BaseController
 {
-    public function index(Request $request)
+    public function index(Product $product, Request $request)
     {
         if ($request->rating) {
 
@@ -28,7 +28,18 @@ class CommentController extends BaseController
             }
         }
 
-        return $this->sendResponse($comments, 'Lấy danh sách bình luận thành công.');
+        $response['comments'] = $comments;
+
+        $order_detail = $product->OrderDetails;
+        foreach ($order_detail as $item) {
+            if ($item->Order->user_id == Auth::user()->id && $item->Order->order_status_id == 4) {
+                $response['isBought'] = true;
+                return $this->sendResponse($response, 'Đã mua');
+            }
+        }
+
+        $response['isBought'] = false;
+        return $this->sendResponse($response, 'Lấy danh sách bình luận thành công.');
     }
 
 
@@ -90,7 +101,19 @@ class CommentController extends BaseController
                 $value['user'] = $value->User;
             }
         }
-        return $this->sendResponse($result, 'Thành công');
+        $response['comments'] = $result;
+
+        $order_detail = $product->OrderDetails;
+        foreach ($order_detail as $item) {
+            if ($item->Order->user_id == Auth::user()->id && $item->Order->order_status_id == 4) {
+                $response['isBought'] = true;
+                return $this->sendResponse($response, 'Đã mua');
+            }
+        }
+
+        $response['isBought'] = false;
+
+        return $this->sendResponse($response, 'Thành công');
     }
 
     public function show($id)

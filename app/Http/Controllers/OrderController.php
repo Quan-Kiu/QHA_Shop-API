@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Notify;
+use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Auth;
@@ -37,6 +39,7 @@ class OrderController extends BaseController
     {
         //
     }
+
 
 
     /**
@@ -142,6 +145,8 @@ class OrderController extends BaseController
             return $this->sendError($validator->errors()->first());
         }
 
+        $oldStatus = $order->order_status_id;
+
         $order->fill([
             'address' => $input["address"],
             'phone' => $input["phone"],
@@ -150,6 +155,16 @@ class OrderController extends BaseController
         ]);
 
         $order->save();
+        if ($oldStatus != $order->order_status_id && $input['order_status_id'] < 5) {
+            $notify = [
+                'title' => 'Giao dịch đơn hàng ' . $order->code,
+                'description' =>  $order->order_status_id == 4 ? 'Đơn hàng của bạn đã được giao thành công, rất cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.' : 'Đơn hàng của bạn đã chuyển sang trạng thái ' . $order->OrderStatus->name . ', ngày giao hàng dự kiến là ngày ' . $order->delivery_date,
+            ];
+
+            $notify['user_id'] = $order->user_id;
+
+            Notify::create($notify);
+        }
 
         return $this->sendResponse($order, 'Thay đổi thông tin đơn hàng thành công.');
     }
