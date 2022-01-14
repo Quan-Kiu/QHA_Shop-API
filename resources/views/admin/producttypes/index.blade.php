@@ -12,7 +12,7 @@
     <ol class="breadcrumb d-flex">
         <li class="breadcrumb-item"><a href="/user">Product Type</a></li>
 
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/producttypes/add';">
+        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='producttypes/add';">
             <i class="btn-icon-prepend" data-feather="plus"></i>
             Add Product Type
         </button>

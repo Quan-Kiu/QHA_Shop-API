@@ -23,6 +23,12 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('/login', function () {
         return view('site.auth.login');
     })->name('login');
+    Route::get('/forgot-password', function () {
+        return view('site.auth.forgot-password');
+    })->name('forgot-password');
+    Route::get('/reset-password', function () {
+        return view('site.auth.reset-password');
+    })->name('reset-password');
 });
 
 

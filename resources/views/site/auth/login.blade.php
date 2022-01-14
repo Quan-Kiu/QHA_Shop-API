@@ -19,11 +19,23 @@
                 @csrf
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input name="email" id='email' type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                  @error('email')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
-                  <input name="password" id="password" type="password" class="form-control" id="exampleInputPassword1" autocomplete="current-password" placeholder="Password">
+                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                  @error('password')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
                 </div>
                 <div class="print-error-msg-login text-danger"></div>
                 <div class="form-check form-check-flat form-check-primary">
@@ -34,10 +46,9 @@
                 </div>
                 <div class="mt-3">
                   <button type="submit" id="loginBtn" class="btn btn-primary mr-2 mb-2 mb-md-0">Login</button>
-                  <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                    <i class="btn-icon-prepend" data-feather="twitter"></i>
-                    Login with twitter
-                  </button>
+                  <a href="{{route('forgot-password')}}" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
+                    Forgot your password
+                  </a>
                 </div>
                 <a href="{{ url('/auth/register') }}" class="d-block mt-3 text-muted">Not a user? Sign up</a>
               </form>
