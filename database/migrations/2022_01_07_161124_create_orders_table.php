@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('fullname');
             $table->string('address');
             $table->string('phone');
+            $table->string('discount_code')->nullable();
             $table->double('unit_price');
             $table->int('quantity');
             $table->date('delivery_date');

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\OrderController;
@@ -51,6 +52,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('cart/getCartByUser', [CartController::class, 'getCartByUser']);
 
     Route::resource('cart', CartController::class);
+
+    Route::post('discount/checkDiscount', [DiscountController::class, 'checkDiscount']);
+    Route::resource('discount', DiscountController::class);
 
     Route::resource('color', ColorController::class);
 

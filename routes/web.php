@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\Color;
 use App\Models\Comment;
 use App\Models\order;
-use App\Models\OrderDetail;
+use App\Models\Discount;
 use App\Models\Orderstatus;
 use App\Models\Size;
 use App\Models\ProductType;
@@ -75,6 +75,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/carts', function () {
             $carts = Cart::all();
             return view('admin.carts.index', ['carts' => $carts]);
+        });
+
+
+        Route::get('discounts', function () {
+            $discounts = Discount::all();
+            return view('admin.discounts.index', ['discounts' => $discounts]);
+        });
+
+        Route::get('/discounts/add', function () {
+            return view('admin.discounts.add');
         });
 
         // Color

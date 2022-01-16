@@ -56,6 +56,14 @@
         </a>
       </li>
 
+      <li class="nav-item nav-category">Discounts</li>
+      <li class="nav-item {{ active_class(['admin/discounts']) }}">
+        <a href="{{ url('admin/discounts') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Discount</span>
+        </a>
+      </li>
+
       <li class="nav-item nav-category">Color</li>
       <li class="nav-item {{ active_class(['admin/colors']) }}">
         <a href="{{ url('admin/colors') }}" class="nav-link">

@@ -15,6 +15,7 @@ class Order extends Model
         'fullname',
         'address',
         'phone',
+        'discount_code',
         'unit_price',
         'quantity',
         'delivery_date',
