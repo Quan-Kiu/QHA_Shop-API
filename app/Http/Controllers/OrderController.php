@@ -54,6 +54,12 @@ class OrderController extends BaseController
         $request['user_id'] = Auth::user()->id;
         $carts = Auth::user()->carts;
 
+        foreach ($carts as $cart) {
+            if ($cart->product->stock < $cart->quantity) {
+                return $this->sendError('Sản phẩm ' . $cart->product->name . ' không đủ số lượng tồn kho cung câp, Vui lòng kiểm tra và đặt hàng lại.');
+            }
+        }
+
         $validator = Validator::make($request->all(), [
             'address' => 'required|string',
             'user_id' => 'required|int',

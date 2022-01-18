@@ -59,6 +59,8 @@ class CartController extends BaseController
             'quantity' => 'required|int',
         ]);
 
+
+
         if ($validator->fails()) {
             return $this->sendError($validator->errors());
         }
@@ -108,7 +110,13 @@ class CartController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            $this->sendError($validator->errors()->first());
+            return $this->sendError($validator->errors()->first());
+        }
+
+        if ($cart->quantity < $input['quantity']) {
+            if ($cart->product->stock < $input['quantity']) {
+                return $this->sendError('Số lượng tồn kho không đủ.');
+            }
         }
 
         $cart->fill([
