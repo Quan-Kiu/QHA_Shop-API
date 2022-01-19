@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/getLiked', [UserController::class, 'getLiked']);
     Route::get('/refreshtoken', [UserController::class, 'refreshtoken']);
     Route::put('/user/changePassword', [UserController::class, 'changePassword']);
+    Route::patch('/user/changeAvatar', [UserController::class, 'changeAvatar']);
     Route::resource('user', UserController::class);
 
     Route::get('/product/search', [ProductController::class, 'search']);

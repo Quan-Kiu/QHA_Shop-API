@@ -159,6 +159,27 @@ class UserController extends BaseController
 
         return $this->sendResponse([], 'Thay đổi mật khẩu thành công.');
     }
+
+    public function changeAvatar(Request $request)
+    {
+        $input = $request->all();
+        $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'avatar' => 'required|string'
+        ]);
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors()->first());
+        }
+        $user->fill([
+            'avatar' => $input['avatar'],
+
+        ]);
+
+        $user->save();
+
+        return $this->sendResponse($user, 'Thay đổi ảnh đại diện thành công.');
+    }
+
     /**
      * Update the specified resource in storage.
      *
