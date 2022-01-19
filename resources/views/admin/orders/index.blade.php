@@ -37,6 +37,9 @@
                                 <th>Total Amount</th>
                                 <th>Delivery Time</th>
                                 <th>Order Status</th>
+                                <th style="opacity:0"></th>
+                                <th style="opacity:0"></th>
+
                             </tr>
                         </thead>
                         <tbody>

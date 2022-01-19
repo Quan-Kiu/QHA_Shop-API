@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @push('plugin-styles')
-  <link href="{{ asset('assets/plugins/simplemde/simplemde.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/simplemde/simplemde.min.css') }}" rel="stylesheet" />
 
 @endpush
 
@@ -46,7 +46,7 @@
         <div class="row">
           <div class="col-md-12 grid-margin">
             <h5 class="card-subtitle">HTML Mode</h5>
-<textarea id="ace_html" class="ace-editor w-100">
+            <textarea id="ace_html" class="ace-editor w-100">
 
 <div class="card">
   <div class="card-body">
@@ -76,7 +76,7 @@
           </div>
           <div class="col-md-12 grid-margin">
             <h5 class="card-subtitle">SCSS Mode</h5>
-<textarea id="ace_scss" class="ace-editor w-100">
+            <textarea id="ace_scss" class="ace-editor w-100">
 
 .card {
   position: relative;
@@ -134,7 +134,7 @@
           </div>
           <div class="col-md-12">
             <h5 class="card-subtitle">Javascript Mode</h5>
-<textarea id="ace_javaScript" class="ace-editor w-100">
+            <textarea id="ace_javaScript" class="ace-editor w-100">
 
 class Alert {
   constructor(element) {
@@ -254,14 +254,14 @@ class Alert {
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
-  <script src="{{ asset('assets/plugins/simplemde/simplemde.min.js') }}"></script>
-  <script src="{{ asset('assets/plugins/ace-builds/ace.js') }}"></script>
-  <script src="{{ asset('assets/plugins/ace-builds/theme-chaos.js') }}"></script>
+<script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/simplemde/simplemde.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/ace-builds/ace.js') }}"></script>
+<script src="{{ asset('assets/plugins/ace-builds/theme-chaos.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-  <script src="{{ asset('assets/js/tinymce.js') }}"></script>
-  <script src="{{ asset('assets/js/simplemde.js') }}"></script>
-  <script src="{{ asset('assets/js/ace.js') }}"></script>
+<script src="{{ asset('assets/js/tinymce.js') }}"></script>
+<script src="{{ asset('assets/js/simplemde.js') }}"></script>
+<script src="{{ asset('assets/js/ace.js') }}"></script>
 @endpush

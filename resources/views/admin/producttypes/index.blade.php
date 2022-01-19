@@ -32,6 +32,8 @@
                             <tr>
                                 <th>Id</th>
                                 <th style="width:100%">Name</th>
+                                <th style="opacity:0"></th>
+                                <th style="opacity:0"></th>
                             </tr>
                         </thead>
                         <tbody>

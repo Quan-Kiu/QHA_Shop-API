@@ -2,9 +2,9 @@ $(function() {
   'use strict';
 
   //Tinymce editor
-  if ($("#tinymceExample").length) {
+  if ($("#description").length) {
     tinymce.init({
-      selector: '#tinymceExample',
+      selector: '#description',
       height: 400,
       theme: 'silver',
       plugins: [

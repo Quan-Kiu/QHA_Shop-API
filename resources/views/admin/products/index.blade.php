@@ -37,6 +37,9 @@
                                 <th>Price</th>
                                 <th>Discount</th>
                                 <th>Stock</th>
+                                <th style="opacity:0"></th>
+                                <th style="opacity:0"></th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -49,7 +52,7 @@
                                 <td>{{$item['price']}} VNĐ</td>
                                 <td>{{$item['discount']}} VNĐ</td>
                                 <td>{{$item['stock']}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='products/add' ;">Update</button></td>
+                                <td><button class="btn btn-primary" onclick="window.location.href='products/{{{$item->id}}}' ;">Update</button></td>
                                 <td><button class="btn btn-danger" onclick="deleteProduct('{{{$item->id}}}')">Delete</button></td>
 
                             </tr>

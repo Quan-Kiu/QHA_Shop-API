@@ -45,6 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
             $product = Product::all();
             return view('admin.products.index', ['product' => $product]);
         });
+
         Route::get('/products/add', function () {
             $sizes = Size::all();
             $colors = Color::all();
@@ -53,6 +54,17 @@ Route::middleware('auth:sanctum')->group(function () {
             $response['colors']  = $colors;
             $response['product_types']  = $product_types;
             return view('admin.products.add', ['data' => $response]);
+        });
+
+        Route::get('/products/{product}', function (Product $product) {
+            $sizes = Size::all();
+            $colors = Color::all();
+            $product_types = ProductType::all();
+            $response['sizes']  = $sizes;
+            $response['colors']  = $colors;
+            $response['product_types']  = $product_types;
+            $response['product']  = $product;
+            return view('admin.products.update', ['data' => $response]);
         });
 
         // Account

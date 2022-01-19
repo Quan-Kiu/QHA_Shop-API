@@ -31,6 +31,9 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th style="width:100%">Product Type</th>
+                                <th style="opacity:0"></th>
+                                <th style="opacity:0"></th>
+
                             </tr>
                         </thead>
                         <tbody>

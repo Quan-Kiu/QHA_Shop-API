@@ -20,16 +20,16 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="card-title">COMMENTS LIST</h6>
-
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Product</th>
-                                <th>Content</th>
+                                <th style="width:100%">Content</th>
                                 <th>Rating</th>
-                                
+                                <th style="opacity:0"></th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -39,7 +39,6 @@
                                 <td>{{$item['product_id']}}</td>
                                 <td>{{$item['content']}}</td>
                                 <td>{{$item['rating']}}</td>
-                               
                                 <td><button class="btn btn-danger" onclick="deleteComment('{{{$item->id}}}')">Delete</button></td>
                             </tr>
                             @endforeach
@@ -55,21 +54,21 @@
 
 </div>
 
-
-
 @endsection
 
 @push('plugin-scripts')
 <script src="{{ asset('assets/plugins/datatables-net/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-net-bs4/dataTables.bootstrap4.js') }}"></script>
 
+@endpush
 
+
+
+
+@push('custom-scripts')
 <script src="{{ asset('assets/js/data-table.js') }}"></script>
 
 <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
-
-<script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/promise-polyfill/polyfill.min.js') }}"></script>
 @endpush
 
 <script>

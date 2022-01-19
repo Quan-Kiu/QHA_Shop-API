@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\Requests\UpdateProductRequest;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -153,9 +152,28 @@ class ProductController extends BaseController
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'colors' => 'required|array',
+            'sizes' => 'required|array',
+            'product_type_id' => 'required|int',
+            'price' => 'required|int',
+            'discount' => 'required|int',
+            'stock' => 'required|int',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors()->first());
+        }
+
+        $product->fill($request->all());
+
+        $product->save();
+
+        return $this->sendResponse($product, 'Chỉnh sửa sản phẩm thành công.');
     }
 
     /**

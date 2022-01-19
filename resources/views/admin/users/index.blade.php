@@ -37,6 +37,9 @@
                                 <th>Gender</th>
                                 <th>Phone</th>
                                 <th>Rule</th>
+                                <th style="opacity:0"></th>
+                                <th style="opacity:0"></th>
+
                             </tr>
                         </thead>
                         <tbody>

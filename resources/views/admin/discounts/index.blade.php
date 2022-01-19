@@ -34,6 +34,9 @@
                                 <th>Code</th>
                                 <th>Price</th>
                                 <th>Drought</th>
+                                <th style="opacity:0"></th>
+                                <th style="opacity:0"></th>
+
                             </tr>
                         </thead>
                         <tbody>

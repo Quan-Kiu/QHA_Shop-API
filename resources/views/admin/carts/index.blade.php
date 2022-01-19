@@ -34,6 +34,9 @@
                                 <th>Product Name</th>
                                 <th>Description</th>
                                 <th>Account Id</th>
+                                <th style="opacity:0"></th>
+                                <th style="opacity:0"></th>
+
                             </tr>
                         </thead>
                         <tbody>

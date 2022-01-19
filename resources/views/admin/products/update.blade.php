@@ -34,22 +34,28 @@
                 <h6 class="card-title">ADD PRODUCT</h6>
 
 
-                <form id="add-product">
-                    <div class="form-group">
+                <form id="update-product">
+                    <div class="form-group my-5">
                         <label for="thumbnail">Main Image</label>
+                        <img class="d-block mr-auto ml-auto my-5" style="width:200px" src="{{{$data['product']->thumbnail}}}" alt="">
                         <input name="thumbnail" type="file" class="form-control" id="thumbnail">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group my-5">
                         <label for="images">Images</label>
+                        <div class="images__list row my-5">
+                            @foreach($data['product']->images as $image)
+                            <img class="d-block mr-auto ml-auto" style="width:150px" src="{{{$image}}}" alt="">
+                            @endforeach
+                        </div>
                         <input name="images[]" type="file" multiple class="form-control" id="images">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputText1">Name</label>
-                        <input name="name" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
+                        <input name="name" value="{{{$data['product']->name}}}" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
                     </div>
                     <div class="form-group">
                         <label for="images">Description</label>
-                        <textarea class="form-control" name="tinymce" id="simpleMdeExample"></textarea>
+                        <textarea class="form-control" value="{{{$data['product']->description}}}" name="tinymce" id="simpleMdeExample"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Product Type</label><br>
@@ -67,28 +73,27 @@
 
                     <div class="form-group">
                         <label>Sizes</label><br>
-                        <select disabled id="sizes" name='sizes[]' class="js-example-basic-multiple w-100" multiple="multiple">
+                        <select id="sizes" name='sizes[]' class="js-example-basic-multiple w-100" multiple="multiple">
                             <option></option>
-
                         </select>
                     </div>
 
 
                     <div class="form-group">
                         <label for="exampleInputNumber1">Price</label>
-                        <input name="price" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
+                        <input name="price" value="{{{$data['product']->price}}}" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputNumber1">Discount</label>
-                        <input name="discount" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
+                        <input name="discount" value="{{{$data['product']->discount}}}" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword3">Stock</label>
-                        <input name="stock" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
+                        <input name="stock" value="{{{$data['product']->stock}}}" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
                     </div>
 
 
-                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    <button type="submit" class="btn btn-primary">Chỉnh sửa sản phẩm</button>
                 </form>
             </div>
         </div>
@@ -100,10 +105,14 @@
 <script>
     var app = @json($data);
 
-
-
     window.onload = () => {
 
+        if ($("#simpleMdeExample").length) {
+            var simplemde = new SimpleMDE({
+                element: $("#simpleMdeExample")[0],
+                initialValue: app.product['description'],
+            });
+        }
 
         var product_type_id = $.map(app.product_types, function(obj) {
             obj.text = obj.text || obj.name;
@@ -124,36 +133,68 @@
 
         $("#product_type_id").select2({
             data: product_type_id,
-            placeholder: 'Select product type',
-            allowClear: true
         })
+        $("#product_type_id").val(app.product['product_type_id']);
+        $("#product_type_id").select2().trigger('change');
+
         $("#colors").select2({
-            placeholder: 'Select product color',
             data: colors,
-            allowClear: true
         })
-        $("#sizes").select2({
-            placeholder: 'Select product size',
-            allowClear: true
+        $("#colors").val(app.product['colors']);
+        $("#colors").select2().trigger('change');
+
+        var current_sizes = [];
+        sizes.forEach(function(item) {
+            if (item.product_type_id == app.product['product_type_id']) {
+                current_sizes.push(item);
+            }
+        })
+        if (current_sizes.length > 0) {
+            $("#sizes").select2({
+                placeholder: 'Select product size',
+                allowClear: true,
+                data: current_sizes,
+            });
+
+            $("#sizes").val(app.product['sizes']);
+            $("#sizes").select2().trigger('change');
+        }
+
+
+
+        $('#product_type_id').change(function() {
+            var value = this.value;
+            var current_sizes = [];
+            $("#sizes").val([]);
+            $("#sizes").select2().trigger('change');
+            sizes.forEach(function(item) {
+                if (item.product_type_id == value) {
+                    current_sizes.push(item);
+                }
+            })
+            if (current_sizes.length > 0) {
+                $("#sizes").select2({
+                    placeholder: 'Select product size',
+                    allowClear: true,
+                    data: current_sizes,
+                });
+            }
+
         })
 
-        $('#add-product').submit(async function(e) {
+
+        $('#update-product').submit(async function(e) {
             e.preventDefault();
 
             showSwal('message-with-auto-close', {
                 timer: 60000,
-                title: 'Đang tạo sản phẩm'
+                title: 'Đang sửa sản phẩm'
             });
             try {
-                const [mainUrl, imagesUrl] = await Promise.all([
-                    uploadPhoto($("#thumbnail").prop('files')[0]),
-                    uploadPhotos($("#images").prop('files')),
-                ]);
+
 
                 let formData = {
                     'name': $("#name").val(),
-                    'thumbnail': mainUrl,
-                    'images': imagesUrl,
                     'description': $("#simpleMdeExample").val(),
                     'sizes': $("#sizes").val(),
                     'price': $("#price").val(),
@@ -164,10 +205,31 @@
 
                 };
 
-                const response = await axios.post('/api/product', formData);
+                let mainUrl, imagesUrl = '';
+                if ($("#thumbnail").prop('files')[0]) {
+                    mainUrl = await uploadPhoto($("#thumbnail").prop('files')[0]);
+                }
+
+                if ($("#images").prop('files').length > 0) {
+                    imagesUrl = await uploadPhotos($("#images").prop('files'));
+                }
+
+                if (mainUrl) {
+                    formData.thumbnail = mainUrl;
+                }
+
+                if (imagesUrl) {
+                    formData.images = imagesUrl;
+                }
+
+                const response = await axios.put(`/api/product/${app.product['id']}`, formData);
                 showSwal('custom-position', {
                     title: 'Thành công',
                 })
+
+                if (mainUrl || imagesUrl) {
+                    window.location.reload();
+                }
 
 
             } catch (error) {
@@ -179,30 +241,7 @@
 
 
         })
-
-        $('#product_type_id').change(function() {
-            var value = this.value;
-            var current_sizes = [];
-            sizes.forEach(function(item) {
-                if (item.product_type_id == value) {
-                    current_sizes.push(item);
-                }
-            })
-            if (current_sizes.length > 0) {
-                $("#sizes").select2({
-                    placeholder: 'Select product size',
-                    allowClear: true,
-                    disabled: false,
-                    data: current_sizes,
-                });
-            } else {
-                $("#sizes").select2({
-                    disabled: true,
-                });
-            }
-
-        })
-    };
+    }
 </script>
 
 @push('plugin-scripts')
@@ -222,5 +261,5 @@
 <script src="{{ asset('assets/js/select2.js') }}"></script>
 
 <script src="{{asset('assets/js/handlePhotoUpload.js')}}"></script>
-<script src="{{ asset('assets/js/simplemde.js') }}"></script>
+
 @endpush
