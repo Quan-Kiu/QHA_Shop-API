@@ -12,7 +12,7 @@
     <ol class="breadcrumb d-flex">
         <li class="breadcrumb-item"><a href="/user">Order Status</a></li>
 
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/orders_status/add';">
+        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='orders_status/add';">
             <i class="btn-icon-prepend" data-feather="plus"></i>
             Add Order Status
         </button>
