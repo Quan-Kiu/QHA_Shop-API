@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_heading text-center">
-                    <h2>New Arrivals</h2>
+                    <h2>Sản phẩm mới</h2>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
             <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
                 <!-- Product Image -->
                 <div class="product-img">
-                <img  src="{{$item['thumbnail']}}" alt="{{$item['thumbnail']}}"></td>
+                <img style="height:290px, widht:290px" src="{{$item['thumbnail']}}" alt="{{$item['thumbnail']}}"></td>
                     <div class="product-quicview">
                         <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
                     </div>
@@ -27,7 +27,7 @@
                     <h4 class="product-price">{{$item['price']}} VND</h4>
                     <p>{{$item['name']}}</p>
                     <!-- Add to Cart -->
-                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                    <a href="#" class="add-to-cart-btn">Thêm vào giỏ</a>
                 </div>
             </div>
             @endforeach

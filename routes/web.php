@@ -186,7 +186,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'home'], function () {
 
         Route::get('/', function () {
             $product = Product::all();

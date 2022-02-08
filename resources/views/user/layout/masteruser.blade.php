@@ -7,21 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    
-    <!-- Title  -->
-    <title>QHA Shop</title>
 
-    
+    <!-- Title  -->
+    <title>Karl - Fashion Ecommerce Template | Trang chủ</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="{{asset('img/core-img/favicon.ico')}}">
+    <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="{{asset('cssuser/core-style.css')}}">
-    <link rel="stylesheet" href="{{asset('cssuser/style.css')}}">
+    <link rel="stylesheet" href="css/core-style.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Responsive CSS -->
-    <link href="{{asset('cssuser/responsive.css')}}" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
 
 </head>
 
@@ -38,15 +36,58 @@
                 <ul id="menu-content" class="menu-content collapse out">
                     <!-- Single Item -->
                     <li data-toggle="collapse" data-target="#women" class="collapsed active">
-                        <a href="#">Quần áo nam</span></a>
-                        <a href="#">Giày dép nam</span></a>
-                        <a href="#">Túi xách nam</span></a>
-                        <a href="#">Quần áo nữ</span></a>
-                        <a href="#">Giày dép nữ</span></a>
-                        <a href="#">Túi xách nữ</span></a>
-
+                        <a href="#">Woman wear <span class="arrow"></span></a>
+                        <ul class="sub-menu collapse" id="women">
+                            <li><a href="#">Midi Dresses</a></li>
+                            <li><a href="#">Maxi Dresses</a></li>
+                            <li><a href="#">Prom Dresses</a></li>
+                            <li><a href="#">Little Black Dresses</a></li>
+                            <li><a href="#">Mini Dresses</a></li>
+                        </ul>
                     </li>
-                    
+                    <!-- Single Item -->
+                    <li data-toggle="collapse" data-target="#man" class="collapsed">
+                        <a href="#">Man Wear <span class="arrow"></span></a>
+                        <ul class="sub-menu collapse" id="man">
+                            <li><a href="#">Man Dresses</a></li>
+                            <li><a href="#">Man Black Dresses</a></li>
+                            <li><a href="#">Man Mini Dresses</a></li>
+                        </ul>
+                    </li>
+                    <!-- Single Item -->
+                    <li data-toggle="collapse" data-target="#kids" class="collapsed">
+                        <a href="#">Children <span class="arrow"></span></a>
+                        <ul class="sub-menu collapse" id="kids">
+                            <li><a href="#">Children Dresses</a></li>
+                            <li><a href="#">Mini Dresses</a></li>
+                        </ul>
+                    </li>
+                    <!-- Single Item -->
+                    <li data-toggle="collapse" data-target="#bags" class="collapsed">
+                        <a href="#">Bags &amp; Purses <span class="arrow"></span></a>
+                        <ul class="sub-menu collapse" id="bags">
+                            <li><a href="#">Bags</a></li>
+                            <li><a href="#">Purses</a></li>
+                        </ul>
+                    </li>
+                    <!-- Single Item -->
+                    <li data-toggle="collapse" data-target="#eyewear" class="collapsed">
+                        <a href="#">Eyewear <span class="arrow"></span></a>
+                        <ul class="sub-menu collapse" id="eyewear">
+                            <li><a href="#">Eyewear Style 1</a></li>
+                            <li><a href="#">Eyewear Style 2</a></li>
+                            <li><a href="#">Eyewear Style 3</a></li>
+                        </ul>
+                    </li>
+                    <!-- Single Item -->
+                    <li data-toggle="collapse" data-target="#footwear" class="collapsed">
+                        <a href="#">Footwear <span class="arrow"></span></a>
+                        <ul class="sub-menu collapse" id="footwear">
+                            <li><a href="#">Footwear 1</a></li>
+                            <li><a href="#">Footwear 2</a></li>
+                            <li><a href="#">Footwear 3</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -65,13 +106,13 @@
                             <div class="top_single_area d-flex align-items-center">
                                 <!-- Logo Area -->
                                 <div class="top_logo">
-                                    <a href="#"><img src="{{asset('img/core-img/logoqha.png')}}" alt=""></a>
+                                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
                                 </div>
                                 <!-- Cart & Menu Area -->
                                 <div class="header-cart-menu d-flex align-items-center ml-auto">
                                     <!-- Cart Area -->
                                     <div class="cart">
-                                        <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">2</span> <i class="ti-bag"></i> Giỏ hàng</a>
+                                        <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">2</span> <i class="ti-bag"></i>Giỏ hàng</a>
                                         <!-- Cart List Area Start -->
                                         <ul class="cart-list">
                                             <li>
@@ -113,12 +154,6 @@
                 <div class="container h-100">
                     <div class="row h-100">
                         <div class="col-12 d-md-flex justify-content-between">
-                            <!-- Header Social Area -->
-                            <div class="header-social-area">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            </div>
                             <!-- Menu Area -->
                             <div class="main-menu-area">
                                 <nav class="navbar navbar-expand-lg align-items-start">
@@ -127,31 +162,121 @@
 
                                     <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
                                         <ul class="navbar-nav animated" id="nav">
-                                            <li class="nav-item active"><a class="nav-link" href="">Trang chủ</a></li>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="karlDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                                <div class="dropdown-menu" aria-labelledby="karlDropdown">
-                                                    <a class="dropdown-item" href="">Sản phẩm</a>
-                                                    <a class="dropdown-item" href="">Giỏ hàng</a>
-                                                    <a class="dropdown-item" href="">Thanh toán</a>
-                                                </div>
+                                            <li class="nav-item active"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                                                
                                             </li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Quần áo</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Giày dép</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Túi xách</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Quần áo nam</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Quần áo nữ</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Giày dép nam</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Giày dép nữ</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Túi xách nam</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Túi xách nữ</a></li>
                                         </ul>
                                     </div>
                                 </nav>
                             </div>
                             <!-- Help Line -->
                             <div class="help-line">
-                                <a href="tel:+346573556778"><i class="ti-headphone-alt"></i> +34 657 3556 778</a>
+                                <a href="tel:+346573556778"><i class="ti-headphone-alt"></i> +84 988 920 598</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
+        <!-- ****** Header Area End ****** -->
+
+        <!-- ****** Top Discount Area Start ****** -->
+        <section class="top-discount-area d-md-flex align-items-center">
+            <!-- Single Discount Area -->
+            <div class="single-discount-area">
+                <h5>Miễn phí vận chuyển &amp;</h5>
+                <h6><a href="#">Mua ngay</a></h6>
+            </div>
+            <!-- Single Discount Area -->
+            <div class="single-discount-area">
+                <h5>Giảm 10% cho toàn bộ quần áo</h5>
+                <h6>Mã: Sale10</h6>
+            </div>
+            <!-- Single Discount Area -->
+            <div class="single-discount-area">
+                <h5>Giảm 20% cho toàn bộ giày dép và túi xách</h5>
+                <h6>Mã: Sale20</h6>
+            </div>
+        </section>
+        <!-- ****** Top Discount Area End ****** -->
+
+        <!-- ****** Welcome Slides Area Start ****** -->
+        <section class="welcome_area">
+            <div class="welcome_slides owl-carousel">
+                <!-- Single Slide Start -->
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(img/bg-img/bg-1.jpg);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+                                    <h6 data-animation="bounceInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
+                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">Fashion Trends</h2>
+                                    <a href="#" class="btn karl-btn" data-animation="fadeInUp" data-delay="1s" data-duration="500ms">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Slide Start -->
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(img/bg-img/bg-4.jpg);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+                                    <h6 data-animation="fadeInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
+                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">Summer Collection</h2>
+                                    <a href="#" class="btn karl-btn" data-animation="fadeInLeftBig" data-delay="1s" data-duration="500ms">Check Collection</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Slide Start -->
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(img/bg-img/bg-2.jpg);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+                                    <h6 data-animation="fadeInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
+                                    <h2 data-animation="bounceInDown" data-delay="500ms" data-duration="500ms">Women Fashion</h2>
+                                    <a href="#" class="btn karl-btn" data-animation="fadeInRightBig" data-delay="1s" data-duration="500ms">Check Collection</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ****** Welcome Slides Area End ****** -->
+
+        <!-- ****** Top Catagory Area Start ****** -->
+        <section class="top_catagory_area d-md-flex clearfix">
+            <!-- Single Catagory -->
+            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
+                <div class="catagory-content">
+                    <h2>Giảm đến 20%</h2>
+                    <a href="#" class="btn karl-btn">Mua ngay</a>
+                </div>
+            </div>
+            <!-- Single Catagory -->
+            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(img/bg-img/bg-3.jpg);">
+                <div class="catagory-content">
+                    <h2>Designer bags</h2>
+                    <a href="#" class="btn karl-btn">Mua ngay</a>
+                </div>
+            </div>
+        </section>
+        <!-- ****** Top Catagory Area End ****** -->
+
+        <!-- ****** Quick View Modal Area Start ****** -->
         <div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -192,9 +317,11 @@
                                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                             </div>
                                             <button type="submit" name="addtocart" value="5" class="cart-submit">Add to cart</button>
+                                            <!-- Wishlist -->
                                             <div class="modal_pro_wishlist">
                                                 <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
                                             </div>
+                                            <!-- Compare -->
                                             <div class="modal_pro_compare">
                                                 <a href="compare.html" target="_blank"><i class="ti-stats-up"></i></a>
                                             </div>
@@ -217,7 +344,212 @@
                 </div>
             </div>
         </div>
-		@yield("content")
+        <!-- ****** Quick View Modal Area End ****** -->
+
+        <!-- ****** New Arrivals Area Start ****** -->
+        <section class="new_arrivals_area section_padding_100_0 clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_heading text-center">
+                            <h2>Sản phẩm mới</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="karl-projects-menu mb-100">
+                <div class="text-center portfolio-menu">
+                    <button class="btn active" data-filter="*">Tất cả</button>
+                    <button class="btn" data-filter=".man">Nam</button>
+                    <button class="btn" data-filter=".woman">Nữ</button>
+                    <button class="btn" data-filter=".access">Túi xách</button>
+                    <button class="btn" data-filter=".shoes">Giày</button>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row karl-new-arrivals">
+
+                    
+
+
+
+                    <!-- Single gallery Item Start -->
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.4s">
+                        
+
+
+
+
+
+                       
+                    </div>
+
+                    <!-- Single gallery Item Start -->
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item access wow fadeInUpBig" data-wow-delay="0.4s">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="img/product-img/product-3.jpg" alt="">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price">$39.90</h4>
+                            <p>Jeans midi cocktail dress</p>
+                            <!-- Add to Cart -->
+                            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                        </div>
+                    </div>
+
+                    <!-- Single gallery Item Start -->
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item shoes wow fadeInUpBig" data-wow-delay="0.5s">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="img/product-img/product-4.jpg" alt="">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price">$39.90</h4>
+                            <p>Jeans midi cocktail dress</p>
+                            <!-- Add to Cart -->
+                            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                        </div>
+                    </div>
+
+                    <!-- Single gallery Item Start -->
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.6s">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="img/product-img/product-5.jpg" alt="">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price">$39.90</h4>
+                            <p>Jeans midi cocktail dress</p>
+                            <!-- Add to Cart -->
+                            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                        </div>
+                    </div>
+
+                    <!-- Single gallery Item -->
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item kids man wow fadeInUpBig" data-wow-delay="0.7s">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="img/product-img/product-6.jpg" alt="">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price">$39.90</h4>
+                            <p>Jeans midi cocktail dress</p>
+                            <!-- Add to Cart -->
+                            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ****** New Arrivals Area End ****** -->
+
+        <!-- ****** Offer Area Start ****** -->
+        <section class="offer_area height-700 section_padding_100 bg-img" style="background-image: url(img/bg-img/bg-5.jpg);">
+            <div class="container h-100">
+                <div class="row h-100 align-items-end justify-content-end">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <div class="offer-content-area wow fadeInUp" data-wow-delay="1s">
+                            <h2>White t-shirt <span class="karl-level">Hot</span></h2>
+                            <p>* Free shipping until 25 Dec 2017</p>
+                            <div class="offer-product-price">
+                                <h3><span class="regular-price">$25.90</span> $15.90</h3>
+                            </div>
+                            <a href="#" class="btn karl-btn mt-30">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ****** Offer Area End ****** -->
+
+        <!-- ****** Popular Brands Area Start ****** -->
+        <section class="karl-testimonials-area section_padding_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_heading text-center">
+                            <h2>Testimonials</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8">
+                        <div class="karl-testimonials-slides owl-carousel">
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Michelle Williams</p>
+                                        <span>Client, Los Angeles</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Michelle Williams</p>
+                                        <span>Client, Los Angeles</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Michelle Williams</p>
+                                        <span>Client, Los Angeles</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ****** Popular Brands Area End ****** -->
+
+        <!-- ****** Footer Area Start ****** -->
         <footer class="footer_area">
             <div class="container">
                 <div class="row">
@@ -229,7 +561,8 @@
                             </div>
                             <div class="copywrite_text d-flex align-items-center">
                                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> Tất cả các quyền | Được sản xuất  <i class="fa fa-heart-o" aria-hidden="true"></i> bởi <a href="https://colorlib.com" target="_blank">QhaShop</a> &amp; và được phân phối bởi <a href="https://themewagon.com" target="_blank">CKC</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>. 
+Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                             </div>
                         </div>
@@ -240,6 +573,8 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> T
                             <ul class="footer_widget_menu">
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Blog</a></li>
+                                <li><a href="#">Faq</a></li>
+                                <li><a href="#">Returns</a></li>
                                 <li><a href="#">Contact</a></li>
                             </ul>
                         </div>
@@ -264,7 +599,7 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> T
                             <div class="subscribtion_form">
                                 <form action="#" method="post">
                                     <input type="email" name="mail" class="mail" placeholder="Email của bạn">
-                                    <button type="submit" class="submit">Đăng ký</button>
+                                    <button type="submit" class="submit">Đang ký</button>
                                 </form>
                             </div>
                         </div>
@@ -292,15 +627,15 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> T
     <!-- /.wrapper end -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="{{asset('jsuser/jquery/jquery-2.2.4.min.js')}}"></script>
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="{{asset('jsuser/popper.min.js')}}"></script>
+    <script src="js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="{{asset('jsuser/bootstrap.min.js')}}"></script>
+    <script src="js/bootstrap.min.js"></script>
     <!-- Plugins js -->
-    <script src="{{asset('jsuser/plugins.js')}}"></script>
+    <script src="js/plugins.js"></script>
     <!-- Active js -->
-    <script src="{{asset('jsuser/active.js')}}"></script>
+    <script src="js/active.js"></script>
 
 </body>
 
