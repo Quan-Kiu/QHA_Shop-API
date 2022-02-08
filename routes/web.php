@@ -188,7 +188,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/home', function () {
         $product = Product::all();
-        return view('user.home', ['product' => $product]);
+        $producttype = ProductType::all();
+        return view('user.home', compact('product','producttype'));
     })->name('homepage');
 });
 
