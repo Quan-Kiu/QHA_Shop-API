@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
+    
     <!-- Title  -->
     <title>QHA Shop</title>
 
@@ -34,11 +34,17 @@
         <!--  Side Nav  -->
         <div class="nav-side-menu">
             <div class="menu-list">
-                <h6>Categories</h6>
+                <h6>Danh mục</h6>
                 <ul id="menu-content" class="menu-content collapse out">
                     <!-- Single Item -->
                     <li data-toggle="collapse" data-target="#women" class="collapsed active">
-                        <a href="">Woman wear </span></a>
+                        <a href="#">Quần áo nam</span></a>
+                        <a href="#">Giày dép nam</span></a>
+                        <a href="#">Túi xách nam</span></a>
+                        <a href="#">Quần áo nữ</span></a>
+                        <a href="#">Giày dép nữ</span></a>
+                        <a href="#">Túi xách nữ</span></a>
+
                     </li>
                     
                 </ul>
@@ -59,13 +65,13 @@
                             <div class="top_single_area d-flex align-items-center">
                                 <!-- Logo Area -->
                                 <div class="top_logo">
-                                    <a href="#"><img src="{{asset('img/core-img/logo.png')}}" alt=""></a>
+                                    <a href="#"><img src="{{asset('img/core-img/logoqha.png')}}" alt=""></a>
                                 </div>
                                 <!-- Cart & Menu Area -->
                                 <div class="header-cart-menu d-flex align-items-center ml-auto">
                                     <!-- Cart Area -->
                                     <div class="cart">
-                                        <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">2</span> <i class="ti-bag"></i> Your Bag $20</a>
+                                        <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">2</span> <i class="ti-bag"></i> Giỏ hàng</a>
                                         <!-- Cart List Area Start -->
                                         <ul class="cart-list">
                                             <li>
@@ -109,7 +115,6 @@
                         <div class="col-12 d-md-flex justify-content-between">
                             <!-- Header Social Area -->
                             <div class="header-social-area">
-                                <a href="#"><span class="karl-level">Share</span> <i class="fa fa-pinterest" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
@@ -122,20 +127,18 @@
 
                                     <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
                                         <ul class="navbar-nav animated" id="nav">
-                                            <li class="nav-item active"><a class="nav-link" href="">Home</a></li>
+                                            <li class="nav-item active"><a class="nav-link" href="">Trang chủ</a></li>
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="karlDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                                                 <div class="dropdown-menu" aria-labelledby="karlDropdown">
-                                                    <a class="dropdown-item" href="">Home</a>
-                                                    <a class="dropdown-item" href="">Shop</a>
-                                                    <a class="dropdown-item" href="">Product Details</a>
-                                                    <a class="dropdown-item" href="">Cart</a>
-                                                    <a class="dropdown-item" href="">Checkout</a>
+                                                    <a class="dropdown-item" href="">Sản phẩm</a>
+                                                    <a class="dropdown-item" href="">Giỏ hàng</a>
+                                                    <a class="dropdown-item" href="">Thanh toán</a>
                                                 </div>
                                             </li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Dresses</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#"><span class="karl-level">hot</span> Shoes</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Quần áo</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Giày dép</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Túi xách</a></li>
                                         </ul>
                                     </div>
                                 </nav>
@@ -226,7 +229,7 @@
                             </div>
                             <div class="copywrite_text d-flex align-items-center">
                                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> Tất cả các quyền | Được sản xuất  <i class="fa fa-heart-o" aria-hidden="true"></i> bởi <a href="https://colorlib.com" target="_blank">QhaShop</a> &amp; và được phân phối bởi <a href="https://themewagon.com" target="_blank">CKC</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                             </div>
                         </div>
@@ -237,8 +240,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <ul class="footer_widget_menu">
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Blog</a></li>
-                                <li><a href="#">Faq</a></li>
-                                <li><a href="#">Returns</a></li>
                                 <li><a href="#">Contact</a></li>
                             </ul>
                         </div>
@@ -247,10 +248,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="col-12 col-sm-6 col-md-3 col-lg-2">
                         <div class="single_footer_area">
                             <ul class="footer_widget_menu">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Shipping</a></li>
-                                <li><a href="#">Our Policies</a></li>
-                                <li><a href="#">Afiliates</a></li>
+                                <li><a href="#">Tài khoản</a></li>
+                                <li><a href="#">Vận chuyển</a></li>
+                                <li><a href="#">Chính sách</a></li>
+                                <li><a href="#">Chi nhánh</a></li>
                             </ul>
                         </div>
                     </div>
@@ -258,12 +259,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="col-12 col-lg-5">
                         <div class="single_footer_area">
                             <div class="footer_heading mb-30">
-                                <h6>Subscribe to our newsletter</h6>
+                                <h6>Theo dõi bản tin của chúng tôi</h6>
                             </div>
                             <div class="subscribtion_form">
                                 <form action="#" method="post">
-                                    <input type="email" name="mail" class="mail" placeholder="Your email here">
-                                    <button type="submit" class="submit">Subscribe</button>
+                                    <input type="email" name="mail" class="mail" placeholder="Email của bạn">
+                                    <button type="submit" class="submit">Đăng ký</button>
                                 </form>
                             </div>
                         </div>
