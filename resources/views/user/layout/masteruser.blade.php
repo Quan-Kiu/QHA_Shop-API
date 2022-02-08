@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Karl - Fashion Ecommerce Template | Trang chủ</title>
+    <title>QHA SHOP | Trang chủ</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -106,7 +106,7 @@
                             <div class="top_single_area d-flex align-items-center">
                                 <!-- Logo Area -->
                                 <div class="top_logo">
-                                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                                    <a href="#"><img src="img/core-img/logoqha.png" alt=""></a>
                                 </div>
                                 <!-- Cart & Menu Area -->
                                 <div class="header-cart-menu d-flex align-items-center ml-auto">
@@ -370,7 +370,25 @@
 
             <div class="container">
                 <div class="row karl-new-arrivals">
-
+                    @foreach($product as $item)
+            <!-- Single gallery Item Start -->
+            <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
+                <!-- Product Image -->
+                <div class="product-img">
+                <img style="height:200px, width:200px" src="{{$item['thumbnail']}}" alt="{{$item['thumbnail']}}"></td>
+                    <div class="product-quicview">
+                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                    </div>
+                </div>
+                <!-- Product Description -->
+                <div class="product-description">
+                    <h4 class="product-price">{{$item['price']}} VND</h4>
+                    <p>{{$item['name']}}</p>
+                    <!-- Add to Cart -->
+                    <a href="#" class="add-to-cart-btn">Thêm vào giỏ</a>
+                </div>
+            </div>
+            @endforeach
                     
 
 
@@ -386,77 +404,13 @@
                        
                     </div>
 
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item access wow fadeInUpBig" data-wow-delay="0.4s">
-                        <!-- Product Image -->
-                        <div class="product-img">
-                            <img src="img/product-img/product-3.jpg" alt="">
-                            <div class="product-quicview">
-                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                            </div>
-                        </div>
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <h4 class="product-price">$39.90</h4>
-                            <p>Jeans midi cocktail dress</p>
-                            <!-- Add to Cart -->
-                            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                        </div>
-                    </div>
+                    
 
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item shoes wow fadeInUpBig" data-wow-delay="0.5s">
-                        <!-- Product Image -->
-                        <div class="product-img">
-                            <img src="img/product-img/product-4.jpg" alt="">
-                            <div class="product-quicview">
-                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                            </div>
-                        </div>
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <h4 class="product-price">$39.90</h4>
-                            <p>Jeans midi cocktail dress</p>
-                            <!-- Add to Cart -->
-                            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                        </div>
-                    </div>
+                    
 
-                    <!-- Single gallery Item Start -->
-                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.6s">
-                        <!-- Product Image -->
-                        <div class="product-img">
-                            <img src="img/product-img/product-5.jpg" alt="">
-                            <div class="product-quicview">
-                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                            </div>
-                        </div>
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <h4 class="product-price">$39.90</h4>
-                            <p>Jeans midi cocktail dress</p>
-                            <!-- Add to Cart -->
-                            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                        </div>
-                    </div>
+                    
 
-                    <!-- Single gallery Item -->
-                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item kids man wow fadeInUpBig" data-wow-delay="0.7s">
-                        <!-- Product Image -->
-                        <div class="product-img">
-                            <img src="img/product-img/product-6.jpg" alt="">
-                            <div class="product-quicview">
-                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                            </div>
-                        </div>
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <h4 class="product-price">$39.90</h4>
-                            <p>Jeans midi cocktail dress</p>
-                            <!-- Add to Cart -->
-                            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </section>
@@ -468,12 +422,11 @@
                 <div class="row h-100 align-items-end justify-content-end">
                     <div class="col-12 col-md-8 col-lg-6">
                         <div class="offer-content-area wow fadeInUp" data-wow-delay="1s">
-                            <h2>White t-shirt <span class="karl-level">Hot</span></h2>
-                            <p>* Free shipping until 25 Dec 2017</p>
+                            <p>* Miễn phí vận chuyển đến 20/03/2022</p>
                             <div class="offer-product-price">
-                                <h3><span class="regular-price">$25.90</span> $15.90</h3>
+                                <h3><span class="regular-price">1.000.000đ</span> 800.000đ</h3>
                             </div>
-                            <a href="#" class="btn karl-btn mt-30">Shop Now</a>
+                            <a href="#" class="btn karl-btn mt-30">Mua ngay</a>
                         </div>
                     </div>
                 </div>
@@ -481,72 +434,7 @@
         </section>
         <!-- ****** Offer Area End ****** -->
 
-        <!-- ****** Popular Brands Area Start ****** -->
-        <section class="karl-testimonials-area section_padding_100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section_heading text-center">
-                            <h2>Testimonials</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-12 col-md-8">
-                        <div class="karl-testimonials-slides owl-carousel">
-
-                            <!-- Single Testimonial Area -->
-                            <div class="single-testimonial-area text-center">
-                                <span class="quote">"</span>
-                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
-                                <div class="testimonial-info d-flex align-items-center justify-content-center">
-                                    <div class="tes-thumbnail">
-                                        <img src="img/bg-img/tes-1.jpg" alt="">
-                                    </div>
-                                    <div class="testi-data">
-                                        <p>Michelle Williams</p>
-                                        <span>Client, Los Angeles</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Testimonial Area -->
-                            <div class="single-testimonial-area text-center">
-                                <span class="quote">"</span>
-                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
-                                <div class="testimonial-info d-flex align-items-center justify-content-center">
-                                    <div class="tes-thumbnail">
-                                        <img src="img/bg-img/tes-1.jpg" alt="">
-                                    </div>
-                                    <div class="testi-data">
-                                        <p>Michelle Williams</p>
-                                        <span>Client, Los Angeles</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Testimonial Area -->
-                            <div class="single-testimonial-area text-center">
-                                <span class="quote">"</span>
-                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
-                                <div class="testimonial-info d-flex align-items-center justify-content-center">
-                                    <div class="tes-thumbnail">
-                                        <img src="img/bg-img/tes-1.jpg" alt="">
-                                    </div>
-                                    <div class="testi-data">
-                                        <p>Michelle Williams</p>
-                                        <span>Client, Los Angeles</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
+        
         <!-- ****** Popular Brands Area End ****** -->
 
         <!-- ****** Footer Area Start ****** -->
@@ -557,12 +445,11 @@
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="single_footer_area">
                             <div class="footer-logo">
-                                <img src="img/core-img/logo.png" alt="">
+                                <img src="img/core-img/logoqha.png" alt="">
                             </div>
                             <div class="copywrite_text d-flex align-items-center">
                                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>. 
-Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a>
+                                    Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> Mọi quyền được bảo lưu <i class="fa fa-heart-o" aria-hidden="true"></i> bởi <a href="https://colorlib.com" target="_blank">QHA SHOP</a>. </a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                             </div>
                         </div>
@@ -571,11 +458,9 @@ Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a>
                     <div class="col-12 col-sm-6 col-md-3 col-lg-2">
                         <div class="single_footer_area">
                             <ul class="footer_widget_menu">
-                                <li><a href="#">About</a></li>
+                                <li><a href="#">Thông tin</a></li>
                                 <li><a href="#">Blog</a></li>
-                                <li><a href="#">Faq</a></li>
-                                <li><a href="#">Returns</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
