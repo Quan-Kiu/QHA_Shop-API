@@ -186,13 +186,10 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::group(['prefix' => 'user'], function () {
-
-        Route::get('/', function () {
-            $product = Product::all();
-            return view('user.home', ['product' => $product]);
-        })->name('homepage');
-    });
+    Route::get('/home', function () {
+        $product = Product::all();
+        return view('user.home', ['product' => $product]);
+    })->name('homepage');
 });
 
 
