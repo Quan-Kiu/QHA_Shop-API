@@ -184,6 +184,17 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 });
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::group(['prefix' => 'user'], function () {
+
+        Route::get('/', function () {
+            return view('user.home');
+        })->name('homepage');
+
+        
+    });
+});
 
 
 Route::group(['prefix' => 'email'], function () {
