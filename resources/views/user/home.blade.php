@@ -17,7 +17,7 @@
             <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
                 <!-- Product Image -->
                 <div class="product-img">
-                <img style="height:290px, widht:290px" src="{{$item['thumbnail']}}" alt="{{$item['thumbnail']}}"></td>
+                <img style="height:200px" src="{{$item['thumbnail']}}" alt="{{$item['thumbnail']}}"></td>
                     <div class="product-quicview">
                         <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
                     </div>
@@ -31,6 +31,7 @@
                 </div>
             </div>
             @endforeach
+
 
         </div>
     </div>
