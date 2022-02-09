@@ -165,12 +165,10 @@
                                             <li class="nav-item active"><a class="nav-link" href="index.html">Trang chủ</a></li>
                                                 
                                             </li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Quần áo nam</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Quần áo nữ</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Giày dép nam</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Giày dép nữ</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Túi xách nam</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Túi xách nữ</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/menu">Menu</a></li>
+                                            @foreach($producttype as $item)
+                                            <li class="nav-item"><a class="nav-link" href="/category/{{$item['id']}}">{{$item['name']}}</a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </nav>
@@ -375,7 +373,7 @@
             <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
                 <!-- Product Image -->
                 <div class="product-img">
-                <img style="height:200px, width:200px" src="{{$item['thumbnail']}}" alt="{{$item['thumbnail']}}"></td>
+                <img style="height:200px" src="{{$item['thumbnail']}}" alt="{{$item['thumbnail']}}"></td>
                     <div class="product-quicview">
                         <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
                     </div>

@@ -191,6 +191,24 @@ Route::middleware('auth:sanctum')->group(function () {
         $producttype = ProductType::all();
         return view('user.home', compact('product','producttype'));
     })->name('homepage');
+    Route::get('/category/{slug}', function () {
+        return view('user.category');
+    });
+    Route::get('/menu', function () {
+        $product = Product::all();
+        $producttype = ProductType::all();
+        return view('user.menu', compact('product','producttype'));
+    });
+    Route::get('/cart', function () {
+        return view('user.cart');
+    });
+    Route::get('/detail', function () {
+        return view('user.detail');
+    });
+    Route::get('/checkout', function () {
+        return view('user.checkout');
+    });
+   
 });
 
 
