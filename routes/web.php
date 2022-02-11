@@ -15,6 +15,7 @@ use App\Models\ProductType;
 use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ProductController;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/register', function () {
@@ -191,8 +192,20 @@ Route::middleware('auth:sanctum')->group(function () {
         $producttype = ProductType::all();
         return view('user.home', compact('product','producttype'));
     })->name('homepage');
-    Route::get('/category/{slug}', function () {
-        return view('user.category');
+    // Route::get('/category/{slug}', function () {
+    //     return view('user.category');
+    // });
+
+    Route::get('/detail/{product}', function ($id) {
+        $product = Product::find($id);
+        $size = Size::all();
+        return view('user.detail', compact('product','size'));
+    });
+
+    Route::get('/category/{producttype}', function ($id) {
+        $producttype = ProductType::all();
+        $product = DB::table('products')->where('product_type_id','=', $id)->get();
+        return view('user.category.menclothes',compact('product','producttype',));
     });
     Route::get('/menu', function () {
         $product = Product::all();
@@ -202,12 +215,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/cart', function () {
         return view('user.cart');
     });
-    Route::get('/detail', function () {
-        return view('user.detail');
-    });
+
     Route::get('/checkout', function () {
         return view('user.checkout');
     });
+    
    
 });
 

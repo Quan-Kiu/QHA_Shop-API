@@ -38,7 +38,7 @@
                     <div class="form-group my-5">
                         <label for="thumbnail">Main Image</label>
                         <img class="d-block mr-auto ml-auto my-5" style="width:200px" src="{{{$data['product']->thumbnail}}}" alt="">
-                        <input name="thumbnail" type="file" class="form-control" id="thumbnail">
+                        <input style="border-style: groove;" name="thumbnail" type="file" class="form-control" id="thumbnail">
                     </div>
                     <div class="form-group my-5">
                         <label for="images">Images</label>
@@ -47,11 +47,11 @@
                             <img class="d-block mr-auto ml-auto" style="width:150px" src="{{{$image}}}" alt="">
                             @endforeach
                         </div>
-                        <input name="images[]" type="file" multiple class="form-control" id="images">
+                        <input style="border-style: groove;" name="images[]" type="file" multiple class="form-control" id="images">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputText1">Name</label>
-                        <input name="name" value="{{{$data['product']->name}}}" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
+                        <input style="border-style: groove;" name="name" value="{{{$data['product']->name}}}" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
                     </div>
                     <div class="form-group">
                         <label for="images">Description</label>
@@ -81,15 +81,15 @@
 
                     <div class="form-group">
                         <label for="exampleInputNumber1">Price</label>
-                        <input name="price" value="{{{$data['product']->price}}}" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
+                        <input style="border-style: groove;" name="price" value="{{{$data['product']->price}}}" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputNumber1">Discount</label>
-                        <input name="discount" value="{{{$data['product']->discount}}}" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
+                        <input style="border-style: groove;" name="discount" value="{{{$data['product']->discount}}}" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword3">Stock</label>
-                        <input name="stock" value="{{{$data['product']->stock}}}" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
+                        <input style="border-style: groove;" name="stock" value="{{{$data['product']->stock}}}" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
                     </div>
 
 

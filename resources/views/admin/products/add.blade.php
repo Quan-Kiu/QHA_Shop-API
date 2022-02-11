@@ -5,7 +5,7 @@
 <link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/plugins/dropzone/dropzone.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
-
+<link rel="stylesheet" href="css/inputmydesign.css">
 <link href="{{ asset('assets/plugins/simplemde/simplemde.min.css') }}" rel="stylesheet" />
 
 
@@ -32,42 +32,41 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="card-title">ADD PRODUCT</h6>
+                <div id="inputmydesign">
 
-
-                <form id="add-product">
                     <div class="form-group">
                         <label for="thumbnail">Main Image</label>
-                        <input name="thumbnail" type="file" class="form-control" id="thumbnail">
+                        <input style="border-style: groove;" name="thumbnail" type="file" class="form-control" id="thumbnail">
                     </div>
                     <div class="form-group">
                         <label for="images">Images</label>
-                        <input name="images[]" type="file" multiple class="form-control" id="images">
+                        <input style="border-style: groove;" name="images[]" type="file" multiple class="form-control" id="images">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputText1">Name</label>
-                        <input name="name" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
+                        <input style="border-style: groove;" name="name" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
                     </div>
                     <div class="form-group">
                         <label for="images">Description</label>
-                        <textarea class="form-control" name="tinymce" id="simpleMdeExample"></textarea>
+                        <textarea style="border-style: groove;" class="form-control" name="tinymce" id="simpleMdeExample"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Product Type</label><br>
-                        <select id="product_type_id" class="js-example-basic-single w-100">
-                            <option></option>
+                        <select  id="product_type_id" class="js-example-basic-single w-100">
+                            <option ></option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Colors</label><br>
-                        <select id="colors" name="colors[]" class="js-example-basic-multiple w-100" multiple="multiple">
+                        <select style="border-style: groove;" id="colors" name="colors[]" class="js-example-basic-multiple w-100" multiple="multiple">
                             <option></option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Sizes</label><br>
-                        <select disabled id="sizes" name='sizes[]' class="js-example-basic-multiple w-100" multiple="multiple">
+                        <select disabled id="sizes" name='sizes[]' style="border-style: groove;" class="js-example-basic-multiple w-100" multiple="multiple">
                             <option></option>
 
                         </select>
@@ -76,20 +75,21 @@
 
                     <div class="form-group">
                         <label for="exampleInputNumber1">Price</label>
-                        <input name="price" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
+                        <input style="border-style: groove;" name="price" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputNumber1">Discount</label>
-                        <input name="discount" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
+                        <input style="border-style: groove;" name="discount" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword3">Stock</label>
-                        <input name="stock" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
+                        <input style="border-style: groove;" name="stock" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
                     </div>
 
 
                     <button type="submit" class="btn btn-primary">Add Product</button>
                 </form>
+            
             </div>
         </div>
     </div>

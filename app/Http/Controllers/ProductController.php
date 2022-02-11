@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends BaseController
 {
@@ -129,9 +130,10 @@ class ProductController extends BaseController
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $id)
     {
-        //
+        $product = Product::find($id);
+        return view('user.detail',['product' => $product]);
     }
 
     /**
