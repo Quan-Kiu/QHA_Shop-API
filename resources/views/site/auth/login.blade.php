@@ -7,7 +7,7 @@
       <div class="card">
         <div class="row">
           <div class="col-md-4 pr-md-0">
-            <div class="auth-left-wrapper" style="background-image: url({{ url('https://res.cloudinary.com/dprqzgmak/image/upload/v1644593113/logo_w20yia.png') }})">
+            <div class="auth-left-wrapper" style="background-image: url({{ url('https://res.cloudinary.com/dprqzgmak/image/upload/c_lpad,h_300,w_150/v1644593113/logo_w20yia.png') }})">
 
             </div>
           </div>

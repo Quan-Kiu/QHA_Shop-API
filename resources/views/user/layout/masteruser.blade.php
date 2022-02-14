@@ -10,10 +10,9 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>QHA SHOP | Trang chủ</title>
-
+    <title>QHA SHOP | Trang chủ </title>
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="https://res.cloudinary.com/dprqzgmak/image/upload/c_scale,w_20/v1644594761/logo_zv67se.png">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
