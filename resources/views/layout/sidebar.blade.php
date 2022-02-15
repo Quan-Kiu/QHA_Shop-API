@@ -1,7 +1,7 @@
 <nav class="sidebar">
   <div class="sidebar-header">
     <a href="" class="sidebar-brand">
-      QHA<span>Shop</span>
+      QHA<span>Shop </span><img src="https://res.cloudinary.com/dprqzgmak/image/upload/c_scale,w_20/v1644594761/logo_zv67se.png">
     </a>
     <div class="sidebar-toggler not-active">
       <span></span>

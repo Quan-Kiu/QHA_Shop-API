@@ -7,13 +7,13 @@
       <div class="card">
         <div class="row">
           <div class="col-md-4 pr-md-0">
-            <div class="auth-left-wrapper" style="background-image: url({{ url('https://via.placeholder.com/219x452') }})">
+            <div class="auth-left-wrapper" style="background-image: url({{ url('https://res.cloudinary.com/dprqzgmak/image/upload/c_lpad,h_300,w_150/v1644593113/logo_w20yia.png') }})">
 
             </div>
           </div>
           <div class="col-md-8 pl-md-0">
             <div class="auth-form-wrapper px-4 py-5">
-              <a href="#" class="noble-ui-logo d-block mb-2">QHA<span>Shop</span></a>
+              <a href="#" class="noble-ui-logo d-block mb-2">QHA<span>Shop  <img src="https://res.cloudinary.com/dprqzgmak/image/upload/c_scale,w_20/v1644594761/logo_zv67se.png"></span></a>
               <h5 class="text-muted font-weight-normal mb-4">Welcome back! Log in to your account.</h5>
               <form class="forms-sample" method="POST" action="/login">
                 @csrf

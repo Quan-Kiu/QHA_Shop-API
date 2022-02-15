@@ -7,13 +7,13 @@
       <div class="card">
         <div class="row">
           <div class="col-md-4 pr-md-0">
-            <div class="auth-left-wrapper" style="background-image: url({{ url('https://via.placeholder.com/219x452') }})">
+            <div class="auth-left-wrapper" style="background-image: url({{ url('https://res.cloudinary.com/dprqzgmak/image/upload/c_lpad,h_452,w_219/v1644593113/logo_w20yia.png') }})">
 
             </div>
           </div>
           <div class="col-md-8 pl-md-0">
             <div class="auth-form-wrapper px-4 py-5">
-              <a href="#" class="noble-ui-logo d-block mb-2">QHA<span>Shop</span></a>
+              <a href="#" class="noble-ui-logo d-block mb-2">QHA<span>Shop  <img src="https://res.cloudinary.com/dprqzgmak/image/upload/c_scale,w_20/v1644594761/logo_zv67se.png"></span></a>
               <h5 class="text-muted font-weight-normal mb-4">Create a free account.</h5>
               <form class="forms-sample" method="POST" action="/register">
                 @csrf
@@ -66,7 +66,11 @@
                 </div>
                 <div class="mt-3">
                   <button type="submit" class="btn btn-primary mr-2 mb-2 mb-md-0">Sing up</button>
+<<<<<<< HEAD
                  
+=======
+                  
+>>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                 </div>
                 <a href="{{ url('/auth/login') }}" class="d-block mt-3 text-muted">Already a user? Sign in</a>
               </form>
