@@ -10,7 +10,7 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="/comments">Comments</a></li>
+        <li class="breadcrumb-item"><a href="/comments">Đánh giá</a></li>
 
     </ol>
 </nav>
@@ -19,15 +19,15 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">COMMENTS LIST</h6>
+                <h6 class="card-title">Danh sách đánh giá</h6>
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Product</th>
-                                <th style="width:100%">Content</th>
-                                <th>Rating</th>
+                                <th>Sản phẩm đánh giá</th>
+                                <th style="width:100%">Nội dung</th>
+                                <th>Số sao</th>
                                 <th style="opacity:0"></th>
 
                             </tr>
@@ -39,7 +39,7 @@
                                 <td>{{$item['product_id']}}</td>
                                 <td>{{$item['content']}}</td>
                                 <td>{{$item['rating']}}</td>
-                                <td><button class="btn btn-danger" onclick="deleteComment('{{{$item->id}}}')">Delete</button></td>
+                                <td><button class="btn btn-danger" onclick="deleteComment('{{{$item->id}}}')">Xóa</button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -60,6 +60,10 @@
 <script src="{{ asset('assets/plugins/datatables-net/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-net-bs4/dataTables.bootstrap4.js') }}"></script>
 
+
+<script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/promise-polyfill/polyfill.min.js') }}"></script>
+
 @endpush
 
 
@@ -67,8 +71,9 @@
 
 @push('custom-scripts')
 <script src="{{ asset('assets/js/data-table.js') }}"></script>
-
 <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
+
+
 @endpush
 
 <script>
@@ -84,7 +89,7 @@
         swalWithBootstrapButtons
             .fire({
                 title: "Bạn có chăc chắn?",
-                text: "Bạn sẽ không thể khôi phục laị đơn hàng này!",
+                text: "Bạn sẽ không thể khôi phục laị đánh giá này!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "ml-2",
@@ -95,7 +100,7 @@
             .then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        const res = await axios.delete(`/api/comments/${id}`);
+                        const res = await axios.delete(`/api/comment/${id}`);
                         $(`#${id}`).remove();
                         swalWithBootstrapButtons.fire(
                             "Đã xóa!",
@@ -109,10 +114,13 @@
                             "Đã có lỗi xảy ra vui lòng thử lại :(",
                             "error"
                         );
-                    }
+                   }
 
                 }
 
             })
+            
     }
+
+   
 </script>

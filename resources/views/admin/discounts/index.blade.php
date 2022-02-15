@@ -10,11 +10,11 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="discounts">Discounts</a></li>
+        <li class="breadcrumb-item"><a href="discounts">Mã giảm giá</a></li>
 
         <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='discounts/add';">
             <i class="btn-icon-prepend" data-feather="plus"></i>
-            Add Discount
+            Thêm mã giảm giá
         </button>
 
     </ol>
@@ -24,16 +24,16 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">DISCOUNTS LIST</h6>
+                <h6 class="card-title">Danh sách mã giảm giá</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Code</th>
-                                <th>Price</th>
-                                <th>Drought</th>
+                                <th style="width:100%">Mã</th>
+                                <th>Giảm giá</th>
+                                <th>Hết hạn</th>
                                 <th style="opacity:0"></th>
                                 <th style="opacity:0"></th>
 
@@ -46,8 +46,8 @@
                                 <td>{{$item['code']}}</td>
                                 <td>{{$item['price']}}</td>
                                 <td>{{$item['drought']}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='discounts/{{{$item->id}}}' ;">Update </button></td>
-                                <td><button class="btn btn-danger" onclick="deleteColor('{{{$item->id}}}')">Delete</button></td>
+                                <td><button class="btn btn-primary" onclick="window.location.href='discounts/{{{$item->id}}}' ;">Sửa </button></td>
+                                <td><button class="btn btn-danger" onclick="deleteColor('{{{$item->id}}}')">Xóa</button></td>
 
                             </tr>
                             @endforeach
@@ -119,7 +119,7 @@
                             "Đã có lỗi xảy ra vui lòng thử lại :(",
                             "error"
                         );
-                    }
+            }
 
                 }
 

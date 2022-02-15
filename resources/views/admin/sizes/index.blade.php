@@ -8,11 +8,11 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="/sizes">Sizes</a></li>
+        <li class="breadcrumb-item"><a href="/sizes">Kích cỡ SP</a></li>
 
         <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/sizes/add';">
             <i class="btn-icon-prepend" data-feather="plus"></i>
-            Add Size
+            Thêm kích cỡ
         </button>
 
     </ol>
@@ -22,15 +22,15 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">SIZE LIST</h6>
+                <h6 class="card-title">danh sách kích cỡ</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th style="width:100%">Product Type</th>
+                                <th>Tên</th>
+                                <th style="width:100%">Loại SP</th>
                                 <th style="opacity:0"></th>
                                 <th style="opacity:0"></th>
 
@@ -42,8 +42,8 @@
                                 <td>{{$item['id']}}</td>
                                 <td>{{$item['name']}}</td>
                                 <td>{{$item['productType']->name}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='/sizes/{{{$item->id}}}' ;">Update </button></td>
-                                <td><button class="btn btn-danger" onclick="deleteSize('{{{$item->id}}}')">Delete</button></td>
+                                <td><button class="btn btn-primary" onclick="window.location.href='sizes/{{{$item->id}}}' ;">Sửa </button></td>
+                                <td><button class="btn btn-danger" onclick="deleteSize('{{{$item->id}}}')">Xóa</button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -114,7 +114,7 @@
                             "Đã có lỗi xảy ra vui lòng thử lại :(",
                             "error"
                         );
-                    }
+            }
 
                 }
 

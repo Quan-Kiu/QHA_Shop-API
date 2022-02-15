@@ -116,6 +116,8 @@ class CommentController extends BaseController
         return $this->sendResponse($response, 'Thành công');
     }
 
+
+
     public function show($id)
     {
         $order = Comment::find($id);
@@ -154,9 +156,9 @@ class CommentController extends BaseController
         return $this->sendResponse($comments, 'Thay đổi thông tin thành công.');
     }
 
-    public function destroy(Comment $comments)
+    public function destroy(Comment $comment)
     {
-        $comments->delete();
-        return $this->sendResponse($comments, 'Xóa bình luận thành công!');
+        $comment->delete();
+        return $this->sendResponse($comment, 'Xóa bình luận thành công!');
     }
 }

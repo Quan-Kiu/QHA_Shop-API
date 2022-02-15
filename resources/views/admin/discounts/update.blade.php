@@ -10,8 +10,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/colors">Color</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update Color</li>
+        <li class="breadcrumb-item"><a href="../discounts">Mã giảm giá</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sửa mã giảm giá</li>
     </ol>
 </nav>
 
@@ -20,13 +20,17 @@
         <div class="card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Update Color</h4>
-                    <form id="updateColor">
+                    <h4 class="card-title">Sửa mã giảm giá</h4>
+                    <form id="update">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input id="name" value="{{{$color->name}}}" class="form-control" type="text" />
+                            <label for="code">Tên</label>
+                            <input id="code" value="{{{$discount->code}}}" class="form-control" type="text" />
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <div class="form-group">
+                            <label for="price">Giảm giá</label>
+                            <input id="price" value="{{{$discount->price}}}" class="form-control" type="text" />
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Sửa">
                     </form>
                 </div>
             </div>
@@ -36,19 +40,20 @@
 @endsection
 
 <script>
-    var color = @json($color);
+    var discount = @json($discount);
     window.onload = () => {
-        $("#updateColor").submit(async function(e) {
+        $("#update").submit(async function(e) {
             e.preventDefault();
             let formData = {
-                name: $('#name').val(),
+                code: $('#code').val(),
+                price: $('#price').val(),
             };
             showSwal('message-with-auto-close', {
                 timer: 60000,
-                title: 'Đang cập nhật thông tin màu sản phẩm'
+                title: 'Đang cập nhật thông tin màu mã giảm giá'
             });
             try {
-                const response = await axios.put(`/api/color/${color['id']}`, formData);
+                const response = await axios.put(`/api/discount/${discount['id']}`, formData);
                 console.log(response.data);
                 showSwal('custom-position', {
                     title: 'Thành công',

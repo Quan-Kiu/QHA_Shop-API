@@ -10,11 +10,11 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="/user">User</a></li>
+        <li class="breadcrumb-item"><a href="user">Người dùng</a></li>
 
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/users/add';">
+        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='users/add';">
             <i class="btn-icon-prepend" data-feather="plus"></i>
-            Add User
+            Thêm người dùng
         </button>
 
     </ol>
@@ -24,19 +24,20 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">ACCOUNT LIST</h6>
+                <h6 class="card-title">Danh sách người dùng</h6>
 
                 <div class="table-responsive">
+                   
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Avatar</th>
-                                <th style="width:100%">Fullname</th>
+                                <th>Ảnh đại diện</th>
+                                <th style="width:100%">Họ Tên</th>
                                 <th>Email</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                                <th>Rule</th>
+                                <th>Giới tính</th>
+                                <th>Số điện thoại</th>
+                                <th>Loại TK</th>
                                 <th style="opacity:0"></th>
                                 <th style="opacity:0"></th>
 
@@ -52,8 +53,8 @@
                                 <td>{{$item['gender']}}</td>
                                 <td>{{$item['phone']}}</td>
                                 <td>{{$item['userType']->name}}</td>
-                                <td><button class="btn btn-primary" onclick="window.location.href='users/{{{$item->id}}}' ;">Update </button></td>
-                                <td><button class="btn btn-danger" onclick="deleteUser('{{{$item->id}}}')">Delete</button></td>
+                                <td><button class="btn btn-primary" onclick="window.location.href='users/{{{$item->id}}}' ;">Sửa</button></td>
+                                <td><button class="btn btn-danger" onclick="deleteUser('{{{$item->id}}}')">Xóa</button></td>
 
                             </tr>
                             @endforeach
@@ -87,6 +88,9 @@
 @endpush
 
 <script>
+
+
+
     const deleteUser = (id) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -125,7 +129,7 @@
                             "Đã có lỗi xảy ra vui lòng thử lại :(",
                             "error"
                         );
-                    }
+            }
 
                 }
 

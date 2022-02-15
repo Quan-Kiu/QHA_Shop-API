@@ -11,12 +11,9 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb d-flex">
-        <li class="breadcrumb-item"><a href="/orders">Order</a></li>
+        <li class="breadcrumb-item"><a href="/orders">Hóa đơn</a></li>
 
-        <button type="button" class="btn btn-primary ml-auto" onclick="window.location.href='/orders/add';">
-            <i class="btn-icon-prepend" data-feather="plus"></i>
-            Add Order
-        </button>
+        
 
     </ol>
 </nav>
@@ -25,18 +22,29 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">ORDER LIST</h6>
+                <h6 class="card-title">danh sách hóa đơn</h6>
 
                 <div class="table-responsive">
+                <div  class="filter__item mb-2 d-flex align-items-center "><div style="min-width: 150px">Trạng thái hóa đơn</div>
+
+<select id="orders_status" name="orders_status"  style="width:unset;display:inline"  >
+    
+    <option selected value="">Tất cả</option>
+    @foreach($data['orders_status'] as $item)
+    <option value="{{$item->name}}">{{$item->name}}</option>
+    @endforeach
+</select> 
+</div>
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>FullName</th>
-                                <th>Shipping Phone</th>
-                                <th>Total Amount</th>
-                                <th>Delivery Time</th>
-                                <th>Order Status</th>
+                                <th>Họ tên</th>
+                                <th>Số điện thoại</th>
+                                <th>Tổng tiền</th>
+                                <th>Thời gian đặt hàng</th>
+                                <th>Thời gian giao hàng ( dự kiến )</th>
+                                <th>Trạng thái đơn hàng</th>
                                 <th style="opacity:0"></th>
                                 <th style="opacity:0"></th>
 
@@ -49,6 +57,7 @@
                                 <td>{{$item['fullname']}}</td>
                                 <td>{{$item['phone']}}</td>
                                 <td>{{$item['unit_price']}}đ</td>
+                                <td>{{$item['created_at']}}</td>
                                 <td>{{$item['delivery_date']}}</td>
                                 <td>{{$item['OrderStatus']->name}}</td>
                                 @foreach( $item['OrderDetails'] as $detail)
@@ -57,7 +66,7 @@
                                 <td><button class="btn btn-primary" onclick="
                                     var data = {{ Illuminate\Support\Js::from($item) }};
                                     handleOrderDetail(data);
-                                ">Detail</button></td>
+                                ">Chi tiết</button></td>
 
                             </tr>
                             @endforeach
@@ -100,6 +109,34 @@
 @endpush
 
 <script>
+
+window.onload = ()=>{
+
+
+$.fn.dataTable.ext.search.push(
+    function(settings,data,dataIndex){
+        var orders_status_selected = $('#orders_status').val();
+        var orders_status_table = data[6]; // use data for the age column
+        if(!orders_status_selected || orders_status_selected == orders_status_table){
+        return true;
+    }
+    return false;
+
+}
+);
+
+$(document).ready(function() {
+var table = $('#dataTableExample').DataTable();
+ 
+// Event listener to the two range filtering inputs to redraw on input
+
+$('#orders_status').change( function() {
+    table.draw();
+} );
+} );
+}
+
+
     var orders_status = @json($data['orders_status']);
 
     const handleOrderDetail = (data) => {
@@ -129,27 +166,27 @@
         $('.modal-right-content').append(`
         <div class="card bg-light">
       <div class="card-body">
-        <h6 class="card-title">Shipping Info</h6>
+        <h6 class="card-title">Chi tiết đơn hàng</h6>
          <div class="form-group">
-            <label for="order_status_id">Order Status</label>
+            <label for="order_status_id">Trạng thái đơn hàng</label>
             <select class="form-control" id="order_status_id">
              ${order_status_html}
             </select>
           </div>
           <div class="form-group">
-            <label for="fullname">Fullname</label>
+            <label for="fullname">Họ tên</label>
             <input type="text" class="form-control" id="fullname" value="${data.fullname}" placeholder="Enter Name">
           </div>
           <div class="form-group">
-            <label for="address">Shipping Address</label>
+            <label for="address">Địa chỉ</label>
             <input type="text" class="form-control" id="address" value="${data.address}" placeholder="Enter Address">
         </div>
           <div class="form-group">
-            <label for="phone">Shipping Phone</label>
+            <label for="phone">Số điện thoại</label>
             <input type="text" class="form-control" id="phone" value="${data.phone}" placeholder="Enter Address">
         </div>
         <div class="form-group">
-            <label for="delivery_date">Delivery Date</label>
+            <label for="delivery_date">Ngày giao hàng</label>
             <input type="date" class="form-control" id="delivery_date" value="${data.delivery_date}" placeholder="Enter Address">
         </div>
           </div>
@@ -172,11 +209,11 @@
                   <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Thumbnail</th>
-                      <th>Product Name</th>
-                      <th>Quantity</th>
-                      <th>Unit Price</th>
-                      <th>Description</th>
+                      <th>Hình ảnh</th>
+                      <th>Tên SP</th>
+                      <th>Số lượng</th>
+                      <th>Tổng giá</th>
+                      <th>Thông tin chi tiết</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -184,7 +221,7 @@
                   </tbody>
                   <tfoot>
             <tr>
-               <th colspan = "3">Total</th>
+               <th colspan = "3">Tổng</th>
                <th>x${data.quantity}</th>
                <th> ${data.unit_price}đ</th>
                <td></td>
