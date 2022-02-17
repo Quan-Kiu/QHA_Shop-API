@@ -31,15 +31,9 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-<<<<<<< HEAD
                 <h6 class="card-title">thêm sản phẩm</h6>
-=======
-                <h6 class="card-title">ADD PRODUCT</h6>
-                <div id="inputmydesign">
->>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <label for="thumbnail">Hình ảnh chính</label>
                         <input name="thumbnail" type="file" class="form-control" id="thumbnail">
                     </div>
@@ -59,50 +53,19 @@
                         <label>Loại SP</label><br>
                         <select id="product_type_id" class="js-example-basic-single w-100">
                             <option></option>
-=======
-                        <label for="thumbnail">Main Image</label>
-                        <input style="border-style: groove;" name="thumbnail" type="file" class="form-control" id="thumbnail">
-                    </div>
-                    <div class="form-group">
-                        <label for="images">Images</label>
-                        <input style="border-style: groove;" name="images[]" type="file" multiple class="form-control" id="images">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputText1">Name</label>
-                        <input style="border-style: groove;" name="name" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="images">Description</label>
-                        <textarea style="border-style: groove;" class="form-control" name="tinymce" id="simpleMdeExample"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Product Type</label><br>
-                        <select  id="product_type_id" class="js-example-basic-single w-100">
-                            <option ></option>
->>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                         </select>
                     </div>
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <label>Màu SP</label><br>
                         <select id="colors" name="colors[]" class="js-example-basic-multiple w-100" multiple="multiple">
-=======
-                        <label>Colors</label><br>
-                        <select style="border-style: groove;" id="colors" name="colors[]" class="js-example-basic-multiple w-100" multiple="multiple">
->>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                             <option></option>
                         </select>
                     </div>
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <label>Kích cớ SP</label><br>
                         <select disabled id="sizes" name='sizes[]' class="js-example-basic-multiple w-100" multiple="multiple">
-=======
-                        <label>Sizes</label><br>
-                        <select disabled id="sizes" name='sizes[]' style="border-style: groove;" class="js-example-basic-multiple w-100" multiple="multiple">
->>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                             <option></option>
 
                         </select>
@@ -110,7 +73,6 @@
 
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <label for="exampleInputNumber1">Giá thực</label>
                         <input name="price" type="number" class="form-control" id="price" value="" placeholder="Giá thực">
                     </div>
@@ -121,18 +83,6 @@
                     <div class="form-group">
                         <label for="exampleInputPassword3">Tồn kho</label>
                         <input name="stock" type="number" class="form-control" id="stock" value="" placeholder="Tồn kho">
-=======
-                        <label for="exampleInputNumber1">Price</label>
-                        <input style="border-style: groove;" name="price" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputNumber1">Discount</label>
-                        <input style="border-style: groove;" name="discount" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword3">Stock</label>
-                        <input style="border-style: groove;" name="stock" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
->>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                     </div>
 
 

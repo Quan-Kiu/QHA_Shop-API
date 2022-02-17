@@ -3,6 +3,7 @@ $(function() {
 
   $(function() {
     $('#dataTableExample').DataTable({
+      "bDestroy": true,
       "aLengthMenu": [
         [10, 30, 50, -1],
         [10, 30, 50, "All"]

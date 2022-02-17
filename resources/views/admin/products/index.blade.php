@@ -161,8 +161,12 @@ window.onload = ()=>{
 
     }
 );
+
+
  
 $(document).ready(function() {
+    
+
     var table = $('#dataTableExample').DataTable();
      
     // Event listener to the two range filtering inputs to redraw on input
@@ -175,7 +179,7 @@ $(document).ready(function() {
     $('#product_type').change( function() {
         table.draw();
     } );
-} );
+});
 }
     const deleteProduct = (id) => {
         const swalWithBootstrapButtons = Swal.mixin({

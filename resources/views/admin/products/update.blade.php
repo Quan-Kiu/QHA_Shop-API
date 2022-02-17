@@ -51,13 +51,8 @@
                         <input style="border-style: groove;" name="images[]" type="file" multiple class="form-control" id="images">
                     </div>
                     <div class="form-group">
-<<<<<<< HEAD
                         <label for="exampleInputText1">Tên SP</label>
                         <input name="name" value="{{{$data['product']->name}}}" type="text" class="form-control" id="name" value="" placeholder="Tên sản phẩm">
-=======
-                        <label for="exampleInputText1">Name</label>
-                        <input style="border-style: groove;" name="name" value="{{{$data['product']->name}}}" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
->>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                     </div>
                     <div class="form-group">
                         <label for="images">Thông tin</label>
@@ -86,7 +81,6 @@
 
 
                     <div class="form-group">
-<<<<<<< HEAD
                         <label for="exampleInputNumber1">Giá thực</label>
                         <input name="price" value="{{{$data['product']->price}}}" type="number" class="form-control" id="price" value="" placeholder="Giá thực">
                     </div>
@@ -97,18 +91,6 @@
                     <div class="form-group">
                         <label for="exampleInputPassword3">Tồn kho</label>
                         <input name="stock" value="{{{$data['product']->stock}}}" type="number" class="form-control" id="stock" value="" placeholder="Tồn kho">
-=======
-                        <label for="exampleInputNumber1">Price</label>
-                        <input style="border-style: groove;" name="price" value="{{{$data['product']->price}}}" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputNumber1">Discount</label>
-                        <input style="border-style: groove;" name="discount" value="{{{$data['product']->discount}}}" type="number" class="form-control" id="discount" value="" placeholder="Enter Sale">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword3">Stock</label>
-                        <input style="border-style: groove;" name="stock" value="{{{$data['product']->stock}}}" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
->>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                     </div>
 
 
