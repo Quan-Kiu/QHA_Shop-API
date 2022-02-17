@@ -38,7 +38,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'admin'], function () {
 
         Route::get('/', function () {
-            return view('admin.dashboard');
+            $from = date("2022-02-01");
+            $to = date("2022-02-18");
+            $orders = Order::whereBetween('created_at', [$from, $to]);
+            $data = $orders->selectRaw('sum(unit_price) as unitPrice, Date(created_at) as date')->groupBy('date')->get();
+            return view('admin.dashboard',['data' => $data]);
         })->name('dashboard');
 
         // Product

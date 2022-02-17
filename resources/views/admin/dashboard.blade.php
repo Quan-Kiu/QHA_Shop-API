@@ -1,46 +1,60 @@
 @extends('layout.master')
 
-@push('plugin-styles')
-<link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" />
-@endpush
+
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-    <form class="forms-sample">
-        <div class="form-group">
-            <label for="exampleInputUsername1">Username</label>
-            <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="Username">
+    <div class="col-xl-6 grid-margin stretch-card">
+        <div class="card">
+          
+          <div class="card-body">
+            <h6 class="card-title">Thống kê</h6>
+            <div id="apexBar"></div>
+          </div>
         </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" autocomplete="off" placeholder="Password">
-        </div>
-        <div class="form-check form-check-flat form-check-primary">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">
-                Remember me
-            </label>
-        </div>
-        <a onclick="sendLogin()" class="btn btn-primary mr-2">Submit</a>
-        <button class="btn btn-light">Cancel</button>
-    </form>
+      </div>
 </div> <!-- row -->
 @endsection
 
 @push('plugin-scripts')
-<script src="{{ asset('assets/plugins/chartjs/Chart.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
-<script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
-<script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/progressbar-js/progressbar.min.js') }}"></script>
+  <script src="{{ asset('assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
-<script src="{{ asset('assets/js/dashboard.js') }}"></script>
-<script src="{{ asset('assets/js/datepicker.js') }}"></script>
+
+<script>
+  var data = @json($data);
+  console.log(data);
+  window.onload = function()
+{
+    var options = {
+    chart: {
+      type: 'bar',
+      height: '320',
+      parentHeightOffset: 0
+    },
+    colors: ["#f77eb9"],    
+    grid: {
+      borderColor: "rgba(77, 138, 240, .1)",
+      padding: {
+        bottom: -15
+      }
+    },
+    series: [{
+      name: 'sales',
+      data: [30,40,45,50,49,60,70,91,125,220,300,400]
+    }],
+    xaxis: {
+      type: 'category',
+      categories: ['02/01/1991','01/02/1991','01/03/1991','01/04/1991','01/05/1991','01/06/1991','01/07/1991', '01/08/1991','01/09/1991','01/10/1991','01/11/1991','01/12/1991']
+    }
+  }
+  
+  var apexBarChart = new ApexCharts(document.querySelector("#apexBar"), options);
+  
+  apexBarChart.render();
+
+  };
+</script>
+  {{-- <script src="{{ asset('assets/js/apexcharts.js') }}"></script> --}}
 @endpush
