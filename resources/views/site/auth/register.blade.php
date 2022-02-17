@@ -18,21 +18,46 @@
               <form class="forms-sample" method="POST" action="/register">
                 @csrf
                 <div class="form-group">
-                  <label for="exampleInputUsername1">Username</label>
-                  <input id="fullname" name="fullname" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username">
+                  <label for="exampleInputEmail1">Full Name</label>
+                  <input id="fullname" type="fullname" class="form-control @error('fullname') is-invalid @enderror" name="fullname" value="{{ old('fullname') }}" required autocomplete="fullname" autofocus>
+
+                  @error('fullname')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input id="email" name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                  @error('email')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input id="password" name="password" type="password" class="form-control" id="exampleInputPassword1" autocomplete="current-password" placeholder="Password">
+                  <label for="exampleInputEmail1">Password</label>
+                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+
+                  @error('password')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" id="exampleInputPassword1" autocomplete="current-password" placeholder="Password">
+                  <label for="exampleInputEmail1">Password Confirmation</label>
+                  <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" value="{{ old('password_confirmation') }}" required autocomplete="password_confirmation" autofocus>
+
+                  @error('password_confirmation')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
                 </div>
+               
                 <div class="form-check form-check-flat form-check-primary">
                   <label class="form-check-label">
                     <input type="checkbox" class="form-check-input">
@@ -41,7 +66,11 @@
                 </div>
                 <div class="mt-3">
                   <button type="submit" class="btn btn-primary mr-2 mb-2 mb-md-0">Sing up</button>
+<<<<<<< HEAD
+                 
+=======
                   
+>>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                 </div>
                 <a href="{{ url('/auth/login') }}" class="d-block mt-3 text-muted">Already a user? Sign in</a>
               </form>

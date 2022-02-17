@@ -10,8 +10,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="../producttypes">Product Type</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add Product Type</li>
+        <li class="breadcrumb-item"><a href="../producttypes">Loại sản phẩm</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Thêm loại sản phẩm</li>
     </ol>
 </nav>
 
@@ -20,14 +20,14 @@
         <div class="card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Product Type</h4>
+                    <h4 class="card-title">Thêm loại sản phẩm</h4>
                     <form id="addType">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Tên</label>
                             <input id="name" class="form-control" name="name" type="text" />
                         </div>
 
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" type="submit" value="Thêm">
                     </form>
                 </div>
             </div>

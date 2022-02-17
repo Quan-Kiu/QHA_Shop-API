@@ -9,8 +9,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/colors">Size</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update Size</li>
+        <li class="breadcrumb-item"><a href="../sizes">Kích cỡ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sửa kích cỡ</li>
     </ol>
 </nav>
 <div class="row">
@@ -18,14 +18,14 @@
         <div class="card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Update Size</h4>
+                    <h4 class="card-title">Sửa kích cỡ</h4>
                     <form id="update">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Tên</label>
                             <input id="name" value="{{{$data['size']->name}}}" class="form-control" name="name" type="text" />
                         </div>
                         <div class="form-group">
-                            <label>Product Type</label>
+                            <label>Loại SP</label>
                             <select id="product_type_id" class="js-example-basic-single w-100">
                                 @foreach($data['product_types'] as $item)
                                 @if($data['size']->product_type_id == $item->id)
@@ -36,7 +36,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" type="submit" value="Sửa">
                     </form>
                 </div>
             </div>

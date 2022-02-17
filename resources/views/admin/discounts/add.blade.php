@@ -10,8 +10,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="discounts">Discounts</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add Discounts</li>
+        <li class="breadcrumb-item"><a href="../discounts">Mã giảm giá</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Thêm mã giảm giá</li>
     </ol>
 </nav>
 
@@ -20,25 +20,25 @@
         <div class="card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Discounts</h4>
+                    <h4 class="card-title">Thêm mã giảm giá</h4>
                     <form id="add">
                         <div class="form-group">
-                            <label for="code">Code</label>
+                            <label for="code">Mã</label>
                             <input id="code" class="form-control" name="code" type="text" />
-                            <label for="price">Price</label>
+                            <label for="price">Giảm giá</label>
                             <input id="price" class="form-control" name="price" type="text" />
-                            <label for="drought">Drought</label>
+                            <label for="drought">Hết hạn sau</label>
                             <select class="form-control" id="drought">
-                                <option selected disabled>Select</option>
-                                <option value="1 hours">1 Hour</option>
-                                <option value="2 hours">2 Hours</option>
-                                <option value="4 hours">4 Hours</option>
-                                <option value="8 hours">8 Hours</option>
-                                <option value="1 days">1 Day</option>
-                                <option value="2 days">2 Day</option>
+                                <option selected disabled>Chọn</option>
+                                <option value="1 hours">1 Giờ</option>
+                                <option value="2 hours">2 Giờ</option>
+                                <option value="4 hours">4 Giờ</option>
+                                <option value="8 hours">8 Giờ</option>
+                                <option value="1 days">1 Ngày</option>
+                                <option value="2 days">2 Ngày</option>
                             </select>
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" type="submit" value="Thêm">
                     </form>
                 </div>
             </div>

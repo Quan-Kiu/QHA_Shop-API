@@ -10,8 +10,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/colors">Color</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update Color</li>
+        <li class="breadcrumb-item"><a href="../colors">Màu SP</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sửa màu</li>
     </ol>
 </nav>
 
@@ -20,13 +20,13 @@
         <div class="card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Update Color</h4>
+                    <h4 class="card-title">Sửa màu</h4>
                     <form id="updateColor">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Tên</label>
                             <input id="name" value="{{{$color->name}}}" class="form-control" type="text" />
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" type="submit" value="Sửa">
                     </form>
                 </div>
             </div>

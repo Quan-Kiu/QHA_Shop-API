@@ -10,8 +10,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/colors">Order Status</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add Order Status</li>
+        <li class="breadcrumb-item"><a href="../orders_status">Trạng thái đơn hàng</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Thêm trạng thái đơn hàng</li>
     </ol>
 </nav>
 
@@ -20,13 +20,13 @@
         <div class="card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Order Status</h4>
+                    <h4 class="card-title">Thêm trạng thái đơn hàng</h4>
                     <form id="addColor">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Tên</label>
                             <input id="name" class="form-control" name="name" type="text" />
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" type="submit" value="Thêm">
                     </form>
                 </div>
             </div>

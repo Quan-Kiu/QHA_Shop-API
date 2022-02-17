@@ -23,25 +23,26 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb ">
-        <li class="breadcrumb-item"><a href="#">Product</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+        <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sửa Sản phẩm</li>
+        <li class="breadcrumb-item active" aria-current="page">{{$data['product']->name}}</li>
     </ol>
 </nav>
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">ADD PRODUCT</h6>
+                <h6 class="card-title">Sửa Sản phẩm</h6>
 
 
                 <form id="update-product">
                     <div class="form-group my-5">
-                        <label for="thumbnail">Main Image</label>
+                        <label for="thumbnail">Hình ảnh chính</label>
                         <img class="d-block mr-auto ml-auto my-5" style="width:200px" src="{{{$data['product']->thumbnail}}}" alt="">
                         <input style="border-style: groove;" name="thumbnail" type="file" class="form-control" id="thumbnail">
                     </div>
                     <div class="form-group my-5">
-                        <label for="images">Images</label>
+                        <label for="images">Hình ảnh chi tiết</label>
                         <div class="images__list row my-5">
                             @foreach($data['product']->images as $image)
                             <img class="d-block mr-auto ml-auto" style="width:150px" src="{{{$image}}}" alt="">
@@ -50,29 +51,34 @@
                         <input style="border-style: groove;" name="images[]" type="file" multiple class="form-control" id="images">
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
+                        <label for="exampleInputText1">Tên SP</label>
+                        <input name="name" value="{{{$data['product']->name}}}" type="text" class="form-control" id="name" value="" placeholder="Tên sản phẩm">
+=======
                         <label for="exampleInputText1">Name</label>
                         <input style="border-style: groove;" name="name" value="{{{$data['product']->name}}}" type="text" class="form-control" id="name" value="" placeholder="Enter Name">
+>>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                     </div>
                     <div class="form-group">
-                        <label for="images">Description</label>
+                        <label for="images">Thông tin</label>
                         <textarea class="form-control" value="{{{$data['product']->description}}}" name="tinymce" id="simpleMdeExample"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Product Type</label><br>
+                        <label>Loại SP</label><br>
                         <select id="product_type_id" class="js-example-basic-single w-100">
                             <option></option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Colors</label><br>
+                        <label>Màu SP</label><br>
                         <select id="colors" name="colors[]" class="js-example-basic-multiple w-100" multiple="multiple">
                             <option></option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Sizes</label><br>
+                        <label>Kích cỡ SP</label><br>
                         <select id="sizes" name='sizes[]' class="js-example-basic-multiple w-100" multiple="multiple">
                             <option></option>
                         </select>
@@ -80,6 +86,18 @@
 
 
                     <div class="form-group">
+<<<<<<< HEAD
+                        <label for="exampleInputNumber1">Giá thực</label>
+                        <input name="price" value="{{{$data['product']->price}}}" type="number" class="form-control" id="price" value="" placeholder="Giá thực">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputNumber1">Giá ( giảm giá )</label>
+                        <input name="discount" value="{{{$data['product']->discount}}}" type="number" class="form-control" id="discount" value="" placeholder="Giá ( giảm giá )">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword3">Tồn kho</label>
+                        <input name="stock" value="{{{$data['product']->stock}}}" type="number" class="form-control" id="stock" value="" placeholder="Tồn kho">
+=======
                         <label for="exampleInputNumber1">Price</label>
                         <input style="border-style: groove;" name="price" value="{{{$data['product']->price}}}" type="number" class="form-control" id="price" value="" placeholder="Enter Price">
                     </div>
@@ -90,6 +108,7 @@
                     <div class="form-group">
                         <label for="exampleInputPassword3">Stock</label>
                         <input style="border-style: groove;" name="stock" value="{{{$data['product']->stock}}}" type="number" class="form-control" id="stock" value="" placeholder="Enter Stock">
+>>>>>>> aa2a91ec52ef680bae366e80919e8ec8a1100629
                     </div>
 
 
@@ -151,7 +170,7 @@
         })
         if (current_sizes.length > 0) {
             $("#sizes").select2({
-                placeholder: 'Select product size',
+                placeholder: 'Chọn loại SP',
                 allowClear: true,
                 data: current_sizes,
             });
@@ -174,7 +193,7 @@
             })
             if (current_sizes.length > 0) {
                 $("#sizes").select2({
-                    placeholder: 'Select product size',
+                    placeholder: 'Chọn kích cỡ SP',
                     allowClear: true,
                     data: current_sizes,
                 });

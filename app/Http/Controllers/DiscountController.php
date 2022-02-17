@@ -123,7 +123,24 @@ class DiscountController extends BaseController
      */
     public function update(Request $request, Discount $discount)
     {
-        //
+        $input = $request->all();
+        $validator = Validator::make($request->all(), [
+            'code' => 'required|string',
+            'price' => 'required|int',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors()->first());
+        }
+
+        $discount->fill([
+            'code' => $input["code"],
+            'price' => $input["price"],
+        ]);
+
+        $discount->save();
+
+        return $this->sendResponse($discount, 'Thay đổi thông tin thành công.');
     }
 
     /**

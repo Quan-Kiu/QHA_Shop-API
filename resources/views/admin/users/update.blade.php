@@ -10,8 +10,8 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/users">User</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update User</li>
+        <li class="breadcrumb-item"><a href="../users">Người dùng</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sửa người dùng</li>
     </ol>
 </nav>
 
@@ -20,10 +20,10 @@
         <div class="card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Update User</h4>
+                    <h4 class="card-title">Sửa người dùng</h4>
                     <form id="addUser">
                         <div class="form-group">
-                            <label for="fullname">FullName</label>
+                            <label for="fullname">Họ tên</label>
                             <input id="fullname" value="{{{$data['user']->fullname}}}" class="form-control" name="fullname" type="text" />
                         </div>
                         <div class="form-group">
@@ -31,15 +31,12 @@
                             <input id="email" name="email" value="{{{$data['user']->email}}}" class="form-control" name="email" type="email" />
                         </div>
                         <div class="form-group">
-                            <label for="password">Phone</label>
+                            <label for="password">Số điện thoại</label>
                             <input id="phone" value="{{{$data['user']->phone}}}" class="form-control" name="phone" type="text" />
                         </div>
+                       
                         <div class="form-group">
-                            <label for="password">Address</label>
-                            <input id="address" value="{{{$data['user']->address}}}" class="form-control" name="address" type="text" />
-                        </div>
-                        <div class="form-group">
-                            <label>Rule</label>
+                            <label>Loại TK</label>
                             <select id="user_type_id" class="js-example-basic-single w-100">
                                 @foreach($data['user_type'] as $item)
                                 @if($data['user']->user_type_id==$item->id)
@@ -50,7 +47,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" type="submit" value="Sửa">
                     </form>
                 </div>
             </div>
@@ -66,7 +63,6 @@
             let formData = {
                 email: $('input[name="email"]').val(),
                 fullname: $('#fullname').val(),
-                address: $('#address').val(),
                 phone: $('#phone').val(),
                 user_type_id: $('#user_type_id').val(),
                 password_confirmation: $('#password').val(),

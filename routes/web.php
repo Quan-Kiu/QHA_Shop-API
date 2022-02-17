@@ -44,7 +44,10 @@ Route::middleware('auth:sanctum')->group(function () {
         // Product
         Route::get('/products', function () {
             $product = Product::all();
-            return view('admin.products.index', ['product' => $product]);
+            $product_type = ProductType::all();
+            $data['products'] = $product;
+            $data['product_type'] = $product_type;
+            return view('admin.products.index', ['data' => $data]);
         });
 
         Route::get('/products/add', function () {
@@ -68,50 +71,68 @@ Route::middleware('auth:sanctum')->group(function () {
             return view('admin.products.update', ['data' => $response]);
         });
 
-        // Account
-        Route::get('/users', function () {
-            $users = User::all();
-            return view('admin.users.index', ['users' => $users]);
-        });
-        Route::get('/users/add', function () {
-            $user_type = UserType::all();
-            return view('admin.users.add', ['user_type' => $user_type]);
-        });
-        Route::get('/users/{user}', function (User $user) {
-            $user_type = UserType::all();
-            $data['user'] = $user;
-            $data['user_type'] = $user_type;
-            return view('admin.users.update', ['data' => $data]);
+
+        Route::group(['prefix' =>'users'], function (){
+            // Account
+            Route::get('/', function () {
+                $users = User::all();
+                return view('admin.users.index', ['users' => $users]);
+            });
+            Route::get('/add', function () {
+                $user_type = UserType::all();
+                return view('admin.users.add', ['user_type' => $user_type]);
+            });
+            Route::get('/{user}', function (User $user) {
+                $user_type = UserType::all();
+                $data['user'] = $user;
+                $data['user_type'] = $user_type;
+                return view('admin.users.update', ['data' => $data]);
+            });
         });
 
-        // Cart
-        Route::get('/carts', function () {
-            $carts = Cart::all();
-            return view('admin.carts.index', ['carts' => $carts]);
+        // // Cart
+        // Route::get('/carts', function () {
+        //     $carts = Cart::all();
+        //     return view('admin.carts.index', ['carts' => $carts]);
+        // });
+
+        Route::group(['prefix'=>'discounts'],function(){
+
+            Route::get('/', function () {
+                $discounts = Discount::all();
+                return view('admin.discounts.index', ['discounts' => $discounts]);
+            });
+    
+            Route::get('/add', function () {
+                return view('admin.discounts.add');
+            });
+
+            Route::get('/{discount}', function (Discount $discount) {
+                return view('admin.discounts.update',['discount' => $discount]);
+            });
+           
+
         });
 
 
-        Route::get('discounts', function () {
-            $discounts = Discount::all();
-            return view('admin.discounts.index', ['discounts' => $discounts]);
+    //    colors
+        Route::group(['prefix' =>'colors'],function (){
+
+            Route::get('/', function () {
+                $colors = Color::all();
+                return view('admin.colors.index', ['colors' => $colors]);
+            });
+            Route::get('/add', function () {
+                return view('admin.colors.add');
+            });
+            Route::get('/{color}', function (Color $color) {
+                return view('admin.colors.update', ['color' => $color]);
+            });
+    
+
         });
 
-        Route::get('/discounts/add', function () {
-            return view('admin.discounts.add');
-        });
-
-        // Color
-        Route::get('/colors', function () {
-            $colors = Color::all();
-            return view('admin.colors.index', ['colors' => $colors]);
-        });
-        Route::get('/colors/add', function () {
-            return view('admin.colors.add');
-        });
-        Route::get('/colors/{color}', function (Color $color) {
-            return view('admin.colors.update', ['color' => $color]);
-        });
-
+       
         // Order
         Route::get('/orders', function () {
             $orderStatus = Orderstatus::all();
