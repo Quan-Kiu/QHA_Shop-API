@@ -1,6 +1,14 @@
+
+@if(Auth::user()->user_type_id != 2){
+    <script>
+      window.location = "/auth/login";
+    </script>
+  }
+@endif
+
 <nav class="sidebar">
   <div class="sidebar-header">
-    <a href="" class="sidebar-brand">
+    <a href="/admin" class="sidebar-brand">
       QHA<span>Shop </span><img src="https://res.cloudinary.com/dprqzgmak/image/upload/c_scale,w_20/v1644594761/logo_zv67se.png">
     </a>
     <div class="sidebar-toggler not-active">
@@ -11,6 +19,13 @@
   </div>
   <div class="sidebar-body">
     <ul class="nav">
+      <li class="nav-item nav-category">Thống kê</li>
+      <li class="nav-item {{ active_class(['admin']) }}">
+        <a href="{{ url('admin') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Thống kê doanh thu</span>
+        </a>
+      </li>
       <li class="nav-item nav-category">QL Sản phẩm</li>
       <li class="nav-item {{ active_class(['admin/products']) }}">
         <a href="{{ url('admin/products') }}" class="nav-link">

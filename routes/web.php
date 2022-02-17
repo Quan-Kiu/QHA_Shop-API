@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ProductController;
+use Illuminate\Http\Request;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/register', function () {
@@ -37,11 +38,21 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::group(['prefix' => 'admin'], function () {
 
-        Route::get('/', function () {
-            $from = date("2022-02-01");
-            $to = date("2022-02-18");
-            $orders = Order::whereBetween('created_at', [$from, $to]);
-            $data = $orders->selectRaw('sum(unit_price) as unitPrice, Date(created_at) as date')->groupBy('date')->get();
+        Route::get('/', function (Request $request) {
+            if(count($request->all()) > 0){
+                $from = $request->firstDate;
+                $to = $request->currentDate;
+
+            }else{
+                $from = date('Y-m-d',strtotime(date('Y-m-1')));
+                $to = date('Y-m-d',strtotime('+ 1 day'));
+                $request->firstDate = $from;
+                $request->currentDate = $to;
+            }
+            $orders = Order::whereBetween('updated_at', [$from, $to]);
+
+            $data = $orders->selectRaw('sum(unit_price) as unitPrice, Date(updated_at) as date')->where('order_status_id','=','4')->groupBy('date')->get();
+
             return view('admin.dashboard',['data' => $data]);
         })->name('dashboard');
 
@@ -212,6 +223,11 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::middleware('auth:sanctum')->group(function () {
 
+    Route::get('/', function () {
+        $product = Product::all();
+        $producttype = ProductType::all();
+        return view('user.home', compact('product','producttype'));
+    });
     Route::get('/home', function () {
         $product = Product::all();
         $producttype = ProductType::all();
