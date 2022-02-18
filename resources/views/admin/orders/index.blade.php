@@ -5,7 +5,6 @@
 @endpush
 @push('plugin-styles')
 <link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
-<link href="{{ asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -28,7 +27,6 @@
                 <div  class="filter__item mb-2 d-flex align-items-center "><div style="min-width: 150px">Trạng thái hóa đơn</div>
 
 <select id="orders_status" name="orders_status"  style="width:unset;display:inline"  >
-    
     <option selected value="">Tất cả</option>
     @foreach($data['orders_status'] as $item)
     <option value="{{$item->name}}">{{$item->name}}</option>
@@ -60,9 +58,11 @@
                                 <td>{{$item['created_at']}}</td>
                                 <td>{{$item['delivery_date']}}</td>
                                 <td>{{$item['OrderStatus']->name}}</td>
-                                @foreach( $item['OrderDetails'] as $detail)
-                                <td hidden=true>{{{$detail->Product}}}</td>
-                                @endforeach
+                                <td hidden=true>
+                                    @foreach( $item['OrderDetails'] as $detail)
+                                        {{{$detail->Product}}}
+                                    @endforeach
+                                </td>
                                 <td><button class="btn btn-primary" onclick="
                                     var data = {{ Illuminate\Support\Js::from($item) }};
                                     handleOrderDetail(data);
@@ -110,7 +110,7 @@
 
 <script>
 
-window.onload = ()=>{
+window.onload = ()=> {
 
 
 $.fn.dataTable.ext.search.push(
@@ -308,7 +308,3 @@ $('#orders_status').change( function() {
             })
     }
 </script>
-@push('custom-scripts')
-<script src="{{ asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('assets/js/datepicker.js') }}"></script>
-@endpush
